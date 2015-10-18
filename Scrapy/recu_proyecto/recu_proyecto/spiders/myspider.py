@@ -20,7 +20,7 @@ class MySpider(CrawlSpider):
 		titles = hxs.xpath('//span[@class="pl"]')
 		items = []
 		for titles in titles:
-			filename = response.url.split("/")[-2]+'.html'
+			filename = response.url+'.html'
 			open(filename, 'wb').write(response.body)
 			item = RecuProyectoItem()
 			item["title"] = titles.xpath("a/text()").extract()

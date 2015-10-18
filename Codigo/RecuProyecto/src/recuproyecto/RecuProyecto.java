@@ -35,7 +35,7 @@ public class RecuProyecto {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        File[] files = new File("C:/Prueba/").listFiles();
+        File[] files = new File("C:/Users/Pc/Desktop/Recuperacion/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
         showFiles(files, parser); 
         java.awt.EventQueue.invokeLater(new Runnable() {
