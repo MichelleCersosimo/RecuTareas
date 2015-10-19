@@ -1,2 +1,5 @@
 Contact FAQ.htm|1|
-Glossary of Apache-Related Terms.htm|2|
+GitHub.htm|2|
+Glossary of Apache-Related Terms.htm|3|
+Subversion Write Support.htm|4|
+The GitHub Blog  Enterprise.htm|4|

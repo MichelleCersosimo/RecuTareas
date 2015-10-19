@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en" class=" is-copy-enabled">
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# object: http://ogp.me/ns/object# article: http://ogp.me/ns/article# profile: http://ogp.me/ns/profile#">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=1020">
+    <meta content="origin-when-crossorigin" name="referrer" />
+    
+    <title>The GitHub Blog: Enterprise</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png">
+    <meta property="fb:app_id" content="1401488693436528">
+
+      <meta property="og:url" content="https://github.com">
+      <meta property="og:site_name" content="GitHub">
+      <meta property="og:title" content="Build software better, together">
+      <meta property="og:description" content="GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 28 million projects.">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-logo.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="1200">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-mark.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="620">
+      <meta property="og:image" content="https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png">
+      <meta property="og:image:type" content="image/png">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="620">
+      <meta property="twitter:site" content="github">
+      <meta property="twitter:site:id" content="13334762">
+      <meta property="twitter:creator" content="github">
+      <meta property="twitter:creator:id" content="13334762">
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:title" content="GitHub">
+      <meta property="twitter:description" content="GitHub is where people build software. More than 11 million people use GitHub to discover, fork, and contribute to over 28 million projects.">
+      <meta property="twitter:image:src" content="https://assets-cdn.github.com/images/modules/open_graph/github-logo.png">
+      <meta property="twitter:image:width" content="1200">
+      <meta property="twitter:image:height" content="1200">
+      <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
+    <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
+    <link rel="assets" href="https://assets-cdn.github.com/">
+    <link rel="web-socket" href="wss://live.github.com/_sockets/ODgwOTAxMTpjMDk0ZjAyM2E1OTliODM2YzY0Y2ZiNzI5ZmQ2OTVhYzpmY2VhMTEyMjdhMWQwZDhjOTQ1ZThjMWRhYjQxM2U5ZDA0ODcxMjdjMDY2YWMwM2QwZmZkNDg5MGI2OWZmOGE2--c51c0ab62ec3d4668059c13bdd0838b7b3251d2f">
+    <meta name="pjax-timeout" content="1000">
+    <link rel="sudo-modal" href="/sessions/sudo_modal">
+
+    <meta name="msapplication-TileImage" content="/windows-tile.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="selected-link" value="/blog/category/enterprise" data-pjax-transient>
+
+    <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
+    <meta name="google-analytics" content="UA-3769691-2">
+
+<meta content="collector.githubapp.com" name="octolytics-host" /><meta content="github" name="octolytics-app-id" /><meta content="C9C5623A:07C9:1B19CD65:56247DFA" name="octolytics-dimension-request_id" /><meta content="8809011" name="octolytics-actor-id" /><meta content="MichelleCersosimo" name="octolytics-actor-login" /><meta content="e3952a192a65aa93c48f1b36911b95524203de8beb46214c7422f2ffcce7a7bb" name="octolytics-actor-hash" />
+
+<meta content="Rails, view, posts#index" data-pjax-transient="true" name="analytics-event" />
+
+
+  <meta class="js-ga-set" name="dimension1" content="Logged In">
+    <meta class="js-ga-set" name="dimension4" content="Current repo nav">
+
+
+
+
+    <meta name="is-dotcom" content="true">
+        <meta name="hostname" content="github.com">
+    <meta name="user-login" content="MichelleCersosimo">
+
+      <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#4078c0">
+      <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+
+    <meta content="8193ee0023143c0e8938521377707efdf71387e5" name="form-nonce" />
+
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-1c72e5e1cbdeae0d6a25ee0e6f07ae0100db5696d3f5f10ed2acf1f0885ef5f0.css" media="all" rel="stylesheet" />
+    <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github2-91f10774cc492e563a1bcd77a9b935a21bffbda4c7fefb5ed448d51a53217852.css" media="all" rel="stylesheet" />
+    
+    
+    
+
+
+    <meta http-equiv="x-pjax-version" content="aaf0a95e6a9bf84b40427e5620ea23c2">
+
+      <link rel="alternative" type="application/atom+xml" title="The GitHub Blog’s featured posts" href="https://github.com/blog.atom">
+<link rel="alternative" type="application/atom+xml" title="The GitHub Blog: Enterprise" href="https://github.com/blog/enterprise.atom">
+<link rel="alternative" type="application/atom+xml" title="The GitHub Blog: Broadcasts only" href="https://github.com/blog/broadcasts.atom">
+
+  </head>
+
+
+  <body class="logged_in   env-production windows">
+    <a href="#start-of-content" tabindex="1" class="accessibility-aid js-skip-to-content">Skip to content</a>
+
+    
+    
+    
+
+
+
+      <div class="header header-logged-in true" role="banner">
+  <div class="container clearfix">
+
+    <a class="header-logo-invertocat" href="https://github.com/" data-hotkey="g d" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+  <span class="mega-octicon octicon-mark-github"></span>
+</a>
+
+
+      <div class="site-search  js-site-search" role="search">
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/search" class="js-site-search-form" data-global-search-url="/search" data-repo-search-url="" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+  <label class="js-chromeless-input-container form-control">
+    <div class="scope-badge">This repository</div>
+    <input type="text"
+      class="js-site-search-focus  chromeless-input"
+      data-hotkey="s"
+      name="q"
+      placeholder="Search GitHub"
+      aria-label="Search GitHub"
+      data-global-scope-placeholder="Search GitHub"
+      data-repo-scope-placeholder="Search"
+      tabindex="1"
+      autocapitalize="off">
+  </label>
+</form>
+      </div>
+
+      <ul class="header-nav left" role="navigation">
+        <li class="header-nav-item">
+          <a href="/pulls" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:pulls context:user" data-hotkey="g p" data-selected-links="/pulls /pulls/assigned /pulls/mentioned /pulls">
+            Pull requests
+</a>        </li>
+        <li class="header-nav-item">
+          <a href="/issues" class="js-selected-navigation-item header-nav-link" data-ga-click="Header, click, Nav menu - item:issues context:user" data-hotkey="g i" data-selected-links="/issues /issues/assigned /issues/mentioned /issues">
+            Issues
+</a>        </li>
+          <li class="header-nav-item">
+            <a class="header-nav-link" href="https://gist.github.com/" data-ga-click="Header, go to gist, text:gist">Gist</a>
+          </li>
+      </ul>
+
+    
+<ul class="header-nav user-nav right" id="user-links">
+  <li class="header-nav-item">
+      <span class="js-socket-channel js-updatable-content"
+        data-channel="notification-changed:MichelleCersosimo"
+        data-url="/notifications/header">
+      <a href="/notifications" aria-label="You have no unread notifications" class="header-nav-link notification-indicator tooltipped tooltipped-s" data-ga-click="Header, go to notifications, icon:read" data-hotkey="g n">
+          <span class="mail-status all-read"></span>
+          <span class="octicon octicon-bell"></span>
+</a>  </span>
+
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link tooltipped tooltipped-s js-menu-target" href="/new"
+       aria-label="Create new…"
+       data-ga-click="Header, create new, icon:add">
+      <span class="octicon octicon-plus left"></span>
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <ul class="dropdown-menu dropdown-menu-sw">
+        
+<a class="dropdown-item" href="/new" data-ga-click="Header, create new repository">
+  New repository
+</a>
+
+
+  <a class="dropdown-item" href="/organizations/new" data-ga-click="Header, create new organization">
+    New organization
+  </a>
+
+
+
+
+      </ul>
+    </div>
+  </li>
+
+  <li class="header-nav-item dropdown js-menu-container">
+    <a class="header-nav-link name tooltipped tooltipped-s js-menu-target" href="/MichelleCersosimo"
+       aria-label="View profile and more"
+       data-ga-click="Header, show menu, icon:avatar">
+      <img alt="@MichelleCersosimo" class="avatar" height="20" src="https://avatars1.githubusercontent.com/u/8809011?v=3&amp;s=40" width="20" />
+      <span class="dropdown-caret"></span>
+    </a>
+
+    <div class="dropdown-menu-content js-menu-content">
+      <div class="dropdown-menu  dropdown-menu-sw">
+        <div class=" dropdown-header header-nav-current-user css-truncate">
+            Signed in as <strong class="css-truncate-target">MichelleCersosimo</strong>
+
+        </div>
+
+
+        <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="/MichelleCersosimo" data-ga-click="Header, go to profile, text:your profile">
+            Your profile
+          </a>
+        <a class="dropdown-item" href="/stars" data-ga-click="Header, go to starred repos, text:your stars">
+          Your stars
+        </a>
+        <a class="dropdown-item" href="/explore" data-ga-click="Header, go to explore, text:explore">
+          Explore
+        </a>
+          <a class="dropdown-item" href="/integrations" data-ga-click="Header, go to integrations, text:integrations">
+            Integrations
+          </a>
+        <a class="dropdown-item" href="https://help.github.com" data-ga-click="Header, go to help, text:help">
+          Help
+        </a>
+
+          <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" href="/settings/profile" data-ga-click="Header, go to settings, icon:settings">
+            Settings
+          </a>
+
+          <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/logout" class="logout-form" data-form-nonce="8193ee0023143c0e8938521377707efdf71387e5" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="siwkP61qJyNH4bol5bdGXokvPBVz5lFCBKFrKIeBjPW6wP9qJ5izg0GV8M3RJJ19bBLzyMaGikQvYVuxNAtz6Q==" /></div>
+            <button class="dropdown-item dropdown-signout" data-ga-click="Header, sign out, icon:logout">
+              Sign out
+            </button>
+</form>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+    
+  </div>
+</div>
+
+      
+
+      
+
+
+    <div id="start-of-content" class="accessibility-aid"></div>
+
+    <div id="js-flash-container">
+</div>
+
+
+    <div role="main" class="main-content">
+
+        <div id="js-pjax-container" class="context-loader-container" data-pjax-container>
+          
+
+
+
+
+  <div data-pjax-container>
+      <div class="pagehead separation">
+    <div class="container">
+      <!-- </textarea> --><!-- '"` --><form accept-charset="UTF-8" action="/blog/search" class="blog-search" data-pjax="true" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <span class="octicon octicon-search"></span>
+        <input class="blog-search-input" type="text" name="q" id="blog-search" value="" tabindex="2">
+</form>
+      <h1>
+          <a href="/blog" class="blog-title">The GitHub Blog: Enterprise</a>
+      </h1>
+    </div>
+  </div><!-- /.pagehead -->
+
+  <div class="container" id="blog-main">
+    
+<div class="blog-aside">
+
+  <ul class="menu" role="navigation" data-pjax>
+    <a href="/blog" class="js-selected-navigation-item menu-item" data-selected-links=" /blog">Featured</a>
+    <a href="/blog/category/all" class="js-selected-navigation-item menu-item" data-selected-links="all /blog/category/all">All Posts</a>
+    <a href="/blog/category/ship" class="js-selected-navigation-item menu-item" data-selected-links="ship /blog/category/ship">New Features</a>
+    <a href="/blog/category/engineering" class="js-selected-navigation-item menu-item" data-selected-links="engineering /blog/category/engineering">Engineering</a>
+    <a href="/blog/category/enterprise" aria-selected="true" class="js-selected-navigation-item selected menu-item" data-selected-links="enterprise /blog/category/enterprise">Enterprise</a>
+    <a href="/blog/category/conferences" class="js-selected-navigation-item menu-item" data-selected-links="conferences /blog/category/conferences">Conferences</a>
+    <a href="/blog/category/meetup" class="js-selected-navigation-item menu-item" data-selected-links="meetup /blog/category/meetup">Meetups</a>
+    <a href="/blog/category/hire" class="js-selected-navigation-item menu-item" data-selected-links="hire /blog/category/hire">New Hires</a>
+    <a href="/blog/category/watercooler" class="js-selected-navigation-item menu-item" data-selected-links="watercooler /blog/category/watercooler">Watercooler</a>
+  </ul>
+
+  <a class="rss" href="/blog/subscribe" data-pjax>
+    <span class="octicon octicon-rss"></span>
+    Subscribe
+  </a>
+</div>
+
+    <div class="blog-content">
+      
+  <div class="posts">
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/2076-github-enterprise-2-4-is-now-available" rel="bookmark">GitHub Enterprise 2.4 is now available</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      October 13, 2015
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mcolyer" class="author-avatar" height="18" src="https://avatars0.githubusercontent.com/u/1424?v=3&amp;s=36" width="18" /> <a href="/mcolyer">mcolyer</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p><a href="https://enterprise.github.com/home">GitHub Enterprise</a> is the on-premises version of GitHub, which you can deploy and manage in your own, secure environment. The GitHub Enterprise 2.4 release offers users and administrators greater control over their instance—and their workflows. From protected branches to simplified asset management, our latest release includes features and updates that make GitHub more flexible.</p>
+
+<h2>
+<a id="protected-branches-and-required-statuses" class="anchor" href="#protected-branches-and-required-statuses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Protected branches and required statuses</h2>
+
+<p>With protected branches, administrators now have the ability to disable force pushes to specific branches. Required status checks on protected branches make integrations that use our <a href="https://developer.github.com/v3/repos/statuses/">Status API</a> enforceable, and you can disable the merge button until they pass.  </p>
+
+<h2>
+<a id="improved-organization-permissions" class="anchor" href="#improved-organization-permissions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Improved organization permissions</h2>
+
+<p>Improved permissions give your organization the flexibility to work the way you want. New customizable member privileges, fine-grained team permissions, managed access, and transparent communication with team mentions make it even easier for your team to work together. <a href="https://github.com/orgs/improved-permissions?utm_source=github_site&amp;utm_medium=blog&amp;utm_campaign=organization-permissions">Learn more about GitHub’s improved organization permissions.</a></p>
+
+<h2>
+<a id="easier-asset-management-with-git-large-file-storage" class="anchor" href="#easier-asset-management-with-git-large-file-storage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easier asset management with Git Large File Storage</h2>
+
+<p>With the inclusion of Git LFS you can integrate large binary files into your Git workflow. Large files are stored on your server and the custom API allows you to transfer any number of files with ease. <a href="https://github.com/blog/2069-git-large-file-storage-v1-0">Learn more about Git LFS.</a></p>
+
+<h2>
+<a id="more-flexibility-with-github-pages" class="anchor" href="#more-flexibility-with-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>More flexibility with GitHub Pages</h2>
+
+<p>Your GitHub Pages sites can be public even if your Enterprise instance is private. With the new <a href="https://github.com/jekyll/jekyll-feed">jekyll-feed</a> plugin, you can automatically generate an Atom (RSS-like) feed of your most recent posts, making it easier for people to subscribe. <a href="https://github.com/blog/2053-easier-feeds-for-github-pages">Learn more about easier feeds for GitHub Pages.</a></p>
+
+<h2>
+<a id="keep-your-instance-current" class="anchor" href="#keep-your-instance-current" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keep your instance current</h2>
+
+<p>Ensure your GitHub Enterprise instance is up-to-date with new features, security patches, and bug fixes by opting in to automatic downloads of new releases, which you can then apply from the management console.</p>
+
+<h2>
+<a id="render-map-data-within-github-enterprise" class="anchor" href="#render-map-data-within-github-enterprise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Render map data within GitHub Enterprise</h2>
+
+<p>With GeoJSON support, any GeoJSON file in a GitHub repository will now be automatically rendered as an interactive, browsable map, annotated with your geographic data. You can even customize the way your data is displayed, such as coloring and sizing individual markers, or specifying a more descriptive icon.</p>
+
+<h2>
+<a id="merge-with-confidence" class="anchor" href="#merge-with-confidence" aria-hidden="true"><span class="octicon octicon-link"></span></a>Merge with confidence</h2>
+
+<p>The area above the merge button now contains information on automated status checks, making it easier to see if your proposed changes are ready to go or need more work. </p>
+
+<h2>
+<a id="universal-2nd-factor-authentication" class="anchor" href="#universal-2nd-factor-authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Universal 2nd Factor authentication</h2>
+
+<p>Earlier this month <a href="https://github.com/blog/2071-github-supports-universal-2nd-factor-authentication">we announced</a> that we expanded GitHub's authentication system to support FIDO Universal 2nd Factor (U2F), and this security feature is now available with the GitHub Enterprise 2.4 release. <a href="https://www.yubico.com/applications/fido/">Read more</a> about how U2F keys work or take a look at the <a href="https://help.github.com/enterprise/2.4/">documentation</a> to learn how to associate a U2F key with your instance.</p>
+
+<p>For the full list of features and updates, check out the <a href="https://enterprise.github.com/releases/2.4.0/notes">release notes</a>. If you're currently using GitHub Enterprise, you can <a href="https://enterprise.github.com/releases/2.3.0/download">download this release now</a>. If you want to give GitHub Enterprise a try, <a href="https://enterprise.github.com/trial">request a 45-day free trial</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/2077-github-enterprise-security-best-practices" rel="bookmark">GitHub Enterprise security best practices</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      October  9, 2015
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mattcantstop" class="author-avatar" height="18" src="https://avatars1.githubusercontent.com/u/995208?v=3&amp;s=36" width="18" /> <a href="/mattcantstop">mattcantstop</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>We want to free up your administrator's time by providing a tool that requires little maintenance and great out-of-the-box security. By following a few simple steps, GitHub Enterprise can be ready for your developers to test the same day it you install it.</p>
+
+<p>Sometimes in the excitement to get up and running, it is easy to pass over simple solutions for security. This post will guide you through some of the settings GitHub Enterprise provides to ensure your company's installation is secure without inhibiting collaboration. We will also discuss monitoring and auditing tools that give greater insight into the health and security of your installation.</p>
+
+<h2>
+<a id="initial-instance-setup" class="anchor" href="#initial-instance-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial instance setup</h2>
+
+<h3>
+<a id="instance-password" class="anchor" href="#instance-password" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instance password</h3>
+
+<p>The password for the Enterprise Management Console, as shown in step #8 of <a href="https://help.github.com/enterprise/admin/guides/installation/installing-github-enterprise-on-vmware/">this guide</a>, is the main gateway to administer GitHub Enterprise. This shared password gives a user unfettered access to the GitHub Enterprise environment, so we recommend that you only share it with a select few individuals and save it in an encrypted vault such as 1Password or a similar password management tool. Using this password, you can establish SSH keys through the <code>/setup</code> page in GitHub Enterprise. After setting up a key, an administrator can SSH into the GitHub Enterprise instance and gain access to all the <code>ghe-</code> <a href="https://help.github.com/enterprise/admin/articles/command-line-utilities/">command line utilities</a> available.</p>
+
+<h3>
+<a id="private-mode" class="anchor" href="#private-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Private Mode</h3>
+
+<p><a href="https://cloud.githubusercontent.com/assets/995208/10385389/eb12c552-6e0d-11e5-9076-c8bed7a4b77f.png" target="_blank"><img width="734" alt="private-mode" src="https://cloud.githubusercontent.com/assets/995208/10385389/eb12c552-6e0d-11e5-9076-c8bed7a4b77f.png" style="max-width:100%;"></a></p>
+
+<p>In the <code>/setup</code> page of GitHub Enterprise you will find a setting that enables Private Mode. With this setting enabled, GitHub Enterprise hides all content from users who are not authenticated, including public repositories.</p>
+
+<p>Enabling Private Mode is required for GitHub Enterprise instances that are accessible to users outside of the firewall without a VPN. This helps to ensure a user does not inadvertently make a repository public externally that should remain private within a company.</p>
+
+<p>If your GitHub Enterprise install is only available from a VPN outside of your firewall Private Mode does not need to be turned on. This lets unauthenticated people within the firewall view public repositories and public GitHub Pages.</p>
+
+<h3>
+<a id="subdomain-isolation" class="anchor" href="#subdomain-isolation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Subdomain isolation</h3>
+
+<p><a href="https://cloud.githubusercontent.com/assets/995208/10385406/1e9047e2-6e0e-11e5-88b6-5d27af6ef7d8.png" target="_blank"><img width="715" alt="subdomain" src="https://cloud.githubusercontent.com/assets/995208/10385406/1e9047e2-6e0e-11e5-88b6-5d27af6ef7d8.png" style="max-width:100%;"></a></p>
+
+<p>We strongly recommend that everyone turn on <a href="https://help.github.com/enterprise/admin/guides/installation/dns-hostname-subdomain-isolation-and-ssl/#subdomain-isolation">subdomain isolation</a> for their GitHub Enterprise instance. Subdomain isolation securely separates user-supplied content from other portions of your GitHub Enterprise appliance, which mitigates cross-site scripting and other related vulnerabilities. You can make these changes by creating a wildcard DNS entry or by whitelisting each subdomain individually. A full list of these subdomains is available in the link above.</p>
+
+<h3>
+<a id="improved-monitoring" class="anchor" href="#improved-monitoring" aria-hidden="true"><span class="octicon octicon-link"></span></a>Improved monitoring</h3>
+
+<p>If you navigate to the <code>/setup/monitor</code> page in GitHub Enterprise you will notice GitHub Enterprise now ships (as of Enterprise version 2.3) with more graphs to monitor activity on the instance. This permits an administrator to spot suspicious activity and maintain stability in the environment.</p>
+
+<p>Another feature that helps you keep GitHub Enterprise secure is the audit log, which is available at the <code>/stafftools/audit_log</code> endpoint. It records actions that are occurring and makes them visible to a site administrator. These audit logs reveal what action occurred (for instance, a user login), who performed the action, and the IP address of the request. This gives you great visibility into what is happening on an instance level.</p>
+
+<h3>
+<a id="authentication" class="anchor" href="#authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authentication</h3>
+
+<p>Certain authentication methods provide additional levels of security and control. Two we'll highlight here are restricted user groups and universal two-factor authentication.</p>
+
+<h5>
+<a id="restricted-user-groups" class="anchor" href="#restricted-user-groups" aria-hidden="true"><span class="octicon octicon-link"></span></a>Restricted user groups</h5>
+
+<p>Both LDAP Sync and SAML with Okta allow GitHub Enterprise administrators to segment users and fine-tune control of GitHub Enterprise.  In addition to securing your instance, these tools let you control the number of licensed seats in use at any given time.</p>
+
+<p>LDAP Sync permits an administrator to set up a Restricted Group (in Active Directory, for example) that limits access to GitHub Enterprise to only users found in that group.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/995208/10385445/ba228cd8-6e0e-11e5-9439-4b85f75182b8.png" target="_blank"><img width="727" alt="ldap-settings" src="https://cloud.githubusercontent.com/assets/995208/10385445/ba228cd8-6e0e-11e5-9439-4b85f75182b8.png" style="max-width:100%;"></a></p>
+
+<p>SAML with Okta lets an administrator control access to GitHub Enterprise by setting it up as an "application" and assigning users to that application to give them access.</p>
+
+<p>With fine tuned controls over who can access the instance, and great reporting from those tools about group membership, an administrator can feel confident in both controlling and monitoring access.</p>
+
+<h5>
+<a id="universal-second-factor-authentication" class="anchor" href="#universal-second-factor-authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Universal second factor authentication</h5>
+
+<p>In partnership with Yubico, GitHub <a href="https://github.com/blog/2071-github-supports-universal-2nd-factor-authentication">also supports Universal Second Factor Authentication (U2F)</a>. If you are not using GitHub's built in authentication in your instance, however, your identity management provider must provide U2F.</p>
+
+<p>We strongly encourage companies and individuals to reach out to their identity providers and request support for U2F if it is not yet supported.</p>
+
+<h3>
+<a id="organizational-security-options" class="anchor" href="#organizational-security-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organizational security options</h3>
+
+<p>GitHub's <a href="https://github.com/blog/2020-improved-organization-permissions">revamped organizations and teams</a> are another way to secure your GitHub Enterprise installation. Administrators of GitHub Enterprise will now have the ability to set access levels for a team on a per repository basis. This granularity will reduce the number of teams that administrators must set up and maintain.</p>
+
+<h3>
+<a id="any-questions-dont-hesitate-to-reach-out" class="anchor" href="#any-questions-dont-hesitate-to-reach-out" aria-hidden="true"><span class="octicon octicon-link"></span></a>Any questions, don't hesitate to reach out</h3>
+
+<p>If you are administering GitHub Enterprise for your team, putting these best practices into play is a great step toward ensuring that your instance stays healthy, secure, and as easy to maintain as it was to install. For a deeper dive into securing your GitHub Enterprise installation, check out <a href="http://www.ustream.tv/recorded/74646380">this recording from GitHub Universe</a>.</p>
+
+<p>If you have any questions about securing your GitHub Enterprise installation you can reach out to <a href="mailto:enterprise@github.com">enterprise@github.com</a> to get clarifications or help.</p>
+
+<p>The GitHub Services team is happy to help get you up and running with GitHub Enterprise. We can help you get GitHub Enterprise deployed quickly while following the best practices for security, availability and redundancy. If you would like to learn more about how we can help, don't hesitate to reach out to <a href="mailto:services@github.com">services@github.com</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/2043-github-enterprise-2-3-is-now-available" rel="bookmark">GitHub Enterprise 2.3 is now available</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      August  4, 2015
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mcolyer" class="author-avatar" height="18" src="https://avatars0.githubusercontent.com/u/1424?v=3&amp;s=36" width="18" /> <a href="/mcolyer">mcolyer</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p><a href="https://enterprise.github.com/releases/2.3.0">GitHub Enterprise 2.3</a> offers users and administrators greater control over their instance—and their workflows. From expanded monitoring to a hi-fidelity migration tool, our latest release includes features, APIs, and ongoing security updates that make GitHub more flexible and secure. </p>
+
+<h2>
+<a id="new-administrator-apis" class="anchor" href="#new-administrator-apis" aria-hidden="true"><span class="octicon octicon-link"></span></a>New Administrator APIs</h2>
+
+<p>New enterprise-only APIs give administrators more flexibility when setting up and provisioning new accounts, as well as when listing details about their users and organizations. You can check out the full list of APIs included in GitHub Enterprise 2.3 <a href="https://enterprise.github.com/releases/2.3.0/notes">the release notes</a>.</p>
+
+<h2>
+<a id="simpler-migrations" class="anchor" href="#simpler-migrations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simpler migrations</h2>
+
+<p>Whether you’re consolidating GitHub Enterprise instances or moving your organization from GitHub.com, the ability to easily migrate data is important. To simplify this process, you can now use <code>ghe-migrator</code>—a hi-fidelity tool for migrating repositories and all of their supporting data from one GitHub instance to another. </p>
+
+<h2>
+<a id="advanced-monitoring" class="anchor" href="#advanced-monitoring" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced monitoring</h2>
+
+<p>With more ways to monitor your instance, your team can react to small issues before they get bigger. Administators can now see the current state of queues for background jobs and emails, along with more extensive request metrics and additional dashboard information for MySQL, Redis, and ElasticSearch.</p>
+
+<h2>
+<a id="filter-pull-requests-by-status" class="anchor" href="#filter-pull-requests-by-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filter pull requests by status</h2>
+
+<p>You can sort pull requests by the status of commits with <a href="https://github.com/blog/2014-filter-pull-requests-by-status">the <code>status:</code> filter</a>—giving you greater control over an important part of the development process. This works especially well if you're using <a href="https://developer.github.com/v3/repos/statuses/">The Status API</a> or an integration service that does.</p>
+
+<h2>
+<a id="and-more" class="anchor" href="#and-more" aria-hidden="true"><span class="octicon octicon-link"></span></a>And more</h2>
+
+<ul>
+<li>Outbound HTTP proxies for third party tools and services</li>
+<li>Previewing for comments</li>
+<li>Better RSA key validations that prevent weak SSH keys</li>
+<li><a href="https://github.com/blog/2024-read-only-deploy-keys">Read-only deploy keys</a></li>
+<li>Referrer sanitization</li>
+</ul>
+
+<p>For the full list of features and updates, <a href="https://enterprise.github.com/releases/2.3.0/notes">check out the release notes</a>. If you're currently using GitHub Enterprise, you can <a href="https://enterprise.github.com/releases/2.3.0/download">download this release now</a>. If you want to give GitHub Enterprise a try, <a href="https://enterprise.github.com/trial">request a 45-day free trial</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1947-announcing-github-enterprise-2-1-0" rel="bookmark">Announcing GitHub Enterprise 2.1.0</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      January 20, 2015
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mcolyer" class="author-avatar" height="18" src="https://avatars0.githubusercontent.com/u/1424?v=3&amp;s=36" width="18" /> <a href="/mcolyer">mcolyer</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p><a href="https://cloud.githubusercontent.com/assets/4356597/5808874/1baf09f0-9fe7-11e4-9b36-cb1475367c53.jpg" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/5808874/1baf09f0-9fe7-11e4-9b36-cb1475367c53.jpg" alt="hero-2-1-release" style="max-width:100%;"></a></p>
+
+<p>It's a new year and we couldn't think of a better way to start it off than with a new release of GitHub Enterprise. We've included a number of highly-requested features, along with some of the best stuff recently shipped on GitHub.com - all to give developers and admins the best tools to build and ship software at work. </p>
+
+<p>Let's talk about some of the features you'll find in this release.</p>
+
+<h3>
+<a id="automate-user-and-team-management-with-ldap-sync" class="anchor" href="#automate-user-and-team-management-with-ldap-sync" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automate user and team management with LDAP Sync</h3>
+
+<p>Many of you have told us that you want it to be easier to use GitHub Enterprise with LDAP, especially for organizations managing lots of users. With this release, GitHub Enterprise integrates with your LDAP directory more deeply than ever before, automating identity and access management for your organization. This means you can provision and deprovision user accounts in GitHub Enterprise directly from LDAP with user sync, and automatically grant users access to repositories with team sync. While we were at it, we also improved LDAP performance across the board, increasing reliability and throughput.</p>
+
+<h3>
+<a id="deploy-github-enterprise-on-openstack-kvm" class="anchor" href="#deploy-github-enterprise-on-openstack-kvm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploy GitHub Enterprise on OpenStack KVM</h3>
+
+<p>One of our goals with <a href="https://github.com/blog/1918-a-faster-more-flexible-github-enterprise">last year's rebuild of GitHub Enterprise</a> was to make it available in more of the environments where you want to run it, whether you're managing your infrastructure on servers you own or on an internal cloud-based platform. That's why we're excited to announce that with this release, GitHub Enterprise is available on OpenStack KVM, in addition to <a href="https://enterprise.github.com/aws">Amazon Web Services</a> and VMware. If your tech stack is built on KVM, you can now easily set up GitHub Enterprise and integrate with other parts of your internal system. </p>
+
+<h3>
+<a id="audit-all-user-actions-across-your-instance" class="anchor" href="#audit-all-user-actions-across-your-instance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Audit all user actions across your instance</h3>
+
+<p>The <a href="https://github.com/blog/1872-improved-audit-log">Organization Audit Log</a> that shipped with <a href="https://github.com/blog/1918-a-faster-more-flexible-github-enterprise">the November release of GitHub Enterprise</a> has now been expanded to the instance level, giving administrators a skimmable and searchable record of every action performed across GitHub Enterprise in the past 90 days. Events like repository creation, team deletion, the addition of webhooks, and more are surfaced in a running log, along with information about who performed the action and when it occurred. These events can be filtered for deeper analysis, and you can create a wide range of custom search queries to make sure you're always aware of what's taking place on your instance. </p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/1319791/5810448/a2bd7ada-a014-11e4-93f2-1b31b7c6d6ee.jpg" target="_blank"><img src="https://cloud.githubusercontent.com/assets/1319791/5810448/a2bd7ada-a014-11e4-93f2-1b31b7c6d6ee.jpg" alt="audit-log" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="monitor-the-performance-of-github-enterprise" class="anchor" href="#monitor-the-performance-of-github-enterprise" aria-hidden="true"><span class="octicon octicon-link"></span></a>Monitor the performance of GitHub Enterprise</h3>
+
+<p>If you're administering GitHub Enterprise, you should be able to identify whether your instance is performing correctly and quickly locate what's wrong when it isn't. With the new Instance Monitoring Dashboard, you now can. With data displayed for things like data disk usage, memory, CPUs, and more, you'll be able to answer questions like:</p>
+
+<ul>
+<li>Are my users experiencing errors?</li>
+<li>Are things fast or slow for my users?</li>
+<li>What is a typical traffic pattern? What is abnormal?</li>
+<li>Should I upgrade CPU, memory, or IO to improve the performance of my instance?</li>
+<li>When should I plan to increase my disk space given my current growth rate?</li>
+</ul>
+
+<p><a href="https://cloud.githubusercontent.com/assets/1319791/5846686/95000f54-a193-11e4-924a-b268b0c43bc3.jpg" target="_blank"><img src="https://cloud.githubusercontent.com/assets/1319791/5846686/95000f54-a193-11e4-924a-b268b0c43bc3.jpg" alt="monitoring-dashboard" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="even-more-betterness" class="anchor" href="#even-more-betterness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Even more betterness</h3>
+
+<p>GitHub Enterprise 2.1.0 also includes:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1933-introducing-organization-webhooks">Organization webhooks</a></li>
+<li><a href="https://github.com/blog/1935-see-results-from-all-pull-request-status-checks">The pull requests UI to see results from multiple status checks</a></li>
+<li><a href="https://github.com/blog/1902-svg-viewing-diffing">SVG file viewing and diffing</a></li>
+<li><a href="https://github.com/blog/1901-managing-issues-and-pull-requests-across-repositories"><code>/pulls</code> and <code>/issues</code> dashboard pages</a></li>
+<li><a href="https://github.com/blog/1932-syntax-highlighted-diffs">Syntax highlighted diffs</a></li>
+<li><a href="https://github.com/blog/1924-mobile-search">Mobile search</a></li>
+<li><a href="https://developer.github.com/v3/repos/deployments/">Deployments API</a></li>
+</ul>
+
+<p>To see the full list of features and bug fixes, check out <a href="https://enterprise.github.com/releases">the release notes</a> for GitHub Enterprise 2.1.0.</p>
+
+<h3>
+<a id="take-210-for-a-spin" class="anchor" href="#take-210-for-a-spin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Take 2.1.0 for a spin</h3>
+
+<p>If you're an existing GitHub Enterprise customer, you can <a href="https://enterprise.github.com/download">download the latest release</a> from the GitHub Enterprise website. If you want to give GitHub Enterprise a try, <a href="https://enterprise.github.com/trial">start a 45-day free trial</a> on OpenStack KVM, AWS, or VMware.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1919-the-story-behind-the-new-github-enterprise" rel="bookmark">The story behind the new GitHub Enterprise</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      November 11, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@defunkt" class="author-avatar" height="18" src="https://avatars3.githubusercontent.com/u/2?v=3&amp;s=36" width="18" /> <a href="/defunkt">defunkt</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>Today we're <a href="https://github.com/blog/1918-a-faster-more-flexible-github-enterprise">releasing</a> the fastest and most flexible version of <a href="https://enterprise.github.com/">GitHub Enterprise</a> ever, including high availability and disaster recovery options, dramatically improved LDAP and SAML integration, major improvements to features like code review and project management, and support for deploying on Amazon Web Services.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/4356597/4988715/b67651d6-691f-11e4-8335-3ec34e591a33.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/4988715/b67651d6-691f-11e4-8335-3ec34e591a33.png" alt="jetpack" style="max-width:100%;"></a></p>
+
+<p>We're proud to share this release with you not just because it's our finest work yet, but because it represents a major milestone in our mission to change the way the world builds software together.</p>
+
+<p>Over seven million people and hundreds of thousands of organizations are working together on over 17 million repositories on github.com, but that only begins to scratch the surface. With this release of GitHub Enterprise we're making social coding available to anyone who wants to host code in their AWS-powered cloud, while also shipping a better product experience for the thousands of administrators and developers already using GitHub Enterprise daily.</p>
+
+<iframe src="//player.vimeo.com/video/111524851" width="685" height="386" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+
+<p>When <a href="https://github.com/blog/40-we-launched">GitHub launched in 2008</a>, it was all about sharing. You could quickly sign up for an account and share your open source with the world, or, purchase private repositories and control precisely who has access to your source code. But our goal wasn't workflow or collaboration - it was making it easy to share your git repositories with others.</p>
+
+<p>As GitHub grew we saw the power in working together. This led us to create <a href="https://github.com/blog/674-introducing-organizations">Organizations in 2010</a>: group accounts which allow open source projects, non-profits, schools, governments, companies, and teams of all kinds to create a presence on GitHub and more easily build software together. Our focus expanded from simply publishing git repositories to helping people build software together.</p>
+
+<p>People quickly created thousands of Organization accounts, but the feedback from larger organizations was resounding: they loved features like Pull Requests, yet many wanted data isolation for their code and support for enterprise-level features such as integration with their authentication system. This led us to create GitHub Enterprise, a VM-based on-premises version of GitHub <a href="https://github.com/blog/978-introducing-github-enterprise">we released in November 2011</a>.</p>
+
+<p>In the three years since that release, we've seen GitHub Enterprise <a href="https://enterprise.github.com/stories">change the way entire companies build software together</a>. We've witnessed cultures evolve, companies thrive, and developers rave about how GitHub has changed their workflow. But we've also spent countless hours talking to our customers about how we can improve, and we've taken that feedback seriously.</p>
+
+<p>Today's release is the culmination of months of hard work to make GitHub Enterprise more accessible to more people and even better for our current customers. Whether you're hacking on open source on github.com or coding the next version of your company's Android app using GitHub Enterprise, our goal is to help you build better software.</p>
+
+<p>We hope you love this release as much as we do.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1918-a-faster-more-flexible-github-enterprise" rel="bookmark">A faster, more flexible GitHub Enterprise</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      November 11, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mcolyer" class="author-avatar" height="18" src="https://avatars0.githubusercontent.com/u/1424?v=3&amp;s=36" width="18" /> <a href="/mcolyer">mcolyer</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p><a href="https://cloud.githubusercontent.com/assets/72919/4742235/570aa1cc-5a1d-11e4-8aee-2aee5ef06f3d.jpg" target="_blank"><img src="https://cloud.githubusercontent.com/assets/72919/4742235/570aa1cc-5a1d-11e4-8aee-2aee5ef06f3d.jpg" alt="jetpack octocat" style="max-width:100%;"></a></p>
+
+<p>Today, we’re releasing an <a href="https://enterprise.github.com/releases/latest">all-new GitHub Enterprise</a> designed to make it even easier for developers and businesses around the world to use GitHub at work.</p>
+
+<h3>
+<a id="now-available-on-amazon-web-services-aws" class="anchor" href="#now-available-on-amazon-web-services-aws" aria-hidden="true"><span class="octicon octicon-link"></span></a>Now available on Amazon Web Services (AWS)</h3>
+
+<p>Since <a href="https://github.com/blog/978-introducing-github-enterprise">GitHub Enterprise launched in 2011</a>, AWS's popularity has grown. Many companies want to host code in their AWS-powered cloud and with good reason. Using AWS reduces hardware costs, provides immediate access to a highly scalable infrastructure, and addresses a wide variety of compliance standards, from healthcare's HIPAA standards to government's FedRAMP. And now you can run <a href="https://enterprise.github.com/aws">GitHub Enterprise on AWS</a> too! We like to think it feels a little bit like this:</p>
+
+<iframe src="//player.vimeo.com/video/111525512?title=0&amp;byline=0&amp;portrait=0" width="685" height="386" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+<h3>
+<a id="infrastructure-improvements-high-availability--backups" class="anchor" href="#infrastructure-improvements-high-availability--backups" aria-hidden="true"><span class="octicon octicon-link"></span></a>Infrastructure improvements, high availability, &amp; backups</h3>
+
+<p>We've rewritten the infrastructure behind GitHub Enterprise, improving stability and redundancy regardless of how you choose to deploy it. Some highlights:</p>
+
+<ul>
+<li>GitHub Enterprise now utilizes Ubuntu 12.04 LTS, taking advantage of long-term updates and security fixes for the base components provided by Ubuntu.</li>
+<li>
+<a href="https://github.com/github/backup-utils">Online backup utilities</a> give you a number of advanced capabilities for backing up and restoring your data. With these utilities your appliance doesn't need to be put in maintenance mode for the duration of the backup run, meaning there's no downtime for your development team.</li>
+<li>Achieving redundancy with GitHub Enterprise is much easier. With replication mode enabled, you can configure a second, identical instance (failover with warm standby) to jump into action should anything happen to your primary instance.</li>
+</ul>
+
+<p><a href="https://cloud.githubusercontent.com/assets/2053865/4962134/099dece6-66d9-11e4-81ad-76a218f2c91d.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/2053865/4962134/099dece6-66d9-11e4-81ad-76a218f2c91d.png" alt="HA/DR image" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="saml-support--security-audit-log" class="anchor" href="#saml-support--security-audit-log" aria-hidden="true"><span class="octicon octicon-link"></span></a>SAML support &amp; security audit log</h3>
+
+<p>With our improved <a href="https://github.com/blog/1872-improved-audit-log">organization audit log</a>, admins can now see a running list of events as they're generated across each organization and search for specific activities performed by users. This data provides your company with better security insights and gives you the ability to audit account, team, and repository access over time as needed.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/79995/3986436/f184b7ba-289a-11e4-8018-505d2310b02a.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/79995/3986436/f184b7ba-289a-11e4-8018-505d2310b02a.png" alt="audit-log" style="max-width:100%;"></a></p>
+
+<p>We've also added support for SAML, including OneLogin, PingIdentity, Okta, and Shibboleth. Single sign-on with these identity providers allows you to manage your organization's users from one place or manage app access for groups of users at a time, rather than individually.</p>
+
+<h3>
+<a id="and-more" class="anchor" href="#and-more" aria-hidden="true"><span class="octicon octicon-link"></span></a>...and more!</h3>
+
+<p>This release also includes a number of features to help your company build and ship high-quality software, including:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1884-introducing-split-diffs">Split diffs</a></li>
+<li><a href="https://github.com/blog/811-reply-to-comments-from-email">Comment reply by email</a></li>
+<li><a href="https://github.com/blog/1852-a-better-branches-page">A better branches page</a></li>
+<li><a href="https://github.com/blog/1857-introducing-the-revert-button">The pull request revert button</a></li>
+<li><a href="https://github.com/blog/1847-locking-conversations">Locking conversations</a></li>
+<li><a href="https://github.com/blog/1866-the-new-github-issues">Issue search and filtering</a></li>
+<li><a href="https://github.com/blog/1866-the-new-github-issues">New labels and milestones pages</a></li>
+<li><a href="https://github.com/blog/1866-the-new-github-issues">Issue assignment notifications</a></li>
+<li><a href="https://github.com/blog/1866-the-new-github-issues">Deployment status on pull requests</a></li>
+<li><a href="https://github.com/blog/1845-psd-viewing-diffing">PSD Rendering</a></li>
+<li><a href="https://github.com/blog/1867-github-pages-now-runs-jekyll-2-2-0">GitHub Pages upgrade to Jekyll 2.2.0</a></li>
+</ul>
+
+<p>To see a full list of features, check out the <a href="https://enterprise.github.com/releases">release notes</a> for GitHub Enterprise 2.0.0.</p>
+
+<h3>
+<a id="give-github-enterprise-a-whirl" class="anchor" href="#give-github-enterprise-a-whirl" aria-hidden="true"><span class="octicon octicon-link"></span></a>Give GitHub Enterprise a whirl</h3>
+
+<p>If you're an existing GitHub Enterprise customer, you can <a href="https://enterprise.github.com/download">download the latest release</a> from the Enterprise website. If you want to give GitHub Enterprise a try, you can start <a href="https://enterprise.github.com/trial">a 45-day free trial</a> on AWS or VMware.</p>
+
+<h3>
+<a id="come-visit-us-at-aws-reinvent" class="anchor" href="#come-visit-us-at-aws-reinvent" aria-hidden="true"><span class="octicon octicon-link"></span></a>Come visit us at AWS re:Invent</h3>
+
+<p>We’ll be demoing the all-new GitHub Enterprise this week at <a href="https://reinvent.awsevents.com/">AWS re:Invent</a> in Las Vegas. Stop by booth #1229 to say hi, check out this release in action, and grab some stickers and other great stuff. If you're attending re:Invent and would like a more in depth look at how this release of GitHub Enterprise might help your company, <a href="https://github.typeform.com/to/gOQmLE">sign up for a meeting</a> with our GitHub Enterprise sales team.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1859-github-enterprise-11-10-341-release" rel="bookmark">GitHub Enterprise 11.10.341 Release</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      July  7, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mikemcquaid" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/125011?v=3&amp;s=36" width="18" /> <a href="/mikemcquaid">mikemcquaid</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p><a href="https://enterprise.github.com">GitHub Enterprise</a> releases are all about offering large companies more of GitHub to deploy in their own environments, and <a href="https://enterprise.github.com/releases/11.10.340">today's release</a> is no exception. We've added a number of features that improve speed, flexibility, security, administration, and more. </p>
+
+<h2>
+<a id="faster-git-operations" class="anchor" href="#faster-git-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Faster Git operations</h2>
+
+<p>Smarter caching on the server side now optimizes the initial counting objects phase of all Git network operations. This drastically reduces the CPU time required by Git network operations, allowing more simultaneous clones and fetches without increasing the load on the Virtual Machine. You'll also find Git <code>clone</code>, <code>fetch</code>, and <code>pull</code> to be an order of magnitude faster, especially for large repositories.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/4356597/3463469/02c2c300-023a-11e4-9260-bf36e6b0df12.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/3463469/02c2c300-023a-11e4-9260-bf36e6b0df12.png" alt="performance-graph" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="activity-data-across-all-your-projects" class="anchor" href="#activity-data-across-all-your-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activity data across all your projects</h2>
+
+<p>See what's happening across all projects on GitHub Enterprise in one place, from users and organizations to issues, pull requests, and code review comments. The Activity Dashboard compiles all this data and presents it in easy-to-read graphs, along with past data from the same time period.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/4356597/3425479/3b801ab8-0004-11e4-833a-953c3e08ab9a.jpg" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/3425479/3b801ab8-0004-11e4-833a-953c3e08ab9a.jpg" alt="activity-dashboard" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="ldap-configuration-improvements" class="anchor" href="#ldap-configuration-improvements" aria-hidden="true"><span class="octicon octicon-link"></span></a>LDAP configuration improvements</h2>
+
+<p>You can now better configure GitHub Enterprise to your company's LDAP setup. Nested user groups are supported, users can change their username and still be mapped to the same distinguished name, and you can specify the name of attributes to map to imported fields.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/4356597/3462447/977c3a56-022d-11e4-936b-87de90705f58.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/3462447/977c3a56-022d-11e4-936b-87de90705f58.png" alt="authentication" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="advanced-settings-for-blocking-force-pushes" class="anchor" href="#advanced-settings-for-blocking-force-pushes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advanced settings for blocking force pushes</h2>
+
+<p>More options for blocking force pushes enable you to configure settings as you need. You can now block force pushing for a specific user, on the default branch of an organization's repositories, and for all branches on a single repository.</p>
+
+<p><a href="https://cloud.githubusercontent.com/assets/4356597/3425505/50827cc0-0005-11e4-8cc5-a4813cebe275.png" target="_blank"><img src="https://cloud.githubusercontent.com/assets/4356597/3425505/50827cc0-0005-11e4-8cc5-a4813cebe275.png" alt="force-push" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="-and-so-much-more" class="anchor" href="#-and-so-much-more" aria-hidden="true"><span class="octicon octicon-link"></span></a>... and so much more!</h2>
+
+<ul>
+<li>
+<a href="https://github.com/blog/1763-better-organizations">Better organization</a> and team management</li>
+<li>
+<a href="https://github.com/blog/1819-write-line-notes-from-your-phone">Mobile line notes</a> and <a href="https://github.com/blog/1642-merge-pull-requests-from-your-phone">mobile pull request merging</a>
+</li>
+<li>
+<a href="https://enterprise.github.com/help/articles/site-admin-dashboard#reports">Two factor authentication status</a> for user reports</li>
+<li><a href="https://github.com/blog/1778-webhooks-level-up">Webhooks configuration and customization improvements</a></li>
+<li><a href="https://github.com/blog/1827-updated-services-ui">Updated Services UI</a></li>
+<li><a href="https://developer.github.com/v3/repos/releases/">Releases API</a></li>
+<li><a href="https://github.com/blog/1786-enhanced-oauth-security-for-ssh-keys">Enhanced OAuth security for SSH keys</a></li>
+<li><a href="https://github.com/blog/1794-recent-activity-for-authentication-credentials">Recent activity audits for authentication credentials</a></li>
+<li><a href="https://github.com/blog/1658-view-active-browser-sessions">Active browser sessions auditing</a></li>
+<li><a href="https://github.com/blog/1727-introducing-forward-secrecy-and-authenticated-encryption-ciphers">Forward secrecy and authenticated encryption ciphers</a></li>
+<li>
+<a href="https://github.com/blog/1707-soft-wrapping-on-prose-diffs">Soft-wrapping</a> and <a href="https://github.com/blog/1784-rendered-prose-diffs">rendered views</a> for prose diffs</li>
+<li>
+<a href="https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents">Embedded YAML metadata rendering</a> in prose documents</li>
+<li>
+<a href="https://github.com/blog/1825-task-lists-in-all-markdown-documents">Expanded task list support</a> and <a href="https://github.com/blog/1841-nested-task-lists">nesting</a> in prose documents</li>
+<li><a href="https://github.com/blog/1705-expanding-context-in-diffs">Expanding context in diffs</a></li>
+<li><a href="https://github.com/blog/1767-redesigned-conversations">Redesigned conversations</a></li>
+<li><a href="https://github.com/blog/1828-wikis-now-with-more-love">Wikis UI improvements</a></li>
+<li>
+<a href="https://github.com/blog/1833-github-pages-3">Metadata, sitemaps, build feedback, and pagebuild events</a> in Pages</li>
+<li>
+<a href="https://github.com/blog/1465-stl-file-viewing">3D file rendering</a> and <a href="https://github.com/blog/1633-3d-file-diffs">diffing</a>
+</li>
+</ul>
+
+<hr>
+
+<p>If you're currently using GitHub Enterprise, you can <a href="https://enterprise.github.com/download">download this release</a> from the Enterprise website. If you want to give GitHub Enterprise a try, <a href="https://enterprise.github.com/trial">request a 45-day free trial</a>.</p>
+
+<hr>
+
+<p><strong>Update:</strong> After this morning's announcement, we noticed an issue with the original 11.10.340 release and have issued a patch release with a fix. All links in the blog post above now redirect to the correct release notes and download page. We're sorry for any confusion this may have caused. If you have any issues with the newest release, please contact us at <a href="mailto:enterprise@github.com">enterprise@github.com</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1854-octotales-gree" rel="bookmark">OctoTales • GREE</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      June 23, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@dsorkin" class="author-avatar" height="18" src="https://avatars3.githubusercontent.com/u/2364549?v=3&amp;s=36" width="18" /> <a href="/dsorkin">dsorkin</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>Open source software development practices are growing all over Japan, and one company at the forefront of these efforts is <a href="http://gree.net/">GREE</a>. Their mobile social gaming platform connects 230 million users worldwide, and they've been building it using <a href="http://enterprise.github.com">GitHub Enterprise</a> since 2012. We recently had the pleasure of talking with GREE for our latest episode of OctoTales.</p>
+
+<p>オープンソース・ソフトウェアの手法を用いた開発ワークフローは日本中に浸透して行っていますがこの開発スタイルを取り入れている企業の中に<a href="http://gree.net/">GREE</a>社があります。GREEのソーシャルゲームプラットフォームは世界中で2億3千万人以上のユーザーが利用していまして、2012年から<a href="http://enterprise.github.com">GitHub Enterprise</a> を活用しています。OctoTalesの最新エピソードではGREEのメンバーとお話をしました。</p>
+
+<iframe width="685" height="385" src="//www.youtube.com/embed/j1-G14EJRQ8?&amp;theme=light&amp;color=white" frameborder="0" allowfullscreen></iframe>
+
+<hr>
+
+<p><em>Are you using GitHub in Japan and looking for some resources? We've translated our <a href="https://training.github.com/kit/downloads/ja/github-git-cheat-sheet.pdf">Git Cheat Sheet</a> into Japanese, and our <a href="https://www.youtube.com/playlist?list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-">GitHub &amp; Git Foundations videos</a> now have Japanese subtitles.</em></p>
+
+<p>GitHubの日本語のリソースも増えています。<a href="https://training.github.com/kit/downloads/ja/github-git-cheat-sheet.pdf">Git Cheat Sheet</a> を日本語に訳しましたし、 <a href="https://www.youtube.com/playlist?list=PLg7s6cbtAD15G8lNyoaYDuKZSKyJrgwB-">GitHub と Gitの基礎のビデオシリーズ</a> にも日本語の字幕を追加しました。</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1789-octotales-dena" rel="bookmark">OctoTales • DeNA</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      March  3, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@kcshearon" class="author-avatar" height="18" src="https://avatars3.githubusercontent.com/u/4356597?v=3&amp;s=36" width="18" /> <a href="/kcshearon">kcshearon</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>Fresh from the streets of Tokyo, Japan, we're excited to share our latest video in the OctoTales series. This episode features <a href="http://dena.com/intl/">DeNA</a>, creators of the mobile gaming platform, <a href="http://mobage.com/">Mobage</a>.</p>
+
+<p>DeNA has been using <a href="http://enterprise.github.com/">GitHub Enterprise</a> since 2012 to build and ship software across offices in seven countries. DeNA's team of developers relies on real-world user research and a culture of collaboration to build a platform that brings 40 million users together through mobile games.</p>
+
+<iframe width="685" height="385" src="//www.youtube.com/embed/veok2RIQqYU?&amp;theme=light&amp;color=white" frameborder="0" allowfullscreen></iframe>
+
+<p>If you would like to be a part of the OctoTales series, tell us your story at <a href="mailto:tales@github.com">tales@github.com</a>.</p>
+
+<hr>
+
+<p>OctoTalesシリーズではGitHubを活用している会社を紹介しています。今回はモバイルゲームプラットフォームの<a href="http://mobage.com/">モバゲー</a>を開発している<a href="http://dena.com/intl/">DeNA</a>を東京から特集するOctoTaleです。</p>
+
+<p>DeNAは2012年から7カ国にあるオフィス間のコラボレーションのために<a href="http://enterprise.github.com/">GitHub Enterprise</a>を利用しています。DeNAで活躍している開発者の皆さまはユーザーリサーチとコラボレーションの文化を基礎にしてモバイルゲームを通じて4千万人のユーザーが繋がるプラットフォームを構築しています。</p>
+
+<p>OctoTalesに参加したい企業は <a href="mailto:tales@github.com">tales@github.com</a> までご連絡をください。</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1730-more-enterprise-support-in-github-for-mac" rel="bookmark">More Enterprise support in GitHub for Mac</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      January  2, 2014
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@jspahrsummers" class="author-avatar" height="18" src="https://avatars3.githubusercontent.com/u/432536?v=3&amp;s=36" width="18" /> <a href="/jspahrsummers">jspahrsummers</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>To help kick off the new year, we're happy to announce that <a href="https://mac.github.com">GitHub for Mac</a> now supports <a href="http://en.wikipedia.org/wiki/Central_Authentication_Service">CAS</a> authentication with <a href="https://enterprise.github.com">GitHub Enterprise</a> as of <a href="https://enterprise.github.com/releases">version 11.10.328 or later</a>!</p>
+
+<p>The sign-in process is almost exactly <a href="https://github.com/blog/1467-enterprise-support-in-github-for-mac">the same</a>. Open GitHub for Mac's Preferences, switch to the “Accounts” tab, and then enter the URL for your GitHub Enterprise server:</p>
+
+<p><a href="https://camo.githubusercontent.com/5a3acf8494d745bdbaf12faf5c41c6822ac1eacd/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3433323533362f313830323736322f62643732333930302d366330392d313165332d383866332d3034303733626139323434632e706e67" target="_blank"><img alt="Accounts tab before sign in" width="663" height="583" src="https://camo.githubusercontent.com/5a3acf8494d745bdbaf12faf5c41c6822ac1eacd/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3433323533362f313830323736322f62643732333930302d366330392d313165332d383866332d3034303733626139323434632e706e67" data-canonical-src="https://f.cloud.github.com/assets/432536/1802762/bd723900-6c09-11e3-88f3-04073ba9244c.png" style="max-width:100%;"></a></p>
+
+<p>If your server uses single sign-on, the username and password fields will be automatically grayed out, and clicking “Sign In” will open your web browser to finish the process.</p>
+
+<p>Upon success, you'll be redirected back to GitHub for Mac, now signed in:</p>
+
+<p><a href="https://camo.githubusercontent.com/519872cee5f4c0d0946df29872381ffafc9f1a6f/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3433323533362f313830323736332f62643732356564612d366330392d313165332d396635662d6134323534633338656132382e706e67" target="_blank"><img alt="Accounts tab after sign in" width="663" height="432" src="https://camo.githubusercontent.com/519872cee5f4c0d0946df29872381ffafc9f1a6f/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3433323533362f313830323736332f62643732356564612d366330392d313165332d396635662d6134323534633338656132382e706e67" data-canonical-src="https://f.cloud.github.com/assets/432536/1802763/bd725eda-6c09-11e3-9f5f-a4254c38ea28.png" style="max-width:100%;"></a></p>
+
+<p>If you run into any problems signing in, or have any comments or suggestions, please <a href="https://github.com/contact">contact support</a>.</p>
+
+<p>Enjoy! <img class="emoji" title=":rocket:" alt=":rocket:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png" height="20" width="20" align="absmiddle"></p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1627-github-enterprise-11-10-320-release" rel="bookmark">GitHub Enterprise 11.10.320 Release</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      September 13, 2013
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@watsonian" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/244?v=3&amp;s=36" width="18" /> <a href="/watsonian">watsonian</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>We've been working hard over the last few months, and are happy to announce the latest release of <a href="https://enterprise.github.com">GitHub Enterprise</a>. It includes some exciting new Enterprise-specific features, as well as a set of features integrated from GitHub.com.</p>
+
+<h2>
+<a id="repository-next" class="anchor" href="#repository-next" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repository Next</h2>
+
+<p>GitHub Enterprise now includes a new UI for interacting with your repositories that's been available on GitHub.com for <a href="https://github.com/blog/1529-repository-next">a while</a>. It's designed to focus on your content and tries to get out of the way and let you get your day-to-day work done.</p>
+
+<p><a href="https://camo.githubusercontent.com/dece6edcdd5353513a8d00d5357fdfaf3d53ffd4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313133353138352f35373265356138612d316330382d313165332d383636622d3164343732346161353561372e706e67" target="_blank"><img src="https://camo.githubusercontent.com/dece6edcdd5353513a8d00d5357fdfaf3d53ffd4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313133353138352f35373265356138612d316330382d313165332d383636622d3164343732346161353561372e706e67" alt="repository next" data-canonical-src="https://f.cloud.github.com/assets/244/1135185/572e5a8a-1c08-11e3-866b-1d4724aa55a7.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="improved-ldap-integration" class="anchor" href="#improved-ldap-integration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Improved LDAP Integration</h2>
+
+<p>GitHub Enterprise now supports LDAP group authentication. This means that you can specify your Domain Base and then restrict who can login using groups rather than OUs. You can add as many groups as you like. In fact, you can even set an admin group where members are automatically given Site Admin permissions on the installation.</p>
+
+<p><a href="https://camo.githubusercontent.com/8cf077aa731e12c229ef1915c8209ae0914bfc48/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036303638362f32326565636539302d313162372d313165332d396461322d6166303031666135353132392e706e67" target="_blank"><img src="https://camo.githubusercontent.com/8cf077aa731e12c229ef1915c8209ae0914bfc48/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036303638362f32326565636539302d313162372d313165332d396461322d6166303031666135353132392e706e67" alt="" data-canonical-src="https://f.cloud.github.com/assets/244/1060686/22eece90-11b7-11e3-9da2-af001fa55129.png" style="max-width:100%;"></a></p>
+
+<p>You can also view all LDAP users who should have access and create them if they haven't already tried logging in:</p>
+
+<p><a href="https://camo.githubusercontent.com/2aca9205cc10204475b4176dd36420e86e05e8f1/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036303639362f36643762623234382d313162372d313165332d393735302d3766613561316564393634342e706e67" target="_blank"><img src="https://camo.githubusercontent.com/2aca9205cc10204475b4176dd36420e86e05e8f1/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036303639362f36643762623234382d313162372d313165332d393735302d3766613561316564393634342e706e67" alt="" data-canonical-src="https://f.cloud.github.com/assets/244/1060696/6d7bb248-11b7-11e3-9750-7fa5a1ed9644.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="two-factor-authentication" class="anchor" href="#two-factor-authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>Two-factor Authentication</h2>
+
+<p>Last week <a href="https://github.com/blog/1614-two-factor-authentication">we added two-factor authentication</a> to GitHub.com. With today's release, this feature is now available in GitHub Enterprise, including full support for TOTP in applications like Google Authenticator (available for <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605">iOS</a> and <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a> phones).</p>
+
+<p><a href="https://camo.githubusercontent.com/62116281932fc165cbbd523b6c1fc7cfea0a3336/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303033372f37343830633238322d316138662d313165332d396139302d3139646563363562613662372e706e67" target="_blank"><img src="https://camo.githubusercontent.com/62116281932fc165cbbd523b6c1fc7cfea0a3336/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303033372f37343830633238322d316138662d313165332d396139302d3139646563363562613662372e706e67" alt="two factor authentication" data-canonical-src="https://f.cloud.github.com/assets/244/1120037/7480c282-1a8f-11e3-9a90-19dec65ba6b7.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="csv-rendering" class="anchor" href="#csv-rendering" aria-hidden="true"><span class="octicon octicon-link"></span></a>CSV Rendering</h2>
+
+<p>CSV rendering is now available so you can view these files in an easy to read format. Try searching them too!</p>
+
+<p><a href="https://camo.githubusercontent.com/625df1554a690d18fea4e31f5ed5a6a103cf6571/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303034362f61656534363264612d316138662d313165332d393739382d3030623538303933636265652e706e67" target="_blank"><img src="https://camo.githubusercontent.com/625df1554a690d18fea4e31f5ed5a6a103cf6571/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303034362f61656534363264612d316138662d313165332d393739382d3030623538303933636265652e706e67" alt="csv rendering" data-canonical-src="https://f.cloud.github.com/assets/244/1120046/aee462da-1a8f-11e3-9798-00b58093cbee.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="identicons" class="anchor" href="#identicons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Identicons</h2>
+
+<p>If your installation has been languishing without avatars for a while now, good news! <a href="https://github.com/blog/1586-identicons">Identicons</a> are shipping with this release of Enterprise, so prepare yourself for a much more colorful experience.</p>
+
+<p><a href="https://camo.githubusercontent.com/aebaa87c4d6d749cfbc1e9240622b0887c8295f4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303235312f32633735616565322d316139622d313165332d396533612d3234666539636439323031612e706e67" target="_blank"><img src="https://camo.githubusercontent.com/aebaa87c4d6d749cfbc1e9240622b0887c8295f4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303235312f32633735616565322d316139622d313165332d396533612d3234666539636439323031612e706e67" alt="identicons" data-canonical-src="https://f.cloud.github.com/assets/244/1120251/2c75aee2-1a9b-11e3-9e3a-24fe9cd9201a.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="mobile-views" class="anchor" href="#mobile-views" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mobile Views</h2>
+
+<p>Need to view a Pull Request linked to from a notification while away from your desk? Not a problem! GitHub Enterprise now supports mobile views.</p>
+
+<p><a href="https://camo.githubusercontent.com/44464c40576cc433af09c2acdb5a56d4fa9c9881/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132363836392f62396436393532322d316232622d313165332d393735362d3965383537383764626332352e706e67" target="_blank"><img src="https://camo.githubusercontent.com/44464c40576cc433af09c2acdb5a56d4fa9c9881/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132363836392f62396436393532322d316232622d313165332d393735362d3965383537383764626332352e706e67" alt="mobile views" data-canonical-src="https://f.cloud.github.com/assets/244/1126869/b9d69522-1b2b-11e3-9756-9e85787dbc25.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="collectd-monitoring" class="anchor" href="#collectd-monitoring" aria-hidden="true"><span class="octicon octicon-link"></span></a>Collectd Monitoring</h2>
+
+<p>We've added <a href="http://collectd.org/">collectd</a> to the appliance so you can send graph data to an external server and better monitor server health and performance. This data is also included in Support Bundles so we can better help diagnose server-side problems.</p>
+
+<p><a href="https://camo.githubusercontent.com/1f0d9a324f49cc965729cf6f69a8825f455bcc80/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036313134302f61303164316530342d313163352d313165332d393363652d6433313231303761303865332e706e67" target="_blank"><img src="https://camo.githubusercontent.com/1f0d9a324f49cc965729cf6f69a8825f455bcc80/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313036313134302f61303164316530342d313163352d313165332d393363652d6433313231303761303865332e706e67" alt="" data-canonical-src="https://f.cloud.github.com/assets/244/1061140/a01d1e04-11c5-11e3-93ce-d312107a08e3.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="file-size-limits" class="anchor" href="#file-size-limits" aria-hidden="true"><span class="octicon octicon-link"></span></a>File Size Limits</h2>
+
+<p>GitHub.com has had <a href="https://github.com/blog/1533-new-file-size-limits">file size limits</a> for a while now. This release includes soft limits for files over 50MB. Unlike GitHub.com, no pushes will be rejected right now.</p>
+
+<pre><code>remote: warning: Large files detected.
+remote: warning: File big_file is 55.00 MB; this is larger than GitHub Enterprise's recommended maximum file size of 50 MB
+</code></pre>
+
+<h2>
+<a id="new-gist" class="anchor" href="#new-gist" aria-hidden="true"><span class="octicon octicon-link"></span></a>New Gist</h2>
+
+<p>The new version of Gist has been available on GitHub.com for <a href="https://github.com/blog/1276-welcome-to-a-new-gist">a while now</a>. Starting with this release we're including the updated Gist in Enterprise!</p>
+
+<p><a href="https://camo.githubusercontent.com/d7c35d569a35238096cfce714ba0b90a64c30e0b/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303237352f66306138326539382d316139622d313165332d383561632d3533373237353538326339392e706e67" target="_blank"><img src="https://camo.githubusercontent.com/d7c35d569a35238096cfce714ba0b90a64c30e0b/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f313132303237352f66306138326539382d316139622d313165332d383561632d3533373237353538326339392e706e67" alt="new gist" data-canonical-src="https://f.cloud.github.com/assets/244/1120275/f0a82e98-1a9b-11e3-85ac-537275582c99.png" style="max-width:100%;"></a></p>
+
+<hr>
+
+<p>Along with a variety of general improvements and adjustments, this new release also includes the following features from GitHub.com:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1547-release-your-software"><strong>Releases</strong></a></li>
+<li><a href="https://github.com/blog/1585-explore-what-is-trending-on-github"><strong>New Explore &amp; Trending Views</strong></a></li>
+<li><a href="https://github.com/blog/1564-code-search-api"><strong>Code Search API</strong></a></li>
+<li><a href="https://github.com/blog/1582-checking-out-pull-requests"><strong>Checking out Pull Requests</strong></a></li>
+<li><a href="https://github.com/blog/1523-oauth-improvements"><strong>OAuth Improvements</strong></a></li>
+<li><a href="https://github.com/blog/1554-explore-everyone-s-stars"><strong>Explore Everyone's Stars</strong></a></li>
+<li><a href="https://github.com/blog/1545-deleting-files-on-github"><strong>Deleting files on GitHub</strong></a></li>
+<li><a href="https://github.com/blog/1542-task-lists-in-gist"><strong>Task Lists in Gist</strong></a></li>
+<li><a href="https://github.com/blog/1508-repository-redirects-are-here"><strong>Repository redirects</strong></a></li>
+</ul>
+
+<p>Existing customers can download this update from the <a href="https://enterprise.github.com/download">Enterprise website</a>. If you want to give GitHub Enterprise a try, you can request a free trial from <a href="https://enterprise.github.com">https://enterprise.github.com</a>.</p>
+
+<hr>
+
+<p>We hope you enjoy these features as much as we do. Don't forget that there is more information available about GitHub Enterprise at <a href="https://enterprise.github.com">https://enterprise.github.com</a>. You can also see the full release notes <a href="https://enterprise.github.com/releases/11.10.320">here</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1494-github-enterprise-11-10-310-release" rel="bookmark">GitHub Enterprise 11.10.310 Release</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      May  7, 2013
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@watsonian" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/244?v=3&amp;s=36" width="18" /> <a href="/watsonian">watsonian</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>We're excited to announce the latest release of <a href="https://enterprise.github.com">GitHub Enterprise</a>. Along with a variety of general improvements and adjustments, this new release brings the following features from GitHub.com:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1395-relative-links-in-markup-files"><strong>Relative links in markup files</strong></a></li>
+<li><a href="https://github.com/blog/1396-sorting-through-search-results"><strong>Sorting through search results</strong></a></li>
+<li><a href="https://github.com/blog/1399-quick-quotes"><strong>Quick quotes</strong></a></li>
+<li><a href="https://github.com/blog/1408-global-issue-search"><strong>Global Issue Search</strong></a></li>
+<li><a href="https://github.com/blog/1410-sortable-stars"><strong>Sortable Stars</strong></a></li>
+<li><a href="https://github.com/blog/1437-better-live-updates"><strong>Better live updates</strong></a></li>
+<li><a href="https://github.com/blog/1436-moving-and-renaming-files-on-github"><strong>Moving and Renaming Files on GitHub</strong></a></li>
+<li><a href="https://github.com/blog/1439-closing-issues-across-repositories"><strong>Closing Issues Across Repositories</strong></a></li>
+<li><a href="https://github.com/blog/1451-branch-and-tag-labels-for-commit-pages"><strong>Branch and Tag Labels for Commit Pages</strong></a></li>
+<li><a href="https://github.com/blog/1458-quickly-access-repositories-you-contribute-to"><strong>Quickly access Repositories you contribute to</strong></a></li>
+<li><a href="https://github.com/blog/1461-a-smarter-more-complete-y-search-bar"><strong>A smarter, more complete search bar</strong></a></li>
+<li><a href="https://github.com/blog/1469-redesigned-merge-button"><strong>Redesigned merge button</strong></a></li>
+<li><a href="https://github.com/blog/1476-get-up-to-speed-with-pulse"><strong>Get up to speed with Pulse</strong></a></li>
+<li><a href="https://github.com/blog/1484-check-the-status-of-your-branches"><strong>Check the status of your branches</strong></a></li>
+<li><a href="https://github.com/blog/1492-repository-search-on-all-repositories"><strong>Repository Search on all Repositories</strong></a></li>
+<li><a href="https://github.com/blog/1498-file-crud-and-repository-statistics-now-available-in-the-api"><strong>File CRUD and repository statistics now available in the API</strong></a></li>
+</ul>
+
+<p>In addition, we're also including several new Enterprise specific features:</p>
+
+<h2>
+<a id="64-bit-appliance-image" class="anchor" href="#64-bit-appliance-image" aria-hidden="true"><span class="octicon octicon-link"></span></a>64-bit Appliance Image</h2>
+
+<p>We've been working for some time on 64-bit support and some customers have had early access to these images for quite a while now. We're happy to announce that all new OVA image downloads starting with this release will be 64-bit. GHPs for 32-bit systems will still be available for the foreseeable future to give people running on older appliances the opportunity to migrate at their leisure. You can get more information about how to migrate from a 32-bit appliance to a 64-bit appliance <a href="https://help.github.com/enterprise/admin/guides/installation/migrating-to-a-different-platform-or-from-github-enterprise-11-10-34x/">here</a>.</p>
+
+<h2>
+<a id="new-management-console-interface" class="anchor" href="#new-management-console-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>New Management Console Interface</h2>
+
+<p>The Management Console interface has remained largely unchanged since we launched GitHub Enterprise nearly a year and a half ago. It worked fairly well, but definitely looked dated and had some problems rendering in Firefox and Internet Explorer. This design refresh was geared largely toward making it work more consistently across browsers, so users who had difficulties using it in browsers other than Chrome should have a better experience now!</p>
+
+<p><a href="https://camo.githubusercontent.com/9e89f92f281e078a7f797ecff41e7294d850253d/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383235372f61393638323962382d623638662d313165322d393662372d6634376431656431353631352e706e67" target="_blank"><img src="https://camo.githubusercontent.com/9e89f92f281e078a7f797ecff41e7294d850253d/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383235372f61393638323962382d623638662d313165322d393662372d6634376431656431353631352e706e67" alt="687474703a2f2f636c2e6c792f696d6167652f3333324f30533247306331682f636f6e74656e74" data-canonical-src="https://f.cloud.github.com/assets/244/468257/a96829b8-b68f-11e2-96b7-f47d1ed15615.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="github-oauth-authentication" class="anchor" href="#github-oauth-authentication" aria-hidden="true"><span class="octicon octicon-link"></span></a>GitHub OAuth Authentication</h2>
+
+<p>We've added a new authentication method. You can now hook your Enterprise installation up to GitHub.com via OAuth for authentication. You do this by setting up a new OAuth application that belongs to your organization on GitHub.com and then use its client id and secret. After hooking that up, users who are members of your GitHub.com organization will be able to login automatically via the standard OAuth approval process. All their public user information on GitHub.com will be pulled in along with their email addresses and SSH public keys.</p>
+
+<p><a href="https://camo.githubusercontent.com/66f0763f92f24debf0971b3fe9a3546df47991b4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383235382f62376339376336342d623638662d313165322d386165372d3239636336326231623330312e706e67" target="_blank"><img src="https://camo.githubusercontent.com/66f0763f92f24debf0971b3fe9a3546df47991b4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383235382f62376339376336342d623638662d313165322d386165372d3239636336326231623330312e706e67" alt="687474703a2f2f636c2e6c792f696d6167652f3163326f31383139324930752f636f6e74656e74" data-canonical-src="https://f.cloud.github.com/assets/244/468258/b7c97c64-b68f-11e2-8ae7-29cc62b1b301.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="improved-upgrade-process" class="anchor" href="#improved-upgrade-process" aria-hidden="true"><span class="octicon octicon-link"></span></a>Improved Upgrade Process</h2>
+
+<p>Perhaps the most common upgrade problem that's encountered involved a timeout being reached during the initial GHP unpacking step. This started happening as the GHP grew in size. To solve this issue, we've moved the GHP unpacking stage into a background job, so the request will no longer timeout, which should improve the upgrade experience dramatically going forward. However, due to how the upgrade process works, you won't see the benefit for this until your <em>next</em> upgrade after 11.10.310. We've also made some improvements that will help prevent cases where successful upgrades were detected as failures.</p>
+
+<h2>
+<a id="better-reporting" class="anchor" href="#better-reporting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Better Reporting</h2>
+
+<p>In previous releases, it wasn't really possible to get full reports about all repositories, users, or organizations in an installation via the Admin Tools dashboard. Now you can get CSV reports with all of this information easily via the new Reports section.</p>
+
+<p><a href="https://camo.githubusercontent.com/b7182225c3c976943e05050c1626f631784539b4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383236302f63343035666338632d623638662d313165322d396132332d3932643963613731303133372e706e67" target="_blank"><img src="https://camo.githubusercontent.com/b7182225c3c976943e05050c1626f631784539b4/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383236302f63343035666338632d623638662d313165322d396132332d3932643963613731303133372e706e67" alt="687474703a2f2f636c2e6c792f696d6167652f30633174327a324b314a33532f636f6e74656e74" data-canonical-src="https://f.cloud.github.com/assets/244/468260/c405fc8c-b68f-11e2-9a23-92d9ca710137.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="suspending-dormant-users-in-bulk" class="anchor" href="#suspending-dormant-users-in-bulk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Suspending Dormant Users in Bulk</h2>
+
+<p>The idea of a dormant user check was updated to work more closely to what a GitHub Enterprise admin would expect by removing some checks that made a lot of sense for GitHub.com, but not so much in a dedicated installation. It's not uncommon to want to see what users are dormant so you know who you want to suspend to free up seats, so in addition to being able to get a report about who's dormant, you can browse dormant users and perform a bulk suspension of all dormant users if you want now.</p>
+
+<h2>
+<a id="improved-search-tooling" class="anchor" href="#improved-search-tooling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Improved Search Tooling</h2>
+
+<p>We've added a new Indexing section to the Admin Tools dashboard that allows for additional management of search functionality. You can now disable code searching or code search indexing, initiate code search backfill or issue search index repair jobs. You can also see the status of the ElasticSearch cluster on your appliance.</p>
+
+<p><a href="https://camo.githubusercontent.com/da4e59da5e4a894384f8f6104f5f84a51ba00126/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383236352f65306539616364362d623638662d313165322d383835332d3762666138623030356134312e706e67" target="_blank"><img src="https://camo.githubusercontent.com/da4e59da5e4a894384f8f6104f5f84a51ba00126/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3436383236352f65306539616364362d623638662d313165322d383835332d3762666138623030356134312e706e67" alt="687474703a2f2f636c2e6c792f696d6167652f3258324d3271306e325033632f636f6e74656e74" data-canonical-src="https://f.cloud.github.com/assets/244/468265/e0e9acd6-b68f-11e2-8853-7bfa8b005a41.png" style="max-width:100%;"></a></p>
+
+<hr>
+
+<p>We hope you enjoy these features as much as we do. Don't forget that there is more information available about GitHub Enterprise at <a href="https://enterprise.github.com/">https://enterprise.github.com/</a>. The latest release can always be downloaded from <a href="https://enterprise.github.com/download">here</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1440-today-s-email-incident" rel="bookmark">Today&#39;s Email Incident</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      March 19, 2013
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@briandoll" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/4590?v=3&amp;s=36" width="18" /> <a href="/briandoll">briandoll</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>Earlier today a routine system email was incorrectly sent to many of our GitHub Enterprise customers.
+In these errant emails, customer email addresses were included in the <code>To:</code> field, making them visible to anyone who received the message.</p>
+
+<p>We are very sorry about this. We have determined what caused this incident and contacted all affected customers directly.</p>
+
+<h2>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
+
+<p>The incident occured in the Rails application we use to manage trials and customer contact information for 
+GitHub Enterprise, not the product itself. No GitHub Enterprise installations were affected, and no license keys 
+or any other data were exposed. GitHub.com was not affected.</p>
+
+<p>As part of a routine daily process, the system notifies the members of any organization whose 
+license is about to expire about the upcoming need for renewal. The app builds an email message 
+including the addresses of all of the active accounts tied to the given organization, putting them 
+in the <code>To:</code> field to enhance deliverability. This morning, the email included 
+a great many more addresses than expected.</p>
+
+<h2>
+<a id="technical-details" class="anchor" href="#technical-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technical details</h2>
+
+<p>Yesterday the Rails core team <a href="http://weblog.rubyonrails.org/2013/3/18/SEC-ANN-Rails-3-2-13-3-1-12-and-2-3-18-have-been-released/">released four security patches</a>
+(<a href="https://groups.google.com/d/msg/ruby-security-ann/o0Dsdk2WrQ0/3ghDsIDX4DQJ">CVE-2013-1854</a>, <a href="https://groups.google.com/d/msg/rubyonrails-security/4_QHo4BqnN8/_RrdfKk12I4J">CVE-2013-1855</a>, <a href="https://groups.google.com/d/msg/rubyonrails-security/KZwsQbYsOiI/5kUV7dSCJGwJ">CVE-2013-1856</a>, <a href="https://groups.google.com/d/msg/rubyonrails-security/zAAU7vGTPvI/1vZDWXqBuXgJ">CVE-2013-1857</a>).
+We immediately reviewed the patches and updated our Rails applications to stay current.
+Unfortunately one of these security patches included a change that caused certain SQL queries to behave unexpectedly.</p>
+
+<p>Here's an example of this change in behavior:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">class</span> <span class="pl-en">Organization<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  has_many <span class="pl-c1">:teams</span>
+
+  attr_accessible <span class="pl-c1">:name</span>, <span class="pl-c1">:has_octocats</span>
+
+  scope <span class="pl-c1">:has_octocats_scope</span>, lambda { where(<span class="pl-c1">:has_octocats</span> =&gt; <span class="pl-c1">true</span>) }
+
+  <span class="pl-k">def</span> <span class="pl-en">self.has_octocats_class_method</span>
+    where(<span class="pl-c1">:has_octocats</span> =&gt; <span class="pl-c1">true</span>)
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-k">class</span> <span class="pl-en">Team<span class="pl-e"> &lt; ActiveRecord::Base</span></span>
+  belongs_to <span class="pl-c1">:organization</span>
+  attr_accessible <span class="pl-c1">:name</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">self.using_octocats_scope</span>
+    where(<span class="pl-c1">:organization_id</span> =&gt; <span class="pl-c1">Organization</span>.has_octocats_scope.select(<span class="pl-c1">:id</span>))
+  <span class="pl-k">end</span>
+
+  <span class="pl-k">def</span> <span class="pl-en">self.using_octocats_class_method</span>
+    where(<span class="pl-c1">:organization_id</span> =&gt; <span class="pl-c1">Organization</span>.has_octocats_class_method.select(<span class="pl-c1">:id</span>))
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span>
+
+<span class="pl-k">&gt;</span> github <span class="pl-k">=</span> <span class="pl-c1">Organization</span>.create(<span class="pl-c1">:name</span> =&gt; <span class="pl-s"><span class="pl-pds">"</span>GitHub<span class="pl-pds">"</span></span>, <span class="pl-c1">:has_octocats</span> =&gt; <span class="pl-c1">true</span>)
+<span class="pl-k">&gt;</span> acme   <span class="pl-k">=</span> <span class="pl-c1">Organization</span>.create(<span class="pl-c1">:name</span> =&gt; <span class="pl-s"><span class="pl-pds">"</span>Acme<span class="pl-pds">"</span></span>,   <span class="pl-c1">:has_octocats</span> =&gt; <span class="pl-c1">false</span>)
+<span class="pl-k">&gt;</span> github.teams.create(<span class="pl-c1">:name</span> =&gt; <span class="pl-s"><span class="pl-pds">"</span>Supportocats<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span> acme.teams.create(<span class="pl-c1">:name</span> =&gt; <span class="pl-s"><span class="pl-pds">"</span>Roadrunners<span class="pl-pds">"</span></span>)
+<span class="pl-k">&gt;</span> github.id
+<span class="pl-c">#=&gt; 1</span>
+<span class="pl-k">&gt;</span> acme.id
+<span class="pl-c">#=&gt; 2</span>
+</pre></div>
+
+<p>So, an <code>Organization</code> owns a number of <code>Team</code> records.  We've defined a couple of methods to
+help us scope queries for teams to only those organizations that have octocats.
+Ideally, both of these methods will scope to the same thing: only <code>Team</code> records with an
+<code>organization_id</code> of 1, the GitHub <code>Organization</code>. And prior to this latest Rails release, they did.</p>
+
+<p>But the latest release of Rails introduced a subtle change to this behavior. Let's try to make some queries
+based on the <code>Organization</code>'s teams:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&gt;</span> teams <span class="pl-k">=</span> github.teams
+  <span class="pl-c1">Team</span> <span class="pl-c1">Load</span> (<span class="pl-c1">0</span>.4ms)  <span class="pl-c1">SELECT</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-k">*</span> <span class="pl-c1">FROM</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span> <span class="pl-c1">WHERE</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-k">=</span> <span class="pl-c1">1</span>
+<span class="pl-k">&gt;</span> teams.length       <span class="pl-c"># =&gt; 1</span>
+<span class="pl-k">&gt;</span> teams.first.name   <span class="pl-c"># =&gt; "Supportocats"</span></pre></div>
+
+<p>Great. Here we've asked for the GitHub organization's teams, and we've gotten the correct one,
+"Supportocats", back. All is good so far. Now let's use one of our scopes, just to be extra specific:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&gt;</span> teams <span class="pl-k">=</span> github.teams.using_octocats_class_method
+  <span class="pl-c1">Team</span> <span class="pl-c1">Load</span> (<span class="pl-c1">0</span>.4ms)  <span class="pl-c1">SELECT</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-k">*</span> <span class="pl-c1">FROM</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span> <span class="pl-c1">WHERE</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-c1">AND</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-c1">IN</span> (<span class="pl-c1">1</span>)
+<span class="pl-k">&gt;</span> teams.length       <span class="pl-c"># =&gt; 1</span>
+<span class="pl-k">&gt;</span> teams.first.name   <span class="pl-c"># =&gt; "Supportocats"</span></pre></div>
+
+<p>The results are the same, but the query is different. By going through an extra scope, we've added an additional
+SQL predicate, one that says the returned <code>Team</code> records must belong to an <code>Organization</code> that has octocats. Since
+the GitHub team has them, the result is the same.</p>
+
+<p>Let's try our scope that is restricted to octocat-having teams on the Acme org:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&gt;</span> teams <span class="pl-k">=</span> acme.teams.using_octocats_class_method
+  <span class="pl-c1">Team</span> <span class="pl-c1">Load</span> (<span class="pl-c1">0</span>.4ms)  <span class="pl-c1">SELECT</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-k">*</span> <span class="pl-c1">FROM</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span> <span class="pl-c1">WHERE</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-k">=</span> <span class="pl-c1">2</span> <span class="pl-c1">AND</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-c1">IN</span> (<span class="pl-c1">1</span>)
+<span class="pl-k">&gt;</span> teams.length   <span class="pl-c"># =&gt; 0</span></pre></div>
+
+<p>Here we see a different result, as expected, and a similar query, again asking for all of the Acme organization's teams
+that <strong>also</strong> belong to an <code>Organization</code> that has octocats. The Acme <code>Organization</code> has none, so no teams are returned.</p>
+
+<p>But now we come to an unexpected difference. In the last couple of examples, we were using an Arel scope on <code>Organization</code> that
+was defined as a normal class method. But if we change to using the scope defined with ActiveRecord's <code>scope</code> method,
+we get unexpected and potentially dangerous results:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">&gt;</span> teams <span class="pl-k">=</span> acme.teams.using_octocats_scope
+  <span class="pl-c1">Team</span> <span class="pl-c1">Load</span> (<span class="pl-c1">0</span>.4ms)  <span class="pl-c1">SELECT</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-k">*</span> <span class="pl-c1">FROM</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span> <span class="pl-c1">WHERE</span> <span class="pl-s"><span class="pl-pds">`</span>teams<span class="pl-pds">`</span></span>.<span class="pl-s"><span class="pl-pds">`</span>organization_id<span class="pl-pds">`</span></span> <span class="pl-c1">IN</span> (<span class="pl-c1">1</span>)
+<span class="pl-k">&gt;</span> teams.length       <span class="pl-c"># =&gt; 1</span>
+<span class="pl-k">&gt;</span> teams.first.name   <span class="pl-c"># =&gt; "Supportocats"</span></pre></div>
+
+<p>Now the Acme organization is returning the GitHub organization's teams! This is obviously bad behavior. What's happening? In
+this case, when using the <code>scope</code> method to define an Arel scope on <code>Organization</code>, the <code>where</code> clause of the
+scope is <em>overriding</em> the condition imposed by the <code>Organization#teams</code> association. The part of the <code>WHERE</code> clause
+meant to restrict the query to <code>Team</code> records related to the Acme organization was dropped.</p>
+
+<p>We've narrowed down this change in behavior to <a href="https://github.com/rails/rails/commit/f980289fd2c1b9073a94b5d49b780a49f5e2933c#L1L23">this commit</a>.
+We have fixed this issue on our affected applications and are working with the Rails core team to determine if this change was intentional as well as what action other users should take.</p>
+
+<h2>
+<a id="what-were-doing-about-it" class="anchor" href="#what-were-doing-about-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>What we're doing about it</h2>
+
+<p>We're reviewing every piece of GitHub code that touches email so we can keep this from happening in the future.
+We're focusing on more stringent automated tests, sanity checks on email recipients, and even more careful review when we upgrade an external dependency like Rails.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1392-github-enterprise-11-10-300-release" rel="bookmark">GitHub Enterprise 11.10.300 Release</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      January 31, 2013
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@watsonian" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/244?v=3&amp;s=36" width="18" /> <a href="/watsonian">watsonian</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>We're excited to announce the latest release of <a href="https://enterprise.github.com">GitHub Enterprise</a>. We're shipping this version with <a href="https://github.com/blog/1347-issue-attachments"><strong>Issue Attachments</strong></a>, <a href="https://github.com/blog/1360-introducing-contributions"><strong>Contributions</strong></a>, and much more. Along with a variety of general improvements and adjustments, this new release brings the following features from GitHub.com:</p>
+
+<ul>
+<li><a href="https://github.com/blog/1375-task-lists-in-gfm-issues-pulls-comments"><strong>Task Lists</strong></a></li>
+<li><a href="https://github.com/blog/1379-zen-writing-mode"><strong>Zen Writing Mode</strong></a></li>
+<li><a href="https://github.com/blog/1327-creating-files-on-github"><strong>Create files on GitHub</strong></a></li>
+<li><a href="https://github.com/blog/1377-create-and-delete-branches"><strong>Create and delete branches</strong></a></li>
+<li><a href="https://github.com/blog/1335-tidying-up-after-pull-requests"><strong>Delete merged branches from Pull Requests</strong></a></li>
+<li><a href="https://github.com/blog/1369-restore-tidied-pull-requests"><strong>Restore deleted branches from Pull Requests</strong></a></li>
+<li><a href="https://github.com/blog/1387-viewing-past-contributions"><strong>Viewing Past Contributions</strong></a></li>
+<li><a href="https://github.com/blog/1378-view-long-running-pull-requests"><strong>View Long-running Pull Requests</strong></a></li>
+<li><a href="https://github.com/blog/1357-issue-autocompletion"><strong>Issue Autocompletion</strong></a></li>
+<li><a href="https://github.com/blog/1365-a-more-transparent-clipboard-button"><strong>More Transparent Clipboard Buttons</strong></a></li>
+<li><a href="https://github.com/blog/1386-closing-issues-via-commit-messages"><strong>Closing Issues via Commit Comments</strong></a></li>
+<li><a href="https://github.com/blog/1381-a-whole-new-code-search"><strong>Improvements to Code Search</strong></a></li>
+<li><a href="https://github.com/blog/1320-command-bar-autocompletes-stars"><strong>Command bar autocompletes stars</strong></a></li>
+</ul>
+
+<p>In addition, we're also including several new Enterprise specific features:</p>
+
+<h2>
+<a id="repository-archives" class="anchor" href="#repository-archives" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repository Archives</h2>
+
+<p>This has been a frequently requested feature since we launched GitHub
+Enterprise, and we're happy to announce that it's now available! Each
+repository will have a link to download a zip archive of the master
+branch, along with the ability to download tarball or zip archives of
+the repository for any tags that have been set. This functionality is
+backed by the same Nodeload service that serves these files for GitHub.com.
+You can get more background information about Nodeload
+<a href="https://github.com/blog/678-meet-nodeload-the-new-download-server">here</a>
+and <a href="https://github.com/blog/900-nodeload2-downloads-reloaded">here</a>.</p>
+
+<p><a href="https://camo.githubusercontent.com/9b3f300b0fe5a4ca29fbf1517ba83c0fdd4aea89/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632312f62626663623137322d366138392d313165322d393965382d3635393064656636353566302e706e67" target="_blank"><img src="https://camo.githubusercontent.com/9b3f300b0fe5a4ca29fbf1517ba83c0fdd4aea89/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632312f62626663623137322d366138392d313165322d393965382d3635393064656636353566302e706e67" alt="Screen 20Shot 202013-01-29 20at 202 40 01 20PM" data-canonical-src="https://f.cloud.github.com/assets/244/109621/bbfcb172-6a89-11e2-99e8-6590def655f0.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="support-for-multiple-admin-ssh-keys" class="anchor" href="#support-for-multiple-admin-ssh-keys" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support for Multiple Admin SSH Keys</h2>
+
+<p>You can now add more than one SSH authorized key for the admin user on the
+installation. It will automatically detect any existing keys that are installed
+as well.</p>
+
+<p><a href="https://camo.githubusercontent.com/af9c0ee317217640acdb66c5f623fe7d3cfb9268/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632322f63373431616366652d366138392d313165322d393466372d3733613761363762306338342e706e67" target="_blank"><img src="https://camo.githubusercontent.com/af9c0ee317217640acdb66c5f623fe7d3cfb9268/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632322f63373431616366652d366138392d313165322d393466372d3733613761363762306338342e706e67" alt="Screen 20Shot 202013-01-29 20at 202 21 57 20PM" data-canonical-src="https://f.cloud.github.com/assets/244/109622/c741acfe-6a89-11e2-94f7-73a7a67b0c84.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="management-console-api" class="anchor" href="#management-console-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Management Console API</h2>
+
+<p>A new API for managing GitHub Enterprise settings and maintenances has been
+added. This new API allows you to update configuration settings, add admin
+SSH authorized keys, upgrade, and enable or disable maintenance mode. You
+can find full documentation for the API
+<a href="https://enterprise.github.com/help/articles/management-console-api">here</a>.
+This API has actually existed since the 11.10.280 release, so anyone on 11.10.280
+or higher should be able to take advantage of the API. This will be especially
+useful when you need to upgrade an Enterprise appliance on a remote network, so you
+don't have to upload new GHPs over slow connections.</p>
+
+<h2>
+<a id="updated-admin-tools-dashboard" class="anchor" href="#updated-admin-tools-dashboard" aria-hidden="true"><span class="octicon octicon-link"></span></a>Updated Admin Tools Dashboard</h2>
+
+<p>The Admin Tools dashboard has had a major overhaul! It now has a look and feel
+that better matches the rest of the site.</p>
+
+<p><a href="https://camo.githubusercontent.com/7c97ca5688c838c242f3c428723207050dd4d897/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632332f64366264303438302d366138392d313165322d383336372d6263323431376332316562612e706e67" target="_blank"><img src="https://camo.githubusercontent.com/7c97ca5688c838c242f3c428723207050dd4d897/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632332f64366264303438302d366138392d313165322d383336372d6263323431376332316562612e706e67" alt="Screen 20Shot 202013-01-29 20at 202 05 54 20PM" data-canonical-src="https://f.cloud.github.com/assets/244/109623/d6bd0480-6a89-11e2-8367-bc2417c21eba.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="faster-configuration-runs" class="anchor" href="#faster-configuration-runs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Faster Configuration Runs</h2>
+
+<p>Prior to 11.10.300, making any settings changes would cause a full
+configuration run. The config run would take around 10 minutes to complete, even for minor changes. Now only the initial configuration run and upgrades take the full amount of time. If
+you're only making a settings change, runs can take 30 seconds or less now!</p>
+
+<h2>
+<a id="deleted-repository-restoration" class="anchor" href="#deleted-repository-restoration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deleted Repository Restoration</h2>
+
+<p>When a repository is deleted, it's now banished to purgatory. Repositories in purgatory wait in
+limbo for a month before being fully deleted. While in purgatory, any admin can
+restore the repository with the push of a single button -- including all issues,
+pull requests, and any associated comments. Purgatory is accessible from the Admin
+Tools view of any user on a GitHub Enterprise installation.</p>
+
+<p><a href="https://camo.githubusercontent.com/3a71421a0f304e52ddb3773b5eb7a4ab3f483dcf/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632362f31633432656464302d366138612d313165322d393964652d6231346666663830353332312e706e67" target="_blank"><img src="https://camo.githubusercontent.com/3a71421a0f304e52ddb3773b5eb7a4ab3f483dcf/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f3234342f3130393632362f31633432656464302d366138612d313165322d393964652d6231346666663830353332312e706e67" alt="Screen 20Shot 202013-01-29 20at 202 16 23 20PM" data-canonical-src="https://f.cloud.github.com/assets/244/109626/1c42edd0-6a8a-11e2-99de-b14fff805321.png" style="max-width:100%;"></a></p>
+
+<h2>
+<a id="search-indexing-api" class="anchor" href="#search-indexing-api" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search Indexing API</h2>
+
+<p>With the addition of improvements to the search that shipped in this release, a
+new API is now available to queue up repositories and users for indexing. You can
+use this API to integrate into whatever other tools you use at your company.
+Documentation for this API is available
+<a href="https://enterprise.github.com/help/articles/search-indexing-api">here</a>.</p>
+
+<hr>
+
+<p>We hope you enjoy these features as much as we do. Don't forget that there is more information available about GitHub Enterprise at <a href="https://enterprise.github.com/">https://enterprise.github.com/</a>. You can also see the full release notes <a href="https://enterprise.github.com/releases/11.10.300">here</a>.</p>
+        </div>
+      </div>
+      <div class="hentry blog-post">
+        <h2 class="blog-post-title" data-pjax>
+          <a href="/blog/1340-new-enterprise-github-com" rel="bookmark">New Enterprise.GitHub.com</a>
+        </h2>
+
+        <ul class="blog-post-meta">
+    <li class="meta-item">
+      <span class="octicon octicon-calendar"></span>
+      December  5, 2012
+    </li>
+
+  <li class="vcard fn meta-item">
+    <img alt="@mdo" class="author-avatar" height="18" src="https://avatars2.githubusercontent.com/u/98681?v=3&amp;s=36" width="18" /> <a href="/mdo">mdo</a>
+  </li>
+
+    <li class="meta-item">
+      <span class="octicon octicon-file-directory"></span>
+      <a href="/blog/category/enterprise">Enterprise</a>
+    </li>
+
+</ul>
+
+
+        <div class="blog-post-body markdown-body">
+          <p>Today, we’re launching a completely redesigned homepage for <a href="http://enterprise.github.com">GitHub Enterprise</a>, the private, installable version of GitHub running on your servers. Beyond the visual changes, we’ve tightened up the copy to better communicate what Enterprise is and how it works. Current Enterprise users will see a redesigned dashboard and more when they sign in.</p>
+
+<p><a href="http://enterprise.github.com"><img src="https://camo.githubusercontent.com/8096bb2e626bb30ce8410ace5ae4fd0ce20c2b51/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f39383638312f3438322f64653864666566362d336437372d313165322d383862362d3139373839646263373166322e6a7067" alt="" data-canonical-src="https://f.cloud.github.com/assets/98681/482/de8dfef6-3d77-11e2-88b6-19789dbc71f2.jpg" style="max-width:100%;"></a></p>
+
+<p>Check out <a href="http://enterprise.github.com">the new GitHub Enterprise</a>, still the best way to build and ship software on your servers.</p>
+
+<p><img class="emoji" title=":metal:" alt=":metal:" src="https://assets-cdn.github.com/images/icons/emoji/metal.png" height="20" width="20" align="absmiddle"></p>
+        </div>
+      </div>
+  </div>
+
+  <div class="paginate-container" data-pjax>
+    <div class="pagination"><span class="previous_page disabled">Previous</span> <em class="current">1</em> <a rel="next" href="/blog/category/enterprise?page=2">2</a> <a class="next_page" rel="next" href="/blog/category/enterprise?page=2">Next</a></div>
+  </div>
+
+    </div>
+  </div>
+
+  </div>
+
+
+        </div>
+        <div class="modal-backdrop"></div>
+    </div>
+
+      <div class="container">
+  <div class="site-footer" role="contentinfo">
+    <ul class="site-footer-links right">
+        <li><a href="https://status.github.com/" data-ga-click="Footer, go to status, text:status">Status</a></li>
+      <li><a href="https://developer.github.com" data-ga-click="Footer, go to api, text:api">API</a></li>
+      <li><a href="https://training.github.com" data-ga-click="Footer, go to training, text:training">Training</a></li>
+      <li><a href="https://shop.github.com" data-ga-click="Footer, go to shop, text:shop">Shop</a></li>
+        <li><a href="https://github.com/blog" data-ga-click="Footer, go to blog, text:blog">Blog</a></li>
+        <li><a href="https://github.com/about" data-ga-click="Footer, go to about, text:about">About</a></li>
+        <li><a href="https://github.com/pricing" data-ga-click="Footer, go to pricing, text:pricing">Pricing</a></li>
+
+    </ul>
+
+    <a href="https://github.com" aria-label="Homepage">
+      <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+</a>
+    <ul class="site-footer-links">
+      <li>&copy; 2015 <span title="0.08098s from github-fe117-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms" data-ga-click="Footer, go to terms, text:terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy" data-ga-click="Footer, go to privacy, text:privacy">Privacy</a></li>
+        <li><a href="https://github.com/security" data-ga-click="Footer, go to security, text:security">Security</a></li>
+        <li><a href="https://github.com/contact" data-ga-click="Footer, go to contact, text:contact">Contact</a></li>
+        <li><a href="https://help.github.com" data-ga-click="Footer, go to help, text:help">Help</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+    
+    
+    
+
+    <div id="ajax-error-message" class="flash flash-error">
+      <span class="octicon octicon-alert"></span>
+      <button type="button" class="flash-close js-flash-close js-ajax-error-dismiss" aria-label="Dismiss error">
+        <span class="octicon octicon-x"></span>
+      </button>
+      Something went wrong with that request. Please try again.
+    </div>
+
+
+      <script crossorigin="anonymous" src="https://assets-cdn.github.com/assets/frameworks-080f1c155a28f5a4315d4a6862aeafb7e27bca0a74db6f7ae9e0048e321369d1.js"></script>
+      <script async="async" crossorigin="anonymous" src="https://assets-cdn.github.com/assets/github-ac033f0062bd3f47c468d3da839d615dff91cfcf0e416ea0a0099fbcd4483aba.js"></script>
+      
+      
+    <div class="js-stale-session-flash stale-session-flash flash flash-warn flash-banner hidden">
+      <span class="octicon octicon-alert"></span>
+      <span class="signed-in-tab-flash">You signed in with another tab or window. <a href="">Reload</a> to refresh your session.</span>
+      <span class="signed-out-tab-flash">You signed out in another tab or window. <a href="">Reload</a> to refresh your session.</span>
+    </div>
+  </body>
+</html>

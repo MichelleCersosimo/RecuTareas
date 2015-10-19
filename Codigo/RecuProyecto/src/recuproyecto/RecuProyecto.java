@@ -68,8 +68,9 @@ public class RecuProyecto {
             }
         }
         int cantidadArchivos = files.length;
-        System.out.println(cantidadArchivos);
-        int documentosPorBloque = Math.round(Math.round(cantidadArchivos /(Math.log(cantidadArchivos))))-1;
+       
+        //int documentosPorBloque = Math.round(Math.round(cantidadArchivos /(Math.log(cantidadArchivos))))-1;
+        int documentosPorBloque = 2; 
         System.out.println("documentos por bloque "+documentosPorBloque);
         ArrayList<File[]> blocksList = new ArrayList<File[]>();
         //Separo los archivos en bloques
@@ -78,7 +79,7 @@ public class RecuProyecto {
             if(i+documentosPorBloque<= cantidadArchivos){
                 size = documentosPorBloque;
             }else{
-                size = cantidadArchivos-i-1;
+                size = cantidadArchivos-i;
             }
             
             File[] block = new File[size];
@@ -91,7 +92,7 @@ public class RecuProyecto {
         //Leo cada uno de los archivos que estan en cada bloque
         for(int f = 0; f < blocksList.size(); f++) {
             File[] block = blocksList.get(f);
-            int noDocs = block.length;
+            //int noDocs = block.length;
             indice.clear();
             for (File file : block) {
                 existe = false;
@@ -162,9 +163,10 @@ public class RecuProyecto {
     
     
     public static void main(String[] args) {
+        // https://github.com/Snorremd/Block-Sort-Based-Indexer/blob/master/BlockSortBasedIndexer/src/no/uib/bsbi/BSBI.java
         // TODO code application logic here
         //Hay q cambiar esta ruta siempre porq yo uso otra XD
-        File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
+        File[] files = new File("C:/Users/Pc/Desktop/Recuperacion/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
         try{
             showFiles(files, parser); 

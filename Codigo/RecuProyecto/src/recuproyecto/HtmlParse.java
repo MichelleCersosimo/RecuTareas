@@ -46,7 +46,7 @@ public class HtmlParse {
         
         // Tokenizando las palabras del documento 
         String [] tokens;
-        tokens = contenido.split("[\\p{P} \\t\\n\\r 1234567890]");
+        tokens = contenido.split("[\\p{P} \\t\\n\\r 1234567890<>=]");
         // Para visualizar los tokens que hizo 
         /*for (String s: tokens){
             if (s.equals("")) continue;
@@ -66,7 +66,7 @@ public class HtmlParse {
         List<String> listaFinal =  new ArrayList<String>(new LinkedHashSet<String>(list));
         for(String lista : listaFinal) {
             List<Integer> postingsList = new ArrayList<Integer>();
-            System.out.println(lista);
+            //System.out.println(lista);
             if(indice.isEmpty()){
                 postingsList.add(docID);
                 indice.put(lista,postingsList);
