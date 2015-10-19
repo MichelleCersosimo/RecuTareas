@@ -9,12 +9,15 @@ package recuproyecto;
  *
  * @author b21684
  */
-import java.awt.List;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+
 
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -26,8 +29,8 @@ import org.xml.sax.SAXException;
 
 public class HtmlParse {
 
-   public void parsear(File file) throws IOException,SAXException, TikaException {
-
+   public HashMap<String,List<Integer>> parsear(File file,int docID,HashMap<String,List<Integer>> indice) throws IOException,SAXException, TikaException {
+       
       //detecting the file type
         BodyContentHandler handler = new BodyContentHandler();
         Metadata metadata = new Metadata();
@@ -52,23 +55,37 @@ public class HtmlParse {
         
         // ordenando los tokens del documento 
         Arrays.sort(tokens);
-        for (String token : tokens) {
+        /*for (String token : tokens) {
             System.out.println(token);
-        }
+        }*/
         
         // eliminando repetidos (aun no lo logre, esto crei q iba a servir pero hay algo con la lista rara)
         // http://stackoverflow.com/questions/22425063/counting-occurrences-in-a-string-array-and-deleting-the-repeats-using-java
-        /*
-        List<String> list;
-        list = Arrays.asList(tokens);
-        ArrayList<String> listTwo = new ArrayList<String>(list);
-        */
-   
-        // el diccionario habria q hacerlo global en RecuProyecto.java porque aqui solo analiza un doc 
-        // y le cae encima a tokens cada vez que analiza un doc entonces hay q guardarlo siempre en diccionario 
-        // siempre revisando q no meta repetidos y en orden 
-        int [][] diccionario;
-      
+        //Elimino los duplicados y mantengo el orden de la lista
+        List<String> list = Arrays.asList(tokens);
+        List<String> listaFinal =  new ArrayList<String>(new LinkedHashSet<String>(list));
+        for(String lista : listaFinal) {
+            List<Integer> postingsList = new ArrayList<Integer>();
+            System.out.println(lista);
+            if(indice.isEmpty()){
+                postingsList.add(docID);
+                indice.put(lista,postingsList);
+            }
+            else{
+                if(!indice.containsKey(lista)){
+                    postingsList.add(docID);
+                    indice.put(lista,postingsList);
+                
+                }
+                else{
+                    postingsList = indice.get(lista);
+                    postingsList.add(docID);
+                    indice.put(lista, postingsList);
+                }
+            
+            }
+        }
+ 
       
     
       // Muestra el contenido 
@@ -83,5 +100,6 @@ public class HtmlParse {
       for(String name : metadataNames) {
          System.out.println(name + ":   " + metadata.get(name));  
       }*/
+      return indice;
    }
 }
