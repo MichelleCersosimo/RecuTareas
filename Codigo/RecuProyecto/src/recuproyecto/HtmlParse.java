@@ -58,9 +58,6 @@ public class HtmlParse {
         /*for (String token : tokens) {
             System.out.println(token);
         }*/
-        
-        // eliminando repetidos (aun no lo logre, esto crei q iba a servir pero hay algo con la lista rara)
-        // http://stackoverflow.com/questions/22425063/counting-occurrences-in-a-string-array-and-deleting-the-repeats-using-java
         //Elimino los duplicados y mantengo el orden de la lista
         List<String> list = Arrays.asList(tokens);
         List<String> listaFinal =  new ArrayList<String>(new LinkedHashSet<String>(list));
