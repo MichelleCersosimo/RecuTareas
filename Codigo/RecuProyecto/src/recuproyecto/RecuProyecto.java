@@ -18,19 +18,19 @@ public class RecuProyecto {
      * @param args the command line arguments
      */
     
+    
+    public static javax.swing.JTextArea textArea;
     public static List<String> listaDocumentos;
-    public static void showFiles(File[] files, HtmlParse parser )  throws IOException {
+    
+    public static void bsbi(File[] files, HtmlParse parser )  throws IOException {
         int docID = 1;
+        int iDViejo=-1;
         String nombre = "";
         boolean existe = false;
         List<String> listaDoc = new ArrayList<String>();
         HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
 
-        File indices = new File("Indices.txt");
-        // Si no existe crea el archivo
-        if (!indices.exists()) {
-                indices.createNewFile();
-        }
+        
         File bloques = new File("Bloques.txt");
         // Si no existe crea el archivo
         if (!bloques.exists()) {
@@ -57,9 +57,10 @@ public class RecuProyecto {
                     String [] token = linea.split("\\|");
                     listaDoc.add(token[0]);
                     System.out.println(token[0]);
-                    docID= Integer.parseInt(token[1]);
-                }   
-
+                    docID= Integer.parseInt(token[1])+1;
+                    iDViejo = docID-1;
+                }
+                
                 bufferedReader.close();         
             }
             catch(FileNotFoundException ex) {
@@ -68,9 +69,21 @@ public class RecuProyecto {
             }
         }
         int cantidadArchivos = files.length;
-       
-        //int documentosPorBloque = Math.round(Math.round(cantidadArchivos /(Math.log(cantidadArchivos))))-1;
-        int documentosPorBloque = 2; 
+        System.out.println("Cantidad de archivos "+cantidadArchivos);
+        int documentosPorBloque =0;
+        if(cantidadArchivos<5){
+            if(cantidadArchivos == 1){
+                documentosPorBloque = 1;
+            }
+            else{
+                documentosPorBloque = 2;
+            }
+            
+        }
+        else{
+            //Estimado de cantidad de archivos por bloque, se usa doble Math.round para obtener un valor "int"
+            documentosPorBloque = Math.round(Math.round(cantidadArchivos /(Math.log(cantidadArchivos))));
+        }
         System.out.println("documentos por bloque "+documentosPorBloque);
         ArrayList<File[]> blocksList = new ArrayList<File[]>();
         //Separo los archivos en bloques
@@ -83,6 +96,7 @@ public class RecuProyecto {
             }
             
             File[] block = new File[size];
+            //LLeno el array de block con los archivos que tendrá cada bloque
             System.out.println("Tamaño del bloque "+size);
             for(int j = 0; j < size; j++) {
                     block[j] = files[i+j];
@@ -98,12 +112,13 @@ public class RecuProyecto {
                 existe = false;
                 if (file.isDirectory()) {
                     System.out.println("Directory: " + file.getName());
-                    showFiles(file.listFiles(), parser); // Calls same method again.
+                    bsbi(file.listFiles(), parser); //Si es directorio se llama a si mismo
                 } 
                 else {
                     FileWriter fileWritter = new FileWriter(postings.getName(),true);
                     BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
                     nombre = file.getName();
+                    //Revisa si ya existe el documento en la lista de postings, sino, le asigna un ID,y obtiene el diccionario
                     if(listaDoc.size()>0){
 
                         for(int k =0;k <listaDoc.size();k++){
@@ -138,38 +153,206 @@ public class RecuProyecto {
             }
             //Se ordena el bloque con los terminos
             if(!indice.isEmpty()){
+                //Crea un arbol apartir del hash de los indices del bloque, para que queden ordenados
                 Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
                 FileWriter fileWritter = new FileWriter(bloques.getName(),true);
                 BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-                bufferWritter.write("------\r\n");
                 Set s = treeMap.entrySet();
                 Iterator it = s.iterator();
+                //Itera sobre el arbol creado, para luego guardar el indice del bloque en disco
                 while ( it.hasNext() ) {
                    String listaPostings = "";
                    Map.Entry entry = (Map.Entry) it.next();
                    String termino = (String) entry.getKey();
                    List<Integer> lista  = (List<Integer>) entry.getValue();
+                   //Itera sobre la lista de postings del termino, para guardarlo luego en disco
                    for(int c= 0;c<lista.size();c++){
                        listaPostings+= lista.get(c)+",";
                    }
                    bufferWritter.write(termino+"="+listaPostings+"\r\n");
-                   System.out.println(termino+"="+listaPostings);
+                   //System.out.println(termino+"="+listaPostings);
                 }//while
+                bufferWritter.write("------\r\n");
                 bufferWritter.close();
             }
         }
+        try{
+            merge(bloques,iDViejo);
+        }catch(IOException e){ e.printStackTrace();};
+        
        
     }
     
+    
+    static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
+    
+    public static void merge(File bloque,int pos) throws IOException{
+        //HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
+        int contador=0;
+        String separador = "------";
+        File indices = new File("Indices.txt");
+        // Si no existe crea el archivo
+        if (!indices.exists()) {
+                indices.createNewFile();
+                pos = -1;
+        }
+        try {
+            String linea = null;
+            FileReader fileReader = new FileReader(bloque);
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+            //Se itera sobre el archivo bloque para ir haciendo el merge de los indices
+            //Se va guardando en una tabla Hash
+            while((linea = bufferedReader.readLine()) != null) {
+                if(!linea.equals(separador) && contador>= pos){
+                    List<Integer> postingsList = new ArrayList<Integer>();//se crea una lista de posting por cada termino
+                    String [] token = linea.split("=");
+                    String [] postings = token[1].split(",");
+                    //inserto la lista de postings en la lista postingsList
+                    for(int i=0;i<postings.length;i++){
+                        postingsList.add(Integer.parseInt(postings[i]));
+                    }
+                    //Si nuestro hashTable está vacio, solo inserta el termino y su lista de postings dentro
+                    if(indice.isEmpty()){
+                        indice.put(token[0],postingsList);
+                    }
+                    else{//Si ya tiene elementos, revisa si ya existe o no
+                        //Si no existe, inserta el termino con su lista de postings
+                        if(!indice.containsKey(token[0])){
+                            indice.put(token[0],postingsList);
+
+                        }
+                        else{//Si si existe, solo añade los nuevos postings al termino
+                            List<Integer>tmp = new ArrayList<Integer>(indice.get(token[0]));
+                            tmp.addAll(postingsList);//concateno las listas
+                            indice.put(token[0], tmp);
+                        }
+
+                    }
+                }
+                else{
+                    contador++;
+                }
+                
+            }
+            bufferedReader.close();
+            Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+            FileWriter fileWritter = new FileWriter(indices.getName(),true);
+            BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+            Set s = treeMap.entrySet();
+            Iterator it = s.iterator();
+            //Itera sobre el arbol creado, para luego guardar el indice
+            while ( it.hasNext() ) {
+               String listaPostings = "";
+               Map.Entry entry = (Map.Entry) it.next();
+               String termino = (String) entry.getKey();
+               List<Integer> lista  = (List<Integer>) entry.getValue();
+               //Itera sobre la lista de postings del termino, para guardarlo luego en disco
+               for(int c= 0;c<lista.size();c++){
+                   listaPostings+= lista.get(c)+",";
+               }
+               bufferWritter.write(termino+"="+listaPostings+"\r\n");
+               
+            }//while
+            bufferWritter.close();
+                     
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "No se pudo abrir Bloques.txt");                
+        }
+
+        
+    
+    }
+    
+    public void setTextField(javax.swing.JTextArea jTextArea1){
+        this.textArea = jTextArea1;
+    }
+    
+    public String procesar(String consulta)throws IOException {
+        String result = "";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        String [] postings; 
+        File indices = new File("Indices.txt");
+        Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+        Set s = treeMap.entrySet();
+        Iterator it = s.iterator();
+        String linea = null; 
+        
+        System.out.println("Palabras en consulta: "+palabras.length);
+        for (int i = 0; i < palabras.length; i++){
+            int actualSearchDocs [] = new int [100];
+            String searchWord = palabras[i];
+            it = s.iterator();
+            // buscar si esta en el diccionario y si esta traer su lista de postings 
+
+            //Itera sobre el arbol en busqueda de la palabra
+            while ( it.hasNext() ) {
+               Map.Entry entry = (Map.Entry) it.next();
+               String termino = (String) entry.getKey();
+               // si el termino de busqueda esta en el diccionario 
+               if (termino.equals(searchWord)) {
+                     List<Integer> lista  = (List<Integer>) entry.getValue();
+                     //Itera sobre la lista de postings del termino, para guardarlo luego en disco
+                     for(int c= 0;c <lista.size();c++){
+                         actualSearchDocs[c] = lista.get(c);
+                         // deberia ser el nombre del doc no el id
+                         // el siguiente codigo solo es ara sacar el nombre del documento
+                        FileReader fileReader = new FileReader("Documentos.txt");
+                        BufferedReader bufferedReader = new BufferedReader(fileReader);
+                        while((linea = bufferedReader.readLine()) != null) {
+                            String [] token = linea.split("\\|");
+                            int docID = Integer.parseInt(token[1])+1;
+                            if (docID == actualSearchDocs[c]) {
+                                System.out.println("termino "+termino+" sale en doc "+token[0]);
+                                result += "Termino "+termino+ ". Esta en doc: "+token[0]+".";
+                                break; 
+                            }
+                        } 
+                        bufferedReader.close();  
+                     }
+               }
+            }//while
+            result += "\n";
+        }
+        
+        if (result == "") {
+            
+            result = "No query terms found :( ";
+        }
+        
+        /*if (palabras.length > 2 ) {
+            intersect(palabras, postings);
+        }*/
+        return result; 
+    }
+    
+    
+    public void intersect(String [] palabras, String [] postings) {
+       String [] resultados; 
+       for (int i = 0; i < palabras.length; i++){
+           String p1 = palabras[i];
+           String p2 = palabras[i+1];
+           while (p1 != null && p2 != null ) {
+                
+            }
+       }
+        
+    }
+   
     
     public static void main(String[] args) {
         // https://github.com/Snorremd/Block-Sort-Based-Indexer/blob/master/BlockSortBasedIndexer/src/no/uib/bsbi/BSBI.java
         // TODO code application logic here
         //Hay q cambiar esta ruta siempre porq yo uso otra XD
         File[] files = new File("C:/Users/Pc/Desktop/Recuperacion/Codigo/Docs").listFiles();
+        // mich compu C:\Users\Pc\Desktop\Recuperacion\Codigo\Docs
+        
         HtmlParse parser = new HtmlParse();
         try{
-            showFiles(files, parser); 
+            bsbi(files, parser); 
         }catch(IOException e){
             e.printStackTrace();
         }

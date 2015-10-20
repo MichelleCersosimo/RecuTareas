@@ -5,6 +5,10 @@
  */
 package recuproyecto;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import static recuproyecto.RecuProyecto.merge;
+
 /**
  *
  * @author Pc
@@ -52,6 +56,11 @@ public class Display extends javax.swing.JFrame {
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setText("Type here for searching something");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.JLabel() {
             public javax.swing.Icon getIcon() {
@@ -109,7 +118,24 @@ public class Display extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String result = "";
+        RecuProyecto controlador = new RecuProyecto(); 
+        String consulta = jTextField1.getText();
+        try{
+            result = controlador.procesar(consulta);
+        }catch(IOException e){ e.printStackTrace();};
+        
+        imprima(result);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void imprima(String string) {
+        String newline = "\n";
+        jTextArea1.append(string+newline);        
+    }
+    
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
