@@ -182,7 +182,85 @@ public class RecuProyecto {
         
        
     }
+    public static void merge(File bloque,int pos) throws IOException{
+        HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
+        int contador=0;
+        String separador = "------";
+        File indices = new File("Indices.txt");
+        // Si no existe crea el archivo
+        if (!indices.exists()) {
+                indices.createNewFile();
+                pos = -1;
+        }
+        try {
+            String linea = null;
+            FileReader fileReader = new FileReader(bloque);
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+            //Se itera sobre el archivo bloque para ir haciendo el merge de los indices
+            //Se va guardando en una tabla Hash
+            while((linea = bufferedReader.readLine()) != null) {
+                if(!linea.equals(separador) && contador>= pos){
+                    List<Integer> postingsList = new ArrayList<Integer>();//se crea una lista de posting por cada termino
+                    String [] token = linea.split("=");
+                    String [] postings = token[1].split(",");
+                    //inserto la lista de postings en la lista postingsList
+                    for(int i=0;i<postings.length;i++){
+                        postingsList.add(Integer.parseInt(postings[i]));
+                    }
+                    //Si nuestro hashTable está vacio, solo inserta el termino y su lista de postings dentro
+                    if(indice.isEmpty()){
+                        indice.put(token[0],postingsList);
+                    }
+                    else{//Si ya tiene elementos, revisa si ya existe o no
+                        //Si no existe, inserta el termino con su lista de postings
+                        if(!indice.containsKey(token[0])){
+                            indice.put(token[0],postingsList);
+
+                        }
+                        else{//Si si existe, solo añade los nuevos postings al termino
+                            List<Integer>tmp = new ArrayList<Integer>(indice.get(token[0]));
+                            tmp.addAll(postingsList);//concateno las listas
+                            indice.put(token[0], tmp);
+                        }
+
+                    }
+                }
+                else{
+                    contador++;
+                }
+                
+            }
+            bufferedReader.close();
+            Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+            FileWriter fileWritter = new FileWriter(indices.getName(),true);
+            BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+            Set s = treeMap.entrySet();
+            Iterator it = s.iterator();
+            //Itera sobre el arbol creado, para luego guardar el indice
+            while ( it.hasNext() ) {
+               String listaPostings = "";
+               Map.Entry entry = (Map.Entry) it.next();
+               String termino = (String) entry.getKey();
+               List<Integer> lista  = (List<Integer>) entry.getValue();
+               //Itera sobre la lista de postings del termino, para guardarlo luego en disco
+               for(int c= 0;c<lista.size();c++){
+                   listaPostings+= lista.get(c)+",";
+               }
+               bufferWritter.write(termino+"="+listaPostings+"\r\n");
+               
+            }//while
+            bufferWritter.close();
+                     
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                "No se pudo abrir Bloques.txt");                
+        }
+
+        
     
+    }
     
     static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
     
