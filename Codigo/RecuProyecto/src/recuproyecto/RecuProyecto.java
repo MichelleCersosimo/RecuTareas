@@ -270,76 +270,157 @@ public class RecuProyecto {
         this.textArea = jTextArea1;
     }
     
-    public String procesar(String consulta)throws IOException {
+    public String procesarAnd (String consulta)throws IOException {
         String result = "";
         consulta = consulta.toLowerCase();
         String [] palabras = consulta.split(" ");
-        String [] postings; 
-        File indices = new File("Indices.txt");
-        Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
-        Set s = treeMap.entrySet();
-        Iterator it = s.iterator();
-        String linea = null; 
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            Map<String, List<Integer>> treeMapand = new TreeMap<String, List<Integer>>(indice);
+            Set sand = treeMapand.entrySet();
+            Iterator itand = sand.iterator();
+            
+            if (palabras.length > 1 ) {
+                result += "\t\t\tResultados de consulta AND\n";
+                for (int i = 0; i < palabras.length; i++){
+                    String p1 = palabras[i];
+                    itand = sand.iterator();
+                    ArrayList<Integer> p1Postings = new ArrayList<Integer>();
+                    ArrayList<Integer> p2Postings = new ArrayList<Integer>();
+                    p1Postings = getPostings(p1, itand, p1Postings);
+                    if (palabras[i++] != null) {
+                        String p2 = palabras[i++];
+                        itand = sand.iterator();
+                        p2Postings = getPostings(p2, itand, p2Postings);
+                    }
+                    ArrayList<Integer> intersectResult = new ArrayList<Integer>();
+                    intersectResult = intersect(p1Postings, p2Postings, intersectResult);
+                    result = imprimirIntersect(result, intersectResult, consulta);
+                    result += "\n";
+                    i++;
+                }
+            }
+        }
+        return result; 
         
-        System.out.println("Palabras en consulta: "+palabras.length);
-        for (int i = 0; i < palabras.length; i++){
-            int actualSearchDocs [] = new int [100];
-            String searchWord = palabras[i];
-            it = s.iterator();
-            // buscar si esta en el diccionario y si esta traer su lista de postings 
-
-            //Itera sobre el arbol en busqueda de la palabra
+    }
+    
+    public String procesarOr(String consulta)throws IOException {
+        
+        String result = "";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+            Set s = treeMap.entrySet();
+            Iterator it = s.iterator();
+            result += "\t\t\tResultados de consulta OR:\n";
+            for (int i = 0; i < palabras.length; i++){
+                ArrayList<Integer> actualSearchDocs = new ArrayList<Integer>();
+                String searchWord = palabras[i];
+                it = s.iterator();
+                int flagPerWord = 0;
+                actualSearchDocs = getPostings(searchWord, it, actualSearchDocs);
+                result = imprimirRequest(result, actualSearchDocs, flagPerWord, searchWord);
+                result += "\n";
+            }
+            if (result.equals("\t\t\tResultados de consulta OR:\n\n")) {
+                result = "No docs found for that query :( ";
+            }
+        }
+        return result; 
+    }
+   
+    public String imprimirIntersect(String result, ArrayList<Integer> intersectResult, String consulta)throws IOException {
+        result+= "Los documentos en que aparece la consulta: " + consulta; 
+        for(int c= 0; c < intersectResult.size();c++){
+            String linea = null; 
+            FileReader fileReader = new FileReader("Documentos.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while((linea = bufferedReader.readLine()) != null) {
+                String [] token = linea.split("\\|");
+                int docID = Integer.parseInt(token[1]);
+                if (docID == intersectResult.get(c)) {
+                    result += "\n\t"+token[0]+".";
+                    break; 
+                }
+            } 
+            bufferedReader.close();  
+        }
+        return result; 
+    }
+    
+    public ArrayList<Integer> getPostings(String searchWord, Iterator it, ArrayList<Integer> actualSearchDocs) {
+        //Itera sobre el arbol en busqueda de la palabra
             while ( it.hasNext() ) {
                Map.Entry entry = (Map.Entry) it.next();
                String termino = (String) entry.getKey();
                // si el termino de busqueda esta en el diccionario 
                if (termino.equals(searchWord)) {
+                     
                      List<Integer> lista  = (List<Integer>) entry.getValue();
                      //Itera sobre la lista de postings del termino, para guardarlo luego en disco
                      for(int c= 0;c <lista.size();c++){
-                         actualSearchDocs[c] = lista.get(c);
-                         // deberia ser el nombre del doc no el id
-                         // el siguiente codigo solo es ara sacar el nombre del documento
-                        FileReader fileReader = new FileReader("Documentos.txt");
-                        BufferedReader bufferedReader = new BufferedReader(fileReader);
-                        while((linea = bufferedReader.readLine()) != null) {
-                            String [] token = linea.split("\\|");
-                            int docID = Integer.parseInt(token[1])+1;
-                            if (docID == actualSearchDocs[c]) {
-                                System.out.println("termino "+termino+" sale en doc "+token[0]);
-                                result += "Termino "+termino+ ". Esta en doc: "+token[0]+".";
-                                break; 
-                            }
-                        } 
-                        bufferedReader.close();  
+                         actualSearchDocs.add(c,lista.get(c));
                      }
                }
             }//while
-            result += "\n";
-        }
-        
-        if (result == "") {
-            
-            result = "No query terms found :( ";
-        }
-        
-        /*if (palabras.length > 2 ) {
-            intersect(palabras, postings);
-        }*/
-        return result; 
+            return actualSearchDocs; 
     }
     
     
-    public void intersect(String [] palabras, String [] postings) {
-       String [] resultados; 
-       for (int i = 0; i < palabras.length; i++){
-           String p1 = palabras[i];
-           String p2 = palabras[i+1];
-           while (p1 != null && p2 != null ) {
-                
+    public String imprimirRequest(String result, ArrayList<Integer> actualSearchDocs, int flagPerWord, String termino)throws IOException {
+        // deberia ser el nombre del doc no el id
+        // el siguiente codigo solo es ara sacar el nombre del documento
+        for(int c= 0;c <actualSearchDocs.size();c++){
+            String linea = null; 
+            FileReader fileReader = new FileReader("Documentos.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while((linea = bufferedReader.readLine()) != null) {
+                String [] token = linea.split("\\|");
+                int docID = Integer.parseInt(token[1]);
+                if (docID == actualSearchDocs.get(c)) {
+                    //System.out.println("termino "+termino+" sale en doc "+token[0]);
+                    if (flagPerWord == 0) {
+                        result += "\nTérmino "+termino+ ", aparece en los documentos: \n\n\t"+token[0]+".";
+                        flagPerWord = 1; 
+                        break; 
+                    } else {
+                        result += "\n\t"+token[0]+".";
+                        break; 
+                    }
+                }
+            } 
+            bufferedReader.close();  
+        }
+        return result; 
+        
+    }
+    
+    
+    public ArrayList<Integer> intersect(ArrayList<Integer> p1Postings, ArrayList<Integer> p2Postings, ArrayList<Integer> intersectResult) {
+       int indexP1 = 0;
+       int indexP2 = 0; 
+       while (indexP1 < p1Postings.size() && indexP2 < p2Postings.size()) {
+            System.out.println("Entro a comprobar");
+            if (Objects.equals(p1Postings.get(indexP1), p2Postings.get(indexP2))) {
+                System.out.println("Encuentro postings iguales");
+                intersectResult.add(p1Postings.get(indexP1));
+                indexP1++;
+                indexP2++;
+            } else {
+                System.out.println("No hay iguales");
+                if (p1Postings.get(indexP1) < p2Postings.get(indexP2)){
+                    indexP1++;
+                } else {
+                    indexP2++;
+                }
             }
        }
-        
+       return intersectResult; 
     }
    
     
@@ -348,6 +429,7 @@ public class RecuProyecto {
         // TODO code application logic here
         //Hay q cambiar esta ruta siempre porq yo uso otra XD
         File[] files = new File("C:/Users/Pc/Desktop/Recuperacion/Codigo/Docs").listFiles();
+        //File[] files = new File("C:/Users/b21684/Desktop/RecuTareas-master/Codigo/Docs").listFiles();
         // mich compu C:\Users\Pc\Desktop\Recuperacion\Codigo\Docs
          //File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
