@@ -293,6 +293,10 @@ public class RecuProyecto {
                         String p2 = palabras[i++];
                         itand = sand.iterator();
                         p2Postings = getPostings(p2, itand, p2Postings);
+                    } else {
+                        String p2 = palabras[i--];
+                        itand = sand.iterator();
+                        p2Postings = getPostings(p2, itand, p2Postings);
                     }
                     ArrayList<Integer> intersectResult = new ArrayList<Integer>();
                     intersectResult = intersect(p1Postings, p2Postings, intersectResult);
@@ -306,7 +310,7 @@ public class RecuProyecto {
         
     }
     
-    public String procesarOr(String consulta)throws IOException {
+    public String procesarOrSinSW(String consulta)throws IOException {
         
         String result = "";
         consulta = consulta.toLowerCase();
@@ -314,6 +318,47 @@ public class RecuProyecto {
         if (palabras[0].equals("")) {
                 result = "No query terms found :( ";
         } else {
+            String line = "a the an and are as at be by for from has hein its of on that to was were will with";
+            String [] stopwords = line.split(" ");
+            System.out.println("longitud stop vector: "+stopwords.length);
+            System.out.println(stopwords[0]);
+            Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+            Set s = treeMap.entrySet();
+            Iterator it = s.iterator();
+            result += "\t\t\tResultados de consulta OR:\n";
+            for (int i = 0; i < palabras.length; i++){
+                boolean bandera = true;  
+                for (int j = 0; j < stopwords.length; j++) {
+                    if (palabras[i].equals(stopwords[j])) {
+                        bandera = false; 
+                    }
+                }
+                if (bandera) {
+                    ArrayList<Integer> actualSearchDocs = new ArrayList<Integer>();
+                    String searchWord = palabras[i];
+                    it = s.iterator();
+                    int flagPerWord = 0;
+                    actualSearchDocs = getPostings(searchWord, it, actualSearchDocs);
+                    result = imprimirRequest(result, actualSearchDocs, flagPerWord, searchWord);
+                    result += "\n";
+                }
+            }
+            if (result.equals("\t\t\tResultados de consulta OR:\n\n")) {
+                result = "No docs found for that query :( ";
+            }
+        }
+        return result; 
+    }
+    
+     public String procesarOr(String consulta)throws IOException {
+        
+        String result = "";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            
             Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
             Set s = treeMap.entrySet();
             Iterator it = s.iterator();

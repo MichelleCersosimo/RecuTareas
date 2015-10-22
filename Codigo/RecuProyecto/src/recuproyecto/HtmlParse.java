@@ -9,10 +9,12 @@ package recuproyecto;
  *
  * @author b21684
  */
+import java.io.BufferedReader;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,34 +38,20 @@ public class HtmlParse {
         Metadata metadata = new Metadata();
         FileInputStream inputstream = new FileInputStream(new File(file.getPath()));
         ParseContext pcontext = new ParseContext();
-
-        //Html parser 
         HtmlParser htmlparser = new HtmlParser();
         htmlparser.parse(inputstream, handler, metadata,pcontext);
         String contenido = handler.toString();
-        // Haciendo todo el documento a minusculas
-        contenido = contenido.toLowerCase();
-        
-        // Tokenizando las palabras del documento 
-        String [] tokens;
+        contenido = contenido.toLowerCase();                // Haciendo todo el documento a minusculas
+        String [] tokens;           // Tokenizando las palabras del documento 
         tokens = contenido.split("[\\p{P} \\t\\n\\r 1234567890<>=`+]");
-        // Para visualizar los tokens que hizo 
-        /*for (String s: tokens){
-            if (s.equals("")) continue;
-             System.out.println(s);
-        }*/
-        
-        // ordenando los tokens del documento 
-        Arrays.sort(tokens);
-        /*for (String token : tokens) {
-            System.out.println(token);
-        }*/
-        //Elimino los duplicados y mantengo el orden de la lista
+        Arrays.sort(tokens);                // ordenando los tokens del documento 
         List<String> list = Arrays.asList(tokens);
+      
+        //Elimino los duplicados y mantengo el orden de la lista
         List<String> listaFinal =  new ArrayList<String>(new LinkedHashSet<String>(list));
         for(String lista : listaFinal) {
             List<Integer> postingsList = new ArrayList<Integer>();
-            //System.out.println(lista);
+
             if(indice.isEmpty()){
                 postingsList.add(docID);
                 indice.put(lista,postingsList);
@@ -83,20 +71,10 @@ public class HtmlParse {
             }
         }
  
-      
-    
-      // Muestra el contenido 
-      //String estilizado = contenido;
-      //System.out.println("Contents of the document:" + estilizado);
-      
-    
-        // Esta metadata nos puede servir por si queremos la descripcion del link :P Dejemoslo para despues
-      /*System.out.println("Metadata of the document:");
-      String[] metadataNames = metadata.names();
-      
-      for(String name : metadataNames) {
-         System.out.println(name + ":   " + metadata.get(name));  
-      }*/
       return indice;
    }
+   
+  
+   
+   
 }
