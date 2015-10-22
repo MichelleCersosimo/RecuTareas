@@ -147,6 +147,7 @@ public class Display extends javax.swing.JFrame {
         limpiar();
         String result = "";
         RecuProyecto controlador = new RecuProyecto(); 
+        controlador.inicializar();
         String consulta = jTextField1.getText();
         try{
             boolean and = jRadioButton1.isSelected();
