@@ -144,6 +144,8 @@ public class Display extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        long duracion= 0;
+        long T1 = System.nanoTime();
         limpiar();
         String result = "";
         RecuProyecto controlador = new RecuProyecto(); 
@@ -165,10 +167,22 @@ public class Display extends javax.swing.JFrame {
             }
             
         }catch(IOException e){ e.printStackTrace();};
-        
+        long T2 = System.nanoTime();
+        duracion = T2-T1;
+        ImprimirTiempo(duracion);
         imprima(result);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public static void ImprimirTiempo(long X) {
+        long seg= 0; 
+        seg= (X/1000000000);
+        long mili= 0;
+        mili  = (X/1000000) - ((seg)*(1000));
+        long micro= (X/1000) -((seg)*(1000000)) - ((mili)*(1000));
+        System.out.println( "Su duracion desglosada es:");
+        System.out.println( "Segundos: " +seg);
+        System.out.println( "Milisegundos: " +mili);
+        System.out.println( "Microsegundos: " +micro);
+    }
     public void imprima(String string) {
         String newline = "\n";
         jTextArea1.append(string+newline);        
@@ -215,6 +229,7 @@ public class Display extends javax.swing.JFrame {
                 new Display().setVisible(true);
             }
         });*/
+        
          Display interfaz = new Display();
     }
 

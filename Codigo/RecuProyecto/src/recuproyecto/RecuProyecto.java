@@ -27,8 +27,7 @@ public class RecuProyecto {
     static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
     public static void bsbi(File[] files, HtmlParse parser )  throws IOException {
         int cantidadArchivos=0;
-        ;
-        
+                
         File bloques = new File("Bloques.txt");
         // Si no existe crea el archivo
         if (!bloques.exists()) {
@@ -61,7 +60,7 @@ public class RecuProyecto {
                         }                        
                         listaDocumentos1.put(token[0],Integer.parseInt(token[1]));
                         iDViejo = docID-1;
-                        System.out.println(iDViejo);
+                        
                     }
 
                     bufferedReader.close();         
@@ -73,7 +72,8 @@ public class RecuProyecto {
             }
         }
         List<Integer> borrables = obtenerBorrables(files);
-        if(iDViejo != docID-1 || listaDocumentos1.isEmpty()){
+        
+        if(iDViejo != docID-1 || listaDocumentos1.isEmpty() || !borrables.isEmpty()){
             if(listaDocumentos1.isEmpty()){
                 cantidadArchivos = files.length;
                 iDViejo = 0;
@@ -101,7 +101,7 @@ public class RecuProyecto {
             ArrayList<File[]> blocksList = new ArrayList<File[]>();
             //Separo los archivos en bloques
             int idABuscar = iDViejo;
-            System.out.println("id a buscar "+idABuscar);
+            
             for(int i = 0; i < cantidadArchivos; i += documentosPorBloque) {
                 int size = 0;
                 if(i+documentosPorBloque<= cantidadArchivos){
@@ -119,42 +119,80 @@ public class RecuProyecto {
                         block[j] = files[i+j];
                     }
                     else{
-                        block[j] = obtenerDocumento(files,idABuscar);
                         idABuscar++;
+                        block[j] = obtenerDocumento(files,idABuscar);
+                        
                     }
                 }
                 blocksList.add(block);
             }
             //Leo cada uno de los archivos que estan en cada bloque
             crearBloque(blocksList,parser);
-            
+            if(!borrables.isEmpty()){
+                borrarArchivos(borrables);
+                borrables.clear();
+            }
             try{
                 merge(bloques);
             }catch(IOException e){ e.printStackTrace();};
             guardarArchivos();
-            borrarArchivos(borrables);
+            
             //Ahora listaDocumentos1 es la actual 
             listaDocumentos1.clear();
             listaDocumentos1.putAll(listaDocumentos2);
             
         }
-       
+        if(indice.isEmpty()){
+            llenarIndice();
+        }
+        
     }
-    public static void borrarArchivos(List<Integer> borrables){
+    
+    public static void llenarIndice() throws IOException{
+            System.out.println("LLenando indice...");
+            String linea = null;
+            FileReader fileReader = new FileReader("Indices.txt");
+            BufferedReader bufferedReader = 
+                new BufferedReader(fileReader);
+            //Se itera sobre el archivo bloque para ir haciendo el merge de los indices
+            //Se va guardando en una tabla Hash
+            while((linea = bufferedReader.readLine()) != null) {
+               List<Integer> postingsList = new ArrayList<Integer>();//se crea una lista de posting por cada termino
+                String [] token = linea.split("=");
+                String [] postings = token[1].split(",");
+                //inserto la lista de postings en la lista postingsList
+                for(int i=0;i<postings.length;i++){
+                    postingsList.add(Integer.parseInt(postings[i]));
+                }
+                indice.put(token[0],postingsList);
+
+            }
+            bufferedReader.close();
+
+
+        
+
+    }
+    public static void borrarArchivos(List<Integer> borrables) throws IOException{
+        if(indice.isEmpty()){
+            llenarIndice();
+        }
         List<Integer> tmp = new ArrayList<Integer>();
         for(int i = 0; i < borrables.size();i++){
-            for (final String key : indice.keySet()) {
-                tmp = indice.get(key);
+            for(Iterator<Map.Entry<String, List<Integer>>> it = indice.entrySet().iterator(); it.hasNext(); ) {
+                Map.Entry<String, List<Integer>> entry = it.next();
+                tmp = entry.getValue();
                 if (tmp.contains(borrables.get(i))){
                     tmp.remove(borrables.get(i));
                     if(!tmp.isEmpty()){
-                        indice.put(key, tmp);
+                        indice.put(entry.getKey(), tmp);
                     }
                     else{
-                        indice.remove(key);
+                        it.remove();
                     }
                 }
             }
+            
         }
     }
     
@@ -215,6 +253,7 @@ public class RecuProyecto {
         for(File file:files){
             if(listaDocumentos1.containsKey(file.getName())){
                 listaDocumentos2.put(file.getName(),listaDocumentos1.get(file.getName()));
+                
             }
             else{
                 listaDocumentos2.put(file.getName(),docID);
@@ -223,25 +262,27 @@ public class RecuProyecto {
         }
         System.out.println("Archivo a revisar "+listaDocumentos1.size());
         for (final String key : listaDocumentos1.keySet()) {
-            System.out.println("Archivo a revisar "+key);
+            
             if (!listaDocumentos2.containsKey(key)) {
-                System.out.println("Archivo a borrar "+key);
                 borrables.add(listaDocumentos1.get(key));
             }
         }
         return borrables;    
     }
+    
     public static File obtenerDocumento(File [] files,int id){
         File archivo=null;
         String nombre = "";
-        for (final String key : listaDocumentos1.keySet()) {
+        for (final String key : listaDocumentos2.keySet()) {
             if (listaDocumentos2.get(key)==id) {
                 nombre = key;
+                
                 break;
             }
         }
         for(File file:files){
                if(file.getName().equals(nombre)){
+                   System.out.println(file.getName());
                    archivo = file;
                    break;
                }     
@@ -260,30 +301,6 @@ public class RecuProyecto {
         if (!indices.exists()) {
                 indices.createNewFile();
                 pos = -1;
-        }
-        else{//Si el archivo existe e indice está vacio, entonces lo llena de disco.
-            if(indice.isEmpty()){
-                String linea = null;
-                FileReader fileReader = new FileReader(indices);
-                BufferedReader bufferedReader = 
-                    new BufferedReader(fileReader);
-                //Se itera sobre el archivo bloque para ir haciendo el merge de los indices
-                //Se va guardando en una tabla Hash
-                while((linea = bufferedReader.readLine()) != null) {
-                   List<Integer> postingsList = new ArrayList<Integer>();//se crea una lista de posting por cada termino
-                    String [] token = linea.split("=");
-                    String [] postings = token[1].split(",");
-                    //inserto la lista de postings en la lista postingsList
-                    for(int i=0;i<postings.length;i++){
-                        postingsList.add(Integer.parseInt(postings[i]));
-                    }
-                    indice.put(token[0],postingsList);
-                     
-                }
-                bufferedReader.close();
-                
-            
-            }
         }
         try {
             String linea = null;
@@ -326,25 +343,7 @@ public class RecuProyecto {
                 
             }
             bufferedReader.close();
-            Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
-            FileWriter fileWritter = new FileWriter(indices.getName());
-            BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-            Set s = treeMap.entrySet();
-            Iterator it = s.iterator();
-            //Itera sobre el arbol creado, para luego guardar el indice
-            while ( it.hasNext() ) {
-               String listaPostings = "";
-               Map.Entry entry = (Map.Entry) it.next();
-               String termino = (String) entry.getKey();
-               List<Integer> lista  = (List<Integer>) entry.getValue();
-               //Itera sobre la lista de postings del termino, para guardarlo luego en disco
-               for(int c= 0;c<lista.size();c++){
-                   listaPostings+= lista.get(c)+",";
-               }
-               bufferWritter.write(termino+"="+listaPostings+"\r\n");
-               
-            }//while
-            bufferWritter.close();
+            //guardarIndice();
                      
         }
         catch(FileNotFoundException ex) {
@@ -355,7 +354,28 @@ public class RecuProyecto {
         
     
     }
+    public static void guardarIndice() throws IOException{
+        Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
+        FileWriter fileWritter = new FileWriter("Indices.txt");
+        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+        Set s = treeMap.entrySet();
+        Iterator it = s.iterator();
+        //Itera sobre el arbol creado, para luego guardar el indice
+        while ( it.hasNext() ) {
+           String listaPostings = "";
+           Map.Entry entry = (Map.Entry) it.next();
+           String termino = (String) entry.getKey();
+           List<Integer> lista  = (List<Integer>) entry.getValue();
+           //Itera sobre la lista de postings del termino, para guardarlo luego en disco
+           for(int c= 0;c<lista.size();c++){
+               listaPostings+= lista.get(c)+",";
+           }
+           bufferWritter.write(termino+"="+listaPostings+"\r\n");
+
+        }//while
+        bufferWritter.close();
     
+    }
     public static int obtenerUltimoAsterisco() throws IOException{
         int pos = 0;
         int posTmp= 0;
@@ -602,6 +622,15 @@ public class RecuProyecto {
          //File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
         inicializar();
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                
+                RecuProyecto controlador = new RecuProyecto(); 
+                try{
+                    controlador.guardarIndice();
+                }catch(IOException e){};
+            }
+        }));
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
