@@ -184,8 +184,9 @@ public class Display extends javax.swing.JFrame {
         System.out.println( "Microsegundos: " +micro);
     }
     public void imprima(String string) {
+        String result = string.replace('-', '/');
         String newline = "\n";
-        jTextArea1.append(string+newline);        
+        jTextArea1.append(result+newline);        
     }
     
     public void limpiar() {

@@ -402,6 +402,12 @@ public class RecuProyecto {
         this.textArea = jTextArea1;
     }
     
+    
+    /*
+        Metodo que se encarga de procesar una consulta cuando el radio boton esta 
+        marcado. Revisa el indice y devuelve los documentos esperados por el usuario 
+        en donde salgan TODOS los terminos de la consulta
+    */
     public String procesarAnd (String consulta)throws IOException {
         String result = "";
         consulta = consulta.toLowerCase();
@@ -436,8 +442,11 @@ public class RecuProyecto {
                     result += "\n";
                     i++;
                 }
+            } else {
+                result += "For an And Query you need more than just one term, do OR query if so.\n";
             }
         }
+        
         return result; 
         
     }
@@ -600,10 +609,9 @@ public class RecuProyecto {
        return intersectResult; 
     }
     public static void inicializar(){
-        File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
-            //File[] files = new File("C:/Users/b21684/Desktop/RecuTareas-master/Codigo/Docs").listFiles();
-            // mich compu C:\Users\Pc\Desktop\Recuperacion\Codigo\Docs
-             //File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
+        // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
+        // b21684 por su usuario o toda la ruta. 
+        File[] files = new File("C:/Users/b21684/Desktop/Recuperacion_Tarea1/Codigo/Docs").listFiles();
             HtmlParse parser = new HtmlParse();
             try{
                 bsbi(files, parser); 
@@ -613,13 +621,8 @@ public class RecuProyecto {
     }
     
     public static void main(String[] args) {
-        // https://github.com/Snorremd/Block-Sort-Based-Indexer/blob/master/BlockSortBasedIndexer/src/no/uib/bsbi/BSBI.java
-        // TODO code application logic here
-        //Hay q cambiar esta ruta siempre porq yo uso otra XD
-        File[] files = new File("C:/Users/Pc/Desktop/Recuperacion/Codigo/Docs").listFiles();
-        //File[] files = new File("C:/Users/b21684/Desktop/RecuTareas-master/Codigo/Docs").listFiles();
-        // mich compu C:\Users\Pc\Desktop\Recuperacion\Codigo\Docs
-         //File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
+       // TODO code application logic here
+        File[] files = new File("C:/Users/b21684/Desktop/Recuperacion_Tarea1/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
         inicializar();
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
