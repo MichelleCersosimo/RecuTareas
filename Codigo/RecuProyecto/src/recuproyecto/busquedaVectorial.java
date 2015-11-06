@@ -9,9 +9,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import static recuproyecto.RecuProyecto.indice;
 /**
  *
  * @author b21684
@@ -19,11 +25,11 @@ import java.io.IOException;
 public class busquedaVectorial {
     
     //  sera un array que tenga la lista de tokens por cada documento
-    public ArrayList<String[]> termsDocsArray = new ArrayList<String[]>();
+    public static ArrayList<String[]> termsDocsArray = new ArrayList<String[]>();
     // simple array de tokens de todos los documentos
-    public ArrayList<String> allTerms = new ArrayList<String>(); 
+    public static ArrayList<String> allTerms = new ArrayList<String>(); 
     // utilizado ara lo del cosine 
-    private ArrayList<double[]> tfidfDocsVector = new ArrayList<double[]>();
+    private static ArrayList<double[]> tfidfDocsVector = new ArrayList<double[]>();
     
 
 
@@ -72,25 +78,30 @@ public class busquedaVectorial {
                 count++;
             }
         }
-        return count / totalterms.length;
+        if(count==0){
+            return count;
+        }
+        else{
+            return 1+ (Math.log10(count));
+        }
     }
     
     /*
         busca el idf del termino term en todos los terminos de todos los documentos allTerms
         IDF(t,D) = Inverse Term Frequency(t,D): measures the importance of term t in all documents (D)
     */
-    public double idf(ArrayList<String[]> allTerms, String term) {
+    public double idf(String term) {
         double count = 0;
-        for(int c= 0; c < allTerms.size();c++){
-                String[] docTerms = allTerms.get(c);
-                for(int h= 0; h < docTerms.length ;h++){
+        for(int c= 0; c < termsDocsArray.size();c++){
+                String[] docTerms = termsDocsArray.get(c);
+                for(int h= 1; h < docTerms.length ;h++){
                     if (docTerms[h].equalsIgnoreCase(term)) {
                         count++;
                         break;
                     }
                 }
         }
-        return 1 + Math.log(allTerms.size() / count);
+        return Math.log10(termsDocsArray.size() / count);
     }
     
     /*
@@ -102,18 +113,34 @@ public class busquedaVectorial {
     */
     
     public double tfIdf(String[] doc, ArrayList<String[]> docs, String term) {
-        return tf(doc, term) * idf(docs, term);
+        return tf(doc, term) * idf(term);
     }
     
     
    // este metodo se llama desde el htmlParse para q me de todos los tokens de un doc en especifico. 
-    public void rating(String [] tokens) {
+    public void rating(String [] tokens, int id) {
+        String [] tokId = new String[tokens.length+1];
+        tokId[0] = Integer.toString(id); 
+        int count = 1;
         for (String term : tokens) {
             if (!allTerms.contains(term)) {  //avoid duplicate entry
                 allTerms.add(term);
             }
+            System.out.println(term);
+            tokId[count] = term;
+            count++;
         }
-        termsDocsArray.add(tokens);
+        
+        //tokId[0] = Integer.toString(id); 
+        
+        /*for (String term : tokens) {
+            tokId[count] = term;
+        }
+        for (int i = 0; i < tokens2.length; i++) {
+            tokId[count] = tokens2[i];
+            count++;
+        }*/
+        termsDocsArray.add(tokId);
     }
 
     
@@ -130,17 +157,23 @@ public class busquedaVectorial {
             for(int c= 0; c < termsDocsArray.size();c++){
                 String [] terminosDeUnDoc = termsDocsArray.get(c);
             
-                double[] tfidfvectors = new double[allTerms.size()];
-                int count = 0;
+                double[] tfidfvectors = new double[allTerms.size()+1];
+                int count = 1;
+                tfidfvectors[0] = Double.parseDouble(terminosDeUnDoc[0]);
                 for(int h= 0; h < allTerms.size();h++){
                     tf = tf(terminosDeUnDoc, allTerms.get(h));
-                    idf = idf(termsDocsArray, allTerms.get(h));
+                    String id = terminosDeUnDoc[0];
+                    int idInt = Integer.parseInt(id);
+                    idf = idf(allTerms.get(h));
                     tfidf = tf * idf;
                     tfidfvectors[count] = tfidf;
                     count++;
                 }
                 tfidfDocsVector.add(tfidfvectors);  //storing document vectors;            
         }
+            try{
+                guardarIndice();
+            }catch(Exception e){};
     }
     /**
      * metodo para calcular la similitud de coseno entre todos los documentos 
@@ -181,4 +214,39 @@ public class busquedaVectorial {
     }
     
     
+    public void poblar() throws FileNotFoundException, IOException{
+        System.out.println("LLenando indice con pesos...");
+            String linea = null;
+            FileReader fileReader = new FileReader("IndicesConPeso.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            //Se va guardando en una tabla Hash
+            while((linea = bufferedReader.readLine()) != null) {
+                 ArrayList<double[]> listaPostingsPeso = new ArrayList<double[]>();
+                 bufferedReader.close();
+
+            }
+    }
+    
+    public static void guardarIndice() throws IOException{
+        File indices = new File("IndicesConPeso.txt");
+        String hilera = "";
+        if (!indices.exists()) {
+            indices.createNewFile();
+            
+        }
+        FileWriter fileWritter = new FileWriter("IndicesConPeso.txt");
+        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+        for(int i = 0; i<allTerms.size();i++){
+            hilera+= allTerms.get(i)+"=";
+            for(int j=0;j<tfidfDocsVector.size();j++){
+                double[] vec =tfidfDocsVector.get(j);
+                int id = (int)vec[0];
+                hilera+= Integer.toString(id)+"-"+Double.toString(vec[i+1])+",";
+            }
+            hilera+="\r\n";            
+            bufferWritter.write(hilera);
+            hilera="";
+        } 
+        bufferWritter.close();
+    }
 }

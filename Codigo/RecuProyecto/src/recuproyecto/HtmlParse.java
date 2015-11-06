@@ -31,7 +31,7 @@ import org.xml.sax.SAXException;
 
 public class HtmlParse {
 
-   public HashMap<String,List<Integer>> parsear(File file,int docID,HashMap<String,List<Integer>> indice) throws IOException,SAXException, TikaException {
+   public void parsear(File file,int docID) throws IOException,SAXException, TikaException {
        
       //detecting the file type
         BodyContentHandler handler = new BodyContentHandler();
@@ -43,11 +43,15 @@ public class HtmlParse {
         String contenido = handler.toString();
         contenido = contenido.toLowerCase();                // Haciendo todo el documento a minusculas
         String [] tokens;           // Tokenizando las palabras del documento 
-        tokens = contenido.split("[\\p{P} \\t\\n\\r 1234567890<>=`+]");
+        tokens = contenido.split("[\\p{P} \\t\\n\\r 1234567890<>=`+\n]");
         Arrays.sort(tokens);                // ordenando los tokens del documento 
         List<String> list = Arrays.asList(tokens);
         busquedaVectorial bv = new busquedaVectorial(); 
-        bv.rating(tokens);
+        bv.rating(tokens,docID);
+        
+        
+        
+        
         //Elimino los duplicados y mantengo el orden de la lista
 		
 		/* experimento modulo 2 */
@@ -71,7 +75,7 @@ public class HtmlParse {
 			
 			// luego se usa tokensWSW en lugar de listaFinal. 
 		*/
-		
+	/**	
 		
         List<String> listaFinal =  new ArrayList<String>(new LinkedHashSet<String>(list));
         for(String lista : listaFinal) {
@@ -96,7 +100,7 @@ public class HtmlParse {
             }
         }
  
-      return indice;
+    */  
    }
    
   

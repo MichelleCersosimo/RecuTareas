@@ -26,8 +26,9 @@ public class RecuProyecto {
     static int iDViejo;
     static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
     public static void bsbi(File[] files, HtmlParse parser )  throws IOException {
+        busquedaVectorial bv = new busquedaVectorial();
         int cantidadArchivos=0;
-                
+        docID=1;
         File bloques = new File("Bloques.txt");
         // Si no existe crea el archivo
         if (!bloques.exists()) {
@@ -74,6 +75,16 @@ public class RecuProyecto {
         List<Integer> borrables = obtenerBorrables(files);
         
         if(iDViejo != docID-1 || listaDocumentos1.isEmpty() || !borrables.isEmpty()){
+            for(File file: files){
+                try {
+                    parser.parsear(file,listaDocumentos2.get(file.getName()));
+                } catch (Exception e) {};
+            
+            }
+            guardarArchivos();
+            bv.tfIdfCalculator();
+            
+            /**
             if(listaDocumentos1.isEmpty()){
                 cantidadArchivos = files.length;
                 iDViejo = 0;
@@ -143,7 +154,7 @@ public class RecuProyecto {
             
         }
         if(indice.isEmpty()){
-            llenarIndice();
+            llenarIndice();*/
         }
         
     }
@@ -216,7 +227,7 @@ public class RecuProyecto {
             for (File file : block) {
                 iDViejo++;
                 try {
-                    indiceTmp = parser.parsear(file,iDViejo,indiceTmp);
+                    //indiceTmp = parser.parsear(file,iDViejo,indiceTmp);
                 } catch (Exception e) {};
                 
             }
@@ -606,12 +617,14 @@ public class RecuProyecto {
                 }
             }
        }
+       
        return intersectResult; 
     }
     public static void inicializar(){
         // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
         // b21684 por su usuario o toda la ruta. 
-        File[] files = new File("C:/Users/b21684/Desktop/Recuperacion_Tarea1/Codigo/Docs").listFiles();
+        
+        File[] files = new File("C:/GitHub/RecuProyecto/Codigo/Docs").listFiles();
             HtmlParse parser = new HtmlParse();
             try{
                 bsbi(files, parser); 
@@ -622,16 +635,16 @@ public class RecuProyecto {
     
     public static void main(String[] args) {
        // TODO code application logic here
-        File[] files = new File("C:/Users/b21684/Desktop/Recuperacion_Tarea1/Codigo/Docs").listFiles();
+        //File[] files = new File("C:/Users/b14011/Desktop/RecuTareas-master/Codigo/Docs").listFiles();
         HtmlParse parser = new HtmlParse();
         inicializar();
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
                 
                 RecuProyecto controlador = new RecuProyecto(); 
-                try{
-                    controlador.guardarIndice();
-                }catch(IOException e){};
+                //try{
+                    //controlador.guardarIndice();
+                //}catch(IOException e){};
             }
         }));
         
