@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -170,13 +171,7 @@ public class busquedaVectorial {
                 tfidfvectors[0] = Double.parseDouble(terminosDeUnDoc[0]);
                 for(int h= 0; h < allTerms.size();h++){
                     tf = tf(terminosDeUnDoc, allTerms.get(h));
-                    String id = terminosDeUnDoc[0];
-                    int idInt = Integer.parseInt(id);
-                    idf = idf(allTerms.get(h));
-                    tfidf = tf * idf;
-                    int r = (int) Math.round(tfidf*100);
-                    double f = r / 100.0;
-                    tfidfvectors[count] = r;
+                    tfidfvectors[count] = roundTwoDecimals(tf);
                     count++;
                 }
                 tfidfDocsVector.add(tfidfvectors);  //storing document vectors;            
@@ -234,15 +229,12 @@ public class busquedaVectorial {
                 coseno+= Math.pow(tfidfDocsVector.get(i)[j],2);
                 
             } 
-            coseno = Math.sqrt(coseno);
-            int r = (int) Math.round(coseno*100);
-            coseno = r / 100.0;
+            coseno = roundTwoDecimals(Math.sqrt(coseno));
+            ;
             for(int k = 1;k<tfidfDocsVector.get(i).length;k++){
                 //A cada peso del termino en el doc, lo divido entre el coseno para obtener el valor normalizado
-                tfidfDocsVector.get(i)[k] = tfidfDocsVector.get(i)[k]/coseno;
-                int rr = (int) Math.round(tfidfDocsVector.get(i)[k]*100);
-                double f = rr / 100.0;
-                tfidfDocsVector.get(i)[k]=rr;
+                tfidfDocsVector.get(i)[k] = roundTwoDecimals(tfidfDocsVector.get(i)[k]/coseno);
+                
             }
             coseno = 0.0;
         
@@ -276,10 +268,7 @@ public class busquedaVectorial {
         HashMap<String, Double> hashMap = new HashMap<String, Double>();
         for(int i = 0; i<consulta.length;i++){
             if(!hashMap.containsValue(consulta[i])){
-                double valor = querytf(consulta[i],consulta)*idf(consulta[i]);
-                 int r = (int) Math.round(valor*100);
-                 double f = r / 100.0;
-                hashMap.put(consulta[i], f);
+                hashMap.put(consulta[i],roundTwoDecimals(querytf(consulta[i],consulta)*idf(consulta[i])));
                 
             }
             
@@ -353,5 +342,10 @@ public class busquedaVectorial {
         return map; 
     
     }
+    //2 decimales
+    double roundTwoDecimals(double d) {
+        DecimalFormat twoDecimals = new DecimalFormat("#.00");
+        return Double.valueOf(twoDecimals.format(d));
+}
     
 }
