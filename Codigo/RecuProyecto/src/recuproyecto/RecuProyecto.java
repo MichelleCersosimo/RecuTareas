@@ -28,18 +28,20 @@ public class RecuProyecto {
     public static void bsbi(File[] files, HtmlParse parser )  throws IOException {
         busquedaVectorial bv = new busquedaVectorial();
         int cantidadArchivos=0;
-        docID=1;
-        File bloques = new File("Bloques.txt");
+        
+        /*File bloques = new File("Bloques.txt");
         // Si no existe crea el archivo
         if (!bloques.exists()) {
                 bloques.createNewFile();
                 docID = 1;
                 iDViejo=-1;
-        }
+        }*/
         
         File postings = new File("Documentos.txt");
         // Si no existe crea el archivo
         if (!postings.exists()) {
+                docID=1;
+                iDViejo=-1;
                 postings.createNewFile();
         }
         else{//Si el archivo existe,primero obtengo sus datos para no duplicar archivos leidos
@@ -74,7 +76,7 @@ public class RecuProyecto {
         }
         List<Integer> borrables = obtenerBorrables(files);
         
-        if(iDViejo != docID-1 || listaDocumentos1.isEmpty() || !borrables.isEmpty()){
+        if(iDViejo != docID-1 || listaDocumentos1.isEmpty() || !borrables.isEmpty()|| bv.termsDocsArray.isEmpty()){
             for(File file: files){
                 try {
                     parser.parsear(file,listaDocumentos2.get(file.getName()));
@@ -620,6 +622,51 @@ public class RecuProyecto {
        
        return intersectResult; 
     }
+    
+    public Map sortByValue(HashMap unsortMap) {	 
+         List list = new LinkedList(unsortMap.entrySet());
+
+         Collections.sort(list,Collections.reverseOrder(new Comparator() {
+                 public int compare(Object o1, Object o2) {
+                         return ((Comparable) ((Map.Entry) (o1)).getValue())
+                                                 .compareTo(((Map.Entry) (o2)).getValue());
+                 }
+         }));
+
+         Map sortedMap = new LinkedHashMap();
+         for (Iterator it = list.iterator(); it.hasNext();) {
+                 Map.Entry entry = (Map.Entry) it.next();
+                 sortedMap.put(entry.getKey(), entry.getValue());
+         }
+         return sortedMap;
+    }
+    
+    public  String getRelevantDocs(String consulta) throws IOException{
+        busquedaVectorial bv = new busquedaVectorial();
+        String result="";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            result += "\t\t\tResultados de la consulta:\n\n";
+            HashMap<String, Double> hashMap = bv.getQueryWeight(palabras);
+            HashMap<String, Double> relevantDocs = bv.getRelevantValues(hashMap);
+            Map <String, Double> relevantDocsOrdered = sortByValue(relevantDocs);
+            Set ss = relevantDocsOrdered.entrySet();
+            Iterator itr = ss.iterator();   
+            while(itr.hasNext()){
+                Map.Entry entry = (Map.Entry) itr.next();
+                result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+            
+            }
+            if (result.equals("\t\t\tResultados de consulta:\n\n")) {
+                result = "No docs found for that query :( ";
+            }
+        }
+        return result;
+    }
+    
     public static void inicializar(){
         // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
         // b21684 por su usuario o toda la ruta. 

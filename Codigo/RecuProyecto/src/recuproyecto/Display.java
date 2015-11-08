@@ -151,8 +151,9 @@ public class Display extends javax.swing.JFrame {
         RecuProyecto controlador = new RecuProyecto(); 
         controlador.inicializar();
         String consulta = jTextField1.getText();
+        
         try{
-            boolean and = jRadioButton1.isSelected();
+            /*boolean and = jRadioButton1.isSelected();
             boolean or = jRadioButton2.isSelected();
             boolean sw = jRadioButton3.isSelected();
                     
@@ -164,7 +165,8 @@ public class Display extends javax.swing.JFrame {
                 } else {
                     result = controlador.procesarOr(consulta);
                 }
-            }
+            }*/
+            result = controlador.getRelevantDocs(consulta);
             
         }catch(IOException e){ e.printStackTrace();};
         long T2 = System.nanoTime();

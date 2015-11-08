@@ -14,9 +14,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import static recuproyecto.RecuProyecto.indice;
 /**
  *
@@ -30,7 +32,7 @@ public class busquedaVectorial {
     public static ArrayList<String> allTerms = new ArrayList<String>(); 
     // utilizado ara lo del cosine 
     private static ArrayList<double[]> tfidfDocsVector = new ArrayList<double[]>();
-    
+    public static ArrayList<String> termsQuery = new ArrayList<String>();
 
 
 
@@ -91,7 +93,7 @@ public class busquedaVectorial {
         IDF(t,D) = Inverse Term Frequency(t,D): measures the importance of term t in all documents (D)
     */
     public double idf(String term) {
-        double count = 0;
+        double count = 0.0;
         for(int c= 0; c < termsDocsArray.size();c++){
                 String[] docTerms = termsDocsArray.get(c);
                 for(int h= 1; h < docTerms.length ;h++){
@@ -101,9 +103,14 @@ public class busquedaVectorial {
                     }
                 }
         }
-        return Math.log10(termsDocsArray.size() / count);
-    }
+        if(count>0.0){
+            return Math.log10(termsDocsArray.size() / count);
     
+        }
+        else{
+            return count;
+        }
+    }
     /*
         busca el tfidf
         the weight is obtained by multiplying the two measures:
@@ -126,7 +133,7 @@ public class busquedaVectorial {
             if (!allTerms.contains(term)) {  //avoid duplicate entry
                 allTerms.add(term);
             }
-            System.out.println(term);
+            
             tokId[count] = term;
             count++;
         }
@@ -140,6 +147,7 @@ public class busquedaVectorial {
             tokId[count] = tokens2[i];
             count++;
         }*/
+        
         termsDocsArray.add(tokId);
     }
 
@@ -166,12 +174,15 @@ public class busquedaVectorial {
                     int idInt = Integer.parseInt(id);
                     idf = idf(allTerms.get(h));
                     tfidf = tf * idf;
-                    tfidfvectors[count] = tfidf;
+                    int r = (int) Math.round(tfidf*100);
+                    double f = r / 100.0;
+                    tfidfvectors[count] = r;
                     count++;
                 }
                 tfidfDocsVector.add(tfidfvectors);  //storing document vectors;            
-        }
+            }
             try{
+                normalizar();
                 guardarIndice();
             }catch(Exception e){};
     }
@@ -213,20 +224,32 @@ public class busquedaVectorial {
         return cosineSimilarity;
     }
     
-    
-    public void poblar() throws FileNotFoundException, IOException{
-        System.out.println("LLenando indice con pesos...");
-            String linea = null;
-            FileReader fileReader = new FileReader("IndicesConPeso.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            //Se va guardando en una tabla Hash
-            while((linea = bufferedReader.readLine()) != null) {
-                 ArrayList<double[]> listaPostingsPeso = new ArrayList<double[]>();
-                 bufferedReader.close();
-
+    /**
+     * Metodo para obtener los pesos de los terminos con la normalización de cosenos
+     */
+    public void normalizar() {
+        double coseno = 0.0;
+        for(int i = 0; i<tfidfDocsVector.size();i++){
+            for(int  j= 1;j<tfidfDocsVector.get(i).length;j++){//Obteno el valor del coseno
+                coseno+= Math.pow(tfidfDocsVector.get(i)[j],2);
+                
+            } 
+            coseno = Math.sqrt(coseno);
+            int r = (int) Math.round(coseno*100);
+            coseno = r / 100.0;
+            for(int k = 1;k<tfidfDocsVector.get(i).length;k++){
+                //A cada peso del termino en el doc, lo divido entre el coseno para obtener el valor normalizado
+                tfidfDocsVector.get(i)[k] = tfidfDocsVector.get(i)[k]/coseno;
+                int rr = (int) Math.round(tfidfDocsVector.get(i)[k]*100);
+                double f = rr / 100.0;
+                tfidfDocsVector.get(i)[k]=rr;
             }
+            coseno = 0.0;
+        
+        }
+        
     }
-    
+        
     public static void guardarIndice() throws IOException{
         File indices = new File("IndicesConPeso.txt");
         String hilera = "";
@@ -249,4 +272,86 @@ public class busquedaVectorial {
         } 
         bufferWritter.close();
     }
+    public HashMap<String, Double> getQueryWeight(String [] consulta){
+        HashMap<String, Double> hashMap = new HashMap<String, Double>();
+        for(int i = 0; i<consulta.length;i++){
+            if(!hashMap.containsValue(consulta[i])){
+                double valor = querytf(consulta[i],consulta)*idf(consulta[i]);
+                 int r = (int) Math.round(valor*100);
+                 double f = r / 100.0;
+                hashMap.put(consulta[i], f);
+                
+            }
+            
+        }
+        return hashMap;
+    }
+    
+    public double querytf(String term, String[] consulta){
+        double count = 0;  //Obtemenos el tf logartmico del termino en la consulta
+        for (int i = 0;i < consulta.length;i++) {
+            if (consulta[i].equalsIgnoreCase(term)) {
+                count++;
+            }
+        }
+        if(count==0){
+            return count;
+        }
+        else{
+            return 1+ (Math.log10(count));
+        }
+    }
+    /*
+    *Devuelve un hashMap con el nombre del documento y su relevancia
+    */
+    public HashMap<String, Double> getRelevantValues(HashMap<String, Double> consulta)throws IOException{
+        HashMap<String, Double> map = new HashMap<String, Double>();
+        FileReader fileReader = new FileReader("Documentos.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String linea = null;
+        boolean encontrado = false;
+        double relevancia = 0.0;
+        //Itera sobre los documentos de la coleccion
+        while((linea = bufferedReader.readLine()) != null) {
+            String [] token = linea.split("\\|");
+            String docID =(token[1]);
+            String nombre = token[0];
+            Set s = consulta.entrySet();
+            Iterator it = s.iterator();
+            String linea2 = null;
+            //Itera sobre los terminos de la consulta para obtener la relevancia del documento
+            while ( it.hasNext() ) {
+                Map.Entry entry = (Map.Entry) it.next();
+                String termino = (String) entry.getKey();
+                FileReader fr = new FileReader("IndicesConPeso.txt");
+                BufferedReader br = new BufferedReader(fr);
+                //Itera sobre el archivo de los pesos de los terminos de los documentos
+                //para obtener el peso del termino de la consulta en el documento buscado
+                while((linea2 = br.readLine()) != null && !encontrado) {
+                    String [] terminos = linea2.split("=");
+                    //Si el termino es el buscado, entonces obtenemos su peso en el documento y lo multiplicamos por el peso del termino en la consulta
+                    if(termino.equals(terminos[0])){
+                        String [] splitTmp = terminos[1].split(",");
+                        for(int i = 0; i < splitTmp.length;i++){
+                            String [] termDoc = splitTmp[i].split("-");
+                            if(docID.equals(termDoc[0])){
+                                relevancia+= (Double) entry.getValue()*Double.parseDouble(termDoc[1]);
+                            }
+                        }
+                        encontrado = true;
+                    }
+                    
+                    
+                }
+                encontrado=false;
+                br.close();
+            }//while iterator
+            map.put(nombre, relevancia);//guarda el nombre del archivo y su relevancia con respecto a la consulta
+            relevancia = 0.0;
+        } 
+        bufferedReader.close();
+        return map; 
+    
+    }
+    
 }
