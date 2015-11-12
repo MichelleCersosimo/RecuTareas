@@ -678,11 +678,38 @@ public class RecuProyecto {
         return result;
     }
     
+     public String getRelevantDocsJaccard(String consulta) throws IOException{
+        busquedaVectorial bv = new busquedaVectorial();
+        String result="";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            result += "\t\t\tResultados de la consulta:\n\n";
+            //HashMap<String, Double> hashMap = bv.getQueryWeight(palabras);
+            HashMap<String, Double> relevantDocs = bv.getRelevantValuesJaccard(palabras);
+            Map <String, Double> relevantDocsOrdered = sortByValue(relevantDocs);
+            Set ss = relevantDocsOrdered.entrySet();
+            Iterator itr = ss.iterator();   
+            while(itr.hasNext()){
+                Map.Entry entry = (Map.Entry) itr.next();
+                result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+            
+            }
+            if (result.equals("\t\t\tResultados de consulta:\n\n")) {
+                result = "No docs found for that query :( ";
+            }
+        }
+        return result;
+    }
+    
     public static void inicializar(){
         // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
         // b21684 por su usuario o toda la ruta. 
         
-        File[] files = new File("C:/GitHub/RecuProyecto/Codigo/Docs").listFiles();
+         File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
+        //File[] files = new File("C:/GitHub/RecuProyecto/Codigo/Docs").listFiles();
             HtmlParse parser = new HtmlParse();
             try{
                 bsbi(files, parser); 
