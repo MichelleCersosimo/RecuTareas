@@ -166,6 +166,11 @@ public class Display extends javax.swing.JFrame {
                     result = controlador.procesarOr(consulta);
                 }
             }*/
+            boolean sw = jRadioButton3.isSelected();
+            if(sw){
+                consulta = controlador.procesarOrSinSW(consulta);//elimina stopwords de la consulta
+            }
+            System.out.println(consulta);
             result = controlador.getRelevantDocs(consulta);
             
         }catch(IOException e){ e.printStackTrace();};
