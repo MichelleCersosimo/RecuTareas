@@ -382,29 +382,30 @@ public class busquedaVectorial {
         String linea = null;
         JaccardCalculator jac = new JaccardCalculator(); 
         boolean encontrado = false; 
-        double relevancia = 0;
+        double relevancia = 0.0;
         //Itera sobre los documentos de la coleccion
         String nombre = "";
         while((linea = bufferedReader.readLine()) != null) {
             String [] token = linea.split("\\|");
-            String docID =(token[1]);
+            String docID = token[1];
             nombre = token[0];
             ArrayList<String> resultTokens = getTokensPorId(docID);
-            
+            System.out.println("cantidad de terminos de resultTokens"+resultTokens.size());
             String[] toks = new String[resultTokens.size()];
-            for (int h=0; h<resultTokens.size(); h++) {
-                toks[h] = resultTokens.get(h);
+            for (int i=0; i<resultTokens.size(); i++) {
+                toks[i] = resultTokens.get(i);
             }
-            
+            System.out.println("cantidad de terminos en consulta"+consulta.length);
             int cantidadTerminos = consulta.length;
             int cont = 0; 
-            int h=0; 
-            while (cont < cantidadTerminos || encontrado == false) {
-                while (h<toks.length) {
+            System.out.println("cantidad de terminos en toks"+toks.length);
+            while (cont < cantidadTerminos) {
+                int h=0;
+                while ((h < toks.length-1) && (encontrado == false)) {
+                  //  System.out.println("numero:"+h+" comparando "+consulta[cont]+" y "+toks[h]);
                     if (consulta[cont].equals(toks[h])) {
                         relevancia = jac.jc(consulta,toks);
                         encontrado = true; 
-                        h = toks.length; 
                     }
                     h++;
                 }

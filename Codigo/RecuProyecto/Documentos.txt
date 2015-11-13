@@ -1,5 +1,7 @@
 Subversion Write Support.htm|4|
 The GitHub Blog  Enterprise.htm|5|
+Software - Wikipedia, the free encyclopedia.html|9|
+Arduino - Software.html|8|
 Glossary of Apache-Related Terms.htm|3|
 Contact FAQ.htm|1|
 GitHub.htm|2|

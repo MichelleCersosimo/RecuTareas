@@ -728,7 +728,8 @@ public class RecuProyecto {
         // b21684 por su usuario o toda la ruta. 
         
          //File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
-        File[] files = new File("C:/GitHub/RecuProyecto/Codigo/Docs").listFiles();
+        //C:\Users\b21684\Documents\GitHub\RecuTareas\Codigo\Docs
+        File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
             HtmlParse parser = new HtmlParse();
             try{
                 bsbi(files, parser); 
