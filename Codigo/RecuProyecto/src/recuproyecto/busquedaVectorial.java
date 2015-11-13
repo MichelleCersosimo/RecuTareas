@@ -300,8 +300,6 @@ public class busquedaVectorial {
                         }
                         encontrado = true;
                     }
-                    
-                    
                 }
                 encontrado=false;
                 br.close();
