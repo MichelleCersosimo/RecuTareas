@@ -36,34 +36,6 @@ public class busquedaVectorial {
     public static ArrayList<String> termsQuery = new ArrayList<String>();
 
 
-
-    // Assign a score to each query-document pair, say in [0, 1].
-    // This score measures how well document and query “match”
-    // If the query term does not occur in the document: score
-    // should be 0.
-    
-    /*
-        Take 1: Jaccard coefficient
-        A commonly used measure of overlap of two sets
-        Let A and B be two sets
-        Jaccard coefficient:
-        jaccard(A, B) = |A ∩ B|
-        |A ∪ B|
-        (A 6= ∅ or B 6= ∅)
-        jaccard(A, A) = 1
-        jaccard(A, B) = 0 if A ∩ B = 0
-        A and B don’t have to be the same size.
-        Always assigns a number between 0 and 1
-        Ejemplo:
-            Query: “ides of March”
-            Document “Caesar died in March”
-            jaccard(q, d) = 1/6
-    Problema:  doesn’t consider term frequency
-    */
-    public void jaccard() {
-        // puede ser un experimento
-    }
-    
     
     
     /*
@@ -271,7 +243,6 @@ public class busquedaVectorial {
                 hashMap.put(consulta[i],roundTwoDecimals(querytf(consulta[i],consulta)*idf(consulta[i])));
                 
             }
-            
         }
         return hashMap;
     }
@@ -329,8 +300,6 @@ public class busquedaVectorial {
                         }
                         encontrado = true;
                     }
-                    
-                    
                 }
                 encontrado=false;
                 br.close();
@@ -347,5 +316,107 @@ public class busquedaVectorial {
         DecimalFormat twoDecimals = new DecimalFormat("#.00");
         return Double.valueOf(twoDecimals.format(d));
 }
+    
+    
+    // Assign a score to each query-document pair, say in [0, 1].
+    // This score measures how well document and query “match”
+    // If the query term does not occur in the document: score
+    // should be 0.
+     /*
+        Take 1: Jaccard coefficient
+        A commonly used measure of overlap of two sets
+        Let A and B be two sets
+        Jaccard coefficient:
+        jaccard(A, B) = |A ∩ B|
+        |A ∪ B|
+        (A 6= ∅ or B 6= ∅)
+        jaccard(A, A) = 1
+        jaccard(A, B) = 0 if A ∩ B = 0
+        A and B don’t have to be the same size.
+        Always assigns a number between 0 and 1
+        Ejemplo:
+            Query: “ides of March”
+            Document “Caesar died in March”
+            jaccard(q, d) = 1/6
+    Problema:  doesn’t consider term frequency
+    */
+   
+    
+    public ArrayList<String> getTokensPorId(String docID) {
+        
+        ArrayList<String> resTok = new ArrayList<String>();
+        int cont = 0;
+        boolean aceptado = false; 
+        int size = termsDocsArray.size();
+        System.out.println("size de termsDocsArray"+size);
+        while (cont < size || aceptado == false ) {
+            
+            String[] docTerms = termsDocsArray.get(cont);
+            System.out.println("docTerms 0 "+docTerms[0]+" y docID "+docID);
+            if (docTerms[0].equals(docID)) {
+                String val = "";
+                
+                for (int g = 1; g < docTerms.length-1; g++ ) {
+                    //System.out.println("termino del doc:"+docTerms[g]);
+                    if (!(docTerms[g].equals("")) || (docTerms[g].equals(val) )  || !(docTerms[g].equals(" "))) {
+                        //System.out.println("entro:"+docTerms[g]);
+                        resTok.add(docTerms[g]);
+                        val = docTerms[g];
+                    } 
+                    val = docTerms[g];
+                }
+                aceptado = true;
+            } 
+            cont++;
+        }
+        return resTok; 
+    }
+    
+    public HashMap<String, Double> getRelevantValuesJaccard(String[] consulta)throws IOException{
+       
+        HashMap<String, Double> map = new HashMap<String, Double>();
+        FileReader fileReader = new FileReader("Documentos.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String linea = null;
+        JaccardCalculator jac = new JaccardCalculator(); 
+        boolean encontrado = false; 
+        double relevancia = 0.0;
+        //Itera sobre los documentos de la coleccion
+        String nombre = "";
+        while((linea = bufferedReader.readLine()) != null) {
+            String [] token = linea.split("\\|");
+            String docID = token[1];
+            nombre = token[0];
+            ArrayList<String> resultTokens = getTokensPorId(docID);
+            System.out.println("cantidad de terminos de resultTokens"+resultTokens.size());
+            String[] toks = new String[resultTokens.size()];
+            for (int i=0; i<resultTokens.size(); i++) {
+                toks[i] = resultTokens.get(i);
+            }
+            System.out.println("cantidad de terminos en consulta"+consulta.length);
+            int cantidadTerminos = consulta.length;
+            int cont = 0; 
+            System.out.println("cantidad de terminos en toks"+toks.length);
+            while (cont < cantidadTerminos) {
+                int h=0;
+                while ((h < toks.length-1) && (encontrado == false)) {
+                  //  System.out.println("numero:"+h+" comparando "+consulta[cont]+" y "+toks[h]);
+                    if (consulta[cont].equals(toks[h])) {
+                        relevancia = jac.jc(consulta,toks);
+                        encontrado = true; 
+                    }
+                    h++;
+                }
+                cont++; 
+            }
+            
+            relevancia = roundTwoDecimals(relevancia);
+            map.put(nombre, relevancia);//guarda el nombre del archivo y su relevancia con respecto a la consulta
+            relevancia = 0.0;     
+        }
+        bufferedReader.close();
+        return map; 
+    
+    }
     
 }

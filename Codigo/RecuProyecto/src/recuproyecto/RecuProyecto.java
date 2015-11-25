@@ -470,11 +470,22 @@ public class RecuProyecto {
         consulta = consulta.toLowerCase();
         String [] palabras = consulta.split(" ");
         if (palabras[0].equals("")) {
-                result = "No query terms found :( ";
+                result = "";
         } else {
-            String line = "a the an and are as at be by for from has hein its of on that to was were will with";
+            String line = "a the an and are as at be by for from has hein in its of on that to was were will with";
             String [] stopwords = line.split(" ");
-            System.out.println("longitud stop vector: "+stopwords.length);
+            for (int i = 0; i < palabras.length; i++){
+                boolean bandera = true;  
+                for (int j = 0; j < stopwords.length; j++) {
+                    if (palabras[i].equals(stopwords[j])) {
+                        bandera = false; 
+                    }
+                }
+                if(bandera){
+                    result+=palabras[i]+" ";
+                }
+            }
+            /*System.out.println("longitud stop vector: "+stopwords.length);
             System.out.println(stopwords[0]);
             Map<String, List<Integer>> treeMap = new TreeMap<String, List<Integer>>(indice);
             Set s = treeMap.entrySet();
@@ -499,7 +510,7 @@ public class RecuProyecto {
             }
             if (result.equals("\t\t\tResultados de consulta OR:\n\n")) {
                 result = "No docs found for that query :( ";
-            }
+            }*/
         }
         return result; 
     }
@@ -641,11 +652,12 @@ public class RecuProyecto {
          return sortedMap;
     }
     
-    public  String getRelevantDocs(String consulta) throws IOException{
+    public  String getRelevantDocs(String consulta,double relevancia) throws IOException{
         busquedaVectorial bv = new busquedaVectorial();
         String result="";
         consulta = consulta.toLowerCase();
         String [] palabras = consulta.split(" ");
+        int cont = -1;
         if (palabras[0].equals("")) {
                 result = "No query terms found :( ";
         } else {
@@ -657,10 +669,54 @@ public class RecuProyecto {
             Iterator itr = ss.iterator();   
             while(itr.hasNext()){
                 Map.Entry entry = (Map.Entry) itr.next();
-                result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+                if(relevancia < 0){
+                    cont=0;
+                    result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+                }
+                else{
+                    if(Double.parseDouble(entry.getValue().toString())>= (relevancia/10)){
+                        cont = 0;
+                        result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+                    }
+                }
+            }
+            if (cont == -1) {
+                result = "No docs found for that query :( ";
+            }
+        }
+        return result;
+    }
+    
+     public String getRelevantDocsJaccard(String consulta,double relevancia) throws IOException{
+        busquedaVectorial bv = new busquedaVectorial();
+        String result="";
+        consulta = consulta.toLowerCase();
+        String [] palabras = consulta.split(" ");
+        int cont = -1;
+        if (palabras[0].equals("")) {
+                result = "No query terms found :( ";
+        } else {
+            result += "\t\t\tResultados de la consulta:\n\n";
+            //HashMap<String, Double> hashMap = bv.getQueryWeight(palabras);
+            HashMap<String, Double> relevantDocs = bv.getRelevantValuesJaccard(palabras);
+            Map <String, Double> relevantDocsOrdered = sortByValue(relevantDocs);
+            Set ss = relevantDocsOrdered.entrySet();
+            Iterator itr = ss.iterator();   
+            while(itr.hasNext()){
+                Map.Entry entry = (Map.Entry) itr.next();
+                if(relevancia < 0){
+                    cont=0;
+                    result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+                }
+                else{
+                    if(Double.parseDouble(entry.getValue().toString())>= (relevancia/10)){
+                        cont = 0;
+                        result+= entry.getKey()+" relevancia   "+entry.getValue()+"\n";
+                    }
+                }
             
             }
-            if (result.equals("\t\t\tResultados de consulta:\n\n")) {
+            if (cont == -1) {
                 result = "No docs found for that query :( ";
             }
         }
@@ -671,8 +727,11 @@ public class RecuProyecto {
         // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
         // b21684 por su usuario o toda la ruta. 
         
-        File[] files = new File("C:/GitHub/RecuProyecto/Codigo/Docs").listFiles();
-            HtmlParse parser = new HtmlParse();
+         //File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
+        //C:\Users\b21684\Documents\GitHub\RecuTareas\Codigo\Docs
+        File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
+ 
+        HtmlParse parser = new HtmlParse();
             try{
                 bsbi(files, parser); 
             }catch(IOException e){
