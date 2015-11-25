@@ -8,6 +8,7 @@ package recuproyecto;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
+import javax.swing.DefaultListModel;
 /**
  *
  * @author Pc
@@ -22,6 +23,7 @@ public class RecuProyecto {
     public static javax.swing.JTextArea textArea;
     static HashMap<String, Integer> listaDocumentos1 = new HashMap<String, Integer>();
     static HashMap<String, Integer> listaDocumentos2 = new HashMap<String, Integer>();
+    static Map<Integer,String > sugerencias = new TreeMap<Integer,String>();
     static int docID;
     static int iDViejo;
     static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
@@ -36,7 +38,7 @@ public class RecuProyecto {
                 docID = 1;
                 iDViejo=-1;
         }*/
-        
+        llenarSugerencias();
         File postings = new File("Documentos.txt");
         // Si no existe crea el archivo
         if (!postings.exists()) {
@@ -160,6 +162,43 @@ public class RecuProyecto {
         }
         
     }
+    //Llena el archivo de sugerencias
+    public static void llenarSugerencias() throws IOException{
+        File sugerenciasArchivo = new File("sugerencias.txt");
+        // Si no existe crea el archivo
+        if (!sugerenciasArchivo.exists()) {
+                 sugerenciasArchivo.createNewFile();
+        }
+        else{//Si está vacio, entonces llega sugerencias
+            if(sugerencias.isEmpty()){
+                String linea = null;
+                HashMap<Integer,String> sugerenciasTmp = new HashMap<Integer,String>();
+                try {
+
+                    FileReader fileReader = 
+                        new FileReader("sugerencias.txt");
+
+
+                    BufferedReader bufferedReader = 
+                        new BufferedReader(fileReader);
+
+                    while((linea = bufferedReader.readLine()) != null) {
+                        String [] token = linea.split(",");
+                        sugerenciasTmp.put(Integer.parseInt(token[0]),token[1]);
+                                                
+                    }
+                    Map<Integer,String> tmp = new TreeMap<Integer,String>(sugerenciasTmp);
+                    sugerencias = tmp;
+                    bufferedReader.close();         
+                }
+                catch(FileNotFoundException ex) {
+                    System.out.println(
+                        "No se pudo abrir sugerencias.txt");                
+                }
+            }
+        }
+    }
+    
     
     public static void llenarIndice() throws IOException{
             System.out.println("LLenando indice...");
@@ -722,7 +761,25 @@ public class RecuProyecto {
         }
         return result;
     }
-    
+    //Método encargado de llenar la lista de sugerencias de la interfaz
+    public DefaultListModel<String> obtenerSugerencias(String busqueda){
+        int cont = 0;
+        DefaultListModel<String> sugerenciasEncontradas = new DefaultListModel<>();
+        Set s = sugerencias.entrySet();
+        Iterator it = s.iterator();
+        String[] busquedaTokenizada = busqueda.split(" ");
+        //Itera sobre el arbol creado, para encontrar las 5 sugerencias
+        while ( it.hasNext() && cont<5 ) {
+           String listaPostings = "";
+           Map.Entry entry = (Map.Entry) it.next();
+           String termino = (String) entry.getValue();
+           if(termino.contains(busqueda.toLowerCase())){
+               sugerenciasEncontradas.addElement(termino);
+           }
+            
+        }//while
+         return sugerenciasEncontradas;
+    }
     public static void inicializar(){
         // Cambiar por la direccion en donde se encuentre la carpeta Docs, es decir cambie 
         // b21684 por su usuario o toda la ruta. 

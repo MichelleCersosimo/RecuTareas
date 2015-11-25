@@ -180,6 +180,11 @@ public class Display extends javax.swing.JFrame {
 
         jLabel3.setText("Introduzca un valor entre 1 y 10");
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,14 +329,15 @@ public class Display extends javax.swing.JFrame {
     }
     
     public void actualizarSugerencias(){
+        RecuProyecto controlador = new RecuProyecto();
         //Lo que debe de hacer este metodo es siempre llamar a algun método en Recuproyecto, para que busque en
         //sugerencias.txt las sugerencias que posean lo que se ha escrito hasta el momento
         //Esto lo hace letra x letra, entonces habria que hacer algun .split por espacios y si no hay espacios
         //Entoncs que busque lo que está escrito y ya, cmo palabra unica :B
-        String palabra ="Prueba";
-        DefaultListModel<String> sugerencias = new DefaultListModel<>();
-        sugerencias.addElement(palabra);
-        //sugerencias = obtenerSugerencias(jTextField1.getText());
+        //String palabra ="Prueba";
+        //DefaultListModel<String> sugerencias = new DefaultListModel<>();
+        //sugerencias.addElement(palabra);
+        DefaultListModel<String> sugerencias = controlador.obtenerSugerencias(jTextField1.getText());
         jList1.setModel(sugerencias);
         if(jTextField1.getText().equals("")){//Aqui lo que hace es vaciar las sugerencias si el textfield está vacio
             DefaultListModel listmodel = (DefaultListModel)jList1.getModel();
@@ -360,6 +366,17 @@ public class Display extends javax.swing.JFrame {
             jTextField2.setText("");
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        if (!evt.getValueIsAdjusting()) {//This line prevents double events
+            DefaultListModel listmodel = new DefaultListModel();
+            listmodel.addElement(jList1.getSelectedValue());
+            String texto = (String)listmodel.get(0);
+            jTextField1.setText(texto);
+
+        }
+        
+    }//GEN-LAST:event_jList1ValueChanged
 
     /**
      * @param args the command line arguments
