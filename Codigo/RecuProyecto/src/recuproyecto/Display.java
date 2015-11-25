@@ -35,6 +35,24 @@ public class Display extends javax.swing.JFrame {
         initComponents();
         jTextField2.setEnabled(false);
         setVisible(true);
+        jTextField1.getDocument().addDocumentListener(new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent arg0) 
+            {
+                
+            }
+            public void insertUpdate(DocumentEvent arg0) 
+            {
+                actualizarSugerencias();                
+            }
+
+            public void removeUpdate(DocumentEvent arg0) 
+            {
+                actualizarSugerencias();
+                //panel.setPrice(panel.countTotalPrice(TabPanel.this));
+            }
+        });
+        
     }
     
     
@@ -162,11 +180,6 @@ public class Display extends javax.swing.JFrame {
 
         jLabel3.setText("Introduzca un valor entre 1 y 10");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -310,20 +323,27 @@ public class Display extends javax.swing.JFrame {
         jTextArea1.setText("");       
     }
     
-
+    public void actualizarSugerencias(){
+        //Lo que debe de hacer este metodo es siempre llamar a algun método en Recuproyecto, para que busque en
+        //sugerencias.txt las sugerencias que posean lo que se ha escrito hasta el momento
+        //Esto lo hace letra x letra, entonces habria que hacer algun .split por espacios y si no hay espacios
+        //Entoncs que busque lo que está escrito y ya, cmo palabra unica :B
+        String palabra ="Prueba";
+        DefaultListModel<String> sugerencias = new DefaultListModel<>();
+        sugerencias.addElement(palabra);
+        //sugerencias = obtenerSugerencias(jTextField1.getText());
+        jList1.setModel(sugerencias);
+        if(jTextField1.getText().equals("")){//Aqui lo que hace es vaciar las sugerencias si el textfield está vacio
+            DefaultListModel listmodel = (DefaultListModel)jList1.getModel();
+            listmodel.removeAllElements();
+        }
+    
+    }
+    
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-        jTextField1.addActionListener(new ActionListener(){
-
-            public void actionPerformed(ActionEvent ev){
-                // Do the action event here.
-                DefaultListModel listModel = new DefaultListModel();
-                jList1.setModel(listModel);
-                String[] ar = {"one", "two", "three"};
-                listModel.addElement("mich");
-            }
-          });
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
