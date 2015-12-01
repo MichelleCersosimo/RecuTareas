@@ -1,5 +1,5 @@
-2,the map 
-5,the github foundation
-10,the web
-2,the documentation of github
-4,the apache software 
+the map,2
+the github foundation,5
+the web,10
+the documentation of github,2
+the apache software,4

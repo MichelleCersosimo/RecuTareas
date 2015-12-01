@@ -330,15 +330,10 @@ public class Display extends javax.swing.JFrame {
     
     public void actualizarSugerencias(){
         RecuProyecto controlador = new RecuProyecto();
-        //Lo que debe de hacer este metodo es siempre llamar a algun método en Recuproyecto, para que busque en
-        //sugerencias.txt las sugerencias que posean lo que se ha escrito hasta el momento
-        //Esto lo hace letra x letra, entonces habria que hacer algun .split por espacios y si no hay espacios
-        //Entoncs que busque lo que está escrito y ya, cmo palabra unica :B
-        //String palabra ="Prueba";
-        //DefaultListModel<String> sugerencias = new DefaultListModel<>();
-        //sugerencias.addElement(palabra);
-        DefaultListModel<String> sugerencias = controlador.obtenerSugerencias(jTextField1.getText());
-        jList1.setModel(sugerencias);
+        if(!jTextField1.getText().equals(" ")){
+            DefaultListModel<String> sugerencias = controlador.obtenerSugerencias(jTextField1.getText());
+            jList1.setModel(sugerencias);
+        }
         if(jTextField1.getText().equals("")){//Aqui lo que hace es vaciar las sugerencias si el textfield está vacio
             DefaultListModel listmodel = (DefaultListModel)jList1.getModel();
             listmodel.removeAllElements();

@@ -23,7 +23,7 @@ public class RecuProyecto {
     public static javax.swing.JTextArea textArea;
     static HashMap<String, Integer> listaDocumentos1 = new HashMap<String, Integer>();
     static HashMap<String, Integer> listaDocumentos2 = new HashMap<String, Integer>();
-    static Map<Integer,String > sugerencias = new TreeMap<Integer,String>();
+    static Map<String,Integer > sugerencias = new TreeMap<String,Integer>();
     static int docID;
     static int iDViejo;
     static HashMap<String, List<Integer>> indice = new HashMap<String, List<Integer>>();
@@ -162,6 +162,24 @@ public class RecuProyecto {
         }
         
     }
+    
+    public static Map ordenarSugerencias(HashMap unsortMap) {	 
+         List list = new LinkedList(unsortMap.entrySet());
+
+         Collections.sort(list,Collections.reverseOrder(new Comparator() {
+                 public int compare(Object o1, Object o2) {
+                         return ((Comparable) ((Map.Entry) (o1)).getValue())
+                                                 .compareTo(((Map.Entry) (o2)).getValue());
+                 }
+         }));
+
+         Map sortedMap = new LinkedHashMap();
+         for (Iterator it = list.iterator(); it.hasNext();) {
+                 Map.Entry entry = (Map.Entry) it.next();
+                 sortedMap.put(entry.getKey(), entry.getValue());
+         }
+         return sortedMap;
+    }
     //Llena el archivo de sugerencias
     public static void llenarSugerencias() throws IOException{
         File sugerenciasArchivo = new File("sugerencias.txt");
@@ -172,7 +190,7 @@ public class RecuProyecto {
         else{//Si está vacio, entonces llega sugerencias
             if(sugerencias.isEmpty()){
                 String linea = null;
-                HashMap<Integer,String> sugerenciasTmp = new HashMap<Integer,String>();
+                HashMap<String,Integer> sugerenciasTmp = new HashMap<String,Integer>();
                 try {
 
                     FileReader fileReader = 
@@ -184,10 +202,11 @@ public class RecuProyecto {
 
                     while((linea = bufferedReader.readLine()) != null) {
                         String [] token = linea.split(",");
-                        sugerenciasTmp.put(Integer.parseInt(token[0]),token[1]);
+                        sugerenciasTmp.put(token[0],Integer.parseInt(token[1]));
                                                 
                     }
-                    Map<Integer,String> tmp = new TreeMap<Integer,String>(sugerenciasTmp);
+                    Map <String, Integer> sugerenciasOrdenadas = ordenarSugerencias(sugerenciasTmp);
+                    Map<String,Integer> tmp = new TreeMap<String,Integer>(sugerenciasOrdenadas);
                     sugerencias = tmp;
                     bufferedReader.close();         
                 }
@@ -772,10 +791,11 @@ public class RecuProyecto {
         while ( it.hasNext() && cont<5 ) {
            String listaPostings = "";
            Map.Entry entry = (Map.Entry) it.next();
-           String termino = (String) entry.getValue();
+           String termino = (String) entry.getKey();
            if(termino.contains(busqueda.toLowerCase())){
                sugerenciasEncontradas.addElement(termino);
            }
+           cont++;
             
         }//while
          return sugerenciasEncontradas;
