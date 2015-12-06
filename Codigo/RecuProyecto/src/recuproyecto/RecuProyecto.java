@@ -188,7 +188,7 @@ public class RecuProyecto {
                  sugerenciasArchivo.createNewFile();
         }
         else{//Si está vacio, entonces llega sugerencias
-            if(sugerencias.isEmpty()){
+            //if(sugerencias.isEmpty()){
                 String linea = null;
                 HashMap<String,Integer> sugerenciasTmp = new HashMap<String,Integer>();
                 try {
@@ -214,7 +214,7 @@ public class RecuProyecto {
                     System.out.println(
                         "No se pudo abrir sugerencias.txt");                
                 }
-            }
+            //}
         }
     }
     
@@ -800,8 +800,9 @@ public class RecuProyecto {
            String termino = (String) entry.getKey();
            if(termino.contains(busqueda.toLowerCase())){
                sugerenciasEncontradas.addElement(termino);
+               cont++;
            }
-           cont++;
+           
             
         }//while
          return sugerenciasEncontradas;
@@ -812,7 +813,7 @@ public class RecuProyecto {
         
          //File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
         //C:\Users\b21684\Documents\GitHub\RecuTareas\Codigo\Docs
-        File[] files = new File("C:/Users/Desktop/Recuperacion/Codigo/Docs").listFiles();
+        File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
  
         HtmlParse parser = new HtmlParse();
             try{

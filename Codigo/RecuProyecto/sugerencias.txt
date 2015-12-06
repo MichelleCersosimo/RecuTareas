@@ -1,6 +1,6 @@
 the map,2
 the github foundation,3
-the web,1
+the web,4
 the documentation of github,4
 the apache software,1
-terms and conditions,0
+terms of condition,2
