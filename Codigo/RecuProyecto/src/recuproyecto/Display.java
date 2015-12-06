@@ -20,6 +20,11 @@ import javax.swing.text.Document;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -31,8 +36,16 @@ public class Display extends javax.swing.JFrame {
     /**
      * Creates new form Display
      */
+    
+    public static ArrayList<String> sugerencias = new ArrayList<String>(); 
+    public static int countSugerencias = 0; 
+    public static int flag = 0;
+    public static int ultimo = 0;
+    
+    
     public Display() {
         initComponents();
+        initSugerencias();
         jTextField2.setEnabled(false);
         setVisible(true);
         jTextField1.getDocument().addDocumentListener(new DocumentListener()
@@ -55,6 +68,14 @@ public class Display extends javax.swing.JFrame {
         
     }
     
+     public void initSugerencias(){
+        sugerencias.add("the map,2");
+        sugerencias.add("the github foundation,3");
+        sugerencias.add("the web,1");
+        sugerencias.add("the documentation of github,4");
+        sugerencias.add("the apache software,1");
+        countSugerencias = 5; 
+    }
     
     
     /*public static void checkeo() {
@@ -261,6 +282,102 @@ public class Display extends javax.swing.JFrame {
         RecuProyecto controlador = new RecuProyecto(); 
         controlador.inicializar();
         String consulta = jTextField1.getText();
+        
+        String query = consulta.toLowerCase(); 
+        /*
+            Debemos guardar todas las consultas buscadas en el archivo de sugerencias. 
+            Debemos llevar un contador para saber cuando haya 100, debemos empezar a sacar
+            busquedas con menor contador
+            Al igual tendremos una lista en donde cada vez que se inserte una palabra
+            se buscara en ella, y se revisara si ya esta incluida, si si, se aumentará su contador
+            sino, solo se insertará con contador 1
+        */
+        
+        // parte donde al siguiente turno vamos a aumentar el contador de 0 a 1, 
+        // para que esta vez si pueda sacarse 
+        if (flag == 0) {
+            flag = 1;
+        } else {
+            String lin = sugerencias.get(ultimo);
+            String arr [] = lin.split(",");
+            String texto = arr[0];
+            sugerencias.set(ultimo, texto+",1");
+        }
+        // parte donde se revisa la consulta realizada esta en la cache 
+        boolean yaEsta = false; 
+        int indiceEncontrado = 0; 
+        for (int h = 0; h < sugerencias.size(); h++) {
+            String lin = sugerencias.get(h);
+            String arr [] = lin.split(",");
+            String revisar = arr[0];
+            if (revisar.equals(query)) {
+                yaEsta = true;
+                indiceEncontrado = h; 
+            }
+        }
+        
+        if (yaEsta) {
+                // si ya esta como una sugerencia solo aumento su contador 
+                // debo obtenerlo, cambiar su contador, y volverlo a guardar. 
+                String linea = sugerencias.get(indiceEncontrado);
+                String arr [] = linea.split(",");
+                String number = arr[1];
+                int numb = Integer.parseInt(number);
+                numb++; 
+                String nuevoContador = Integer.toString(numb);
+                String nuevaLinea = arr[0]+","+nuevoContador; 
+                sugerencias.set(indiceEncontrado, nuevaLinea);
+        } else {
+            // si no esta hay 2 casos 
+            if (countSugerencias < 100) { // si aun no llego al limite de mi cache 
+                //lo agrego en cero para que al siguiente turno, no voy a sacar la sugerencia que acabo de meter
+                // es decir, para nosotros el cero sera como zona neutral 
+                sugerencias.add(query+",0");
+                ultimo = sugerencias.size()-1;
+                countSugerencias++; 
+            }else { // si llegue al limite y es de fijo meter uno nuevo
+                // debo primero revisar el menor contador de todos
+                // sin tomar en cuenta los ceros por eso empezamos en 1 
+                int menorContadorEncontrado = 1;
+                int indiceDelMenor = 0; 
+                for (int g = 0; g < sugerencias.size(); g++){
+                    String line = sugerencias.get(g);
+                    String arr [] = line.split(",");
+                    String number = arr[1];
+                    int numb = Integer.parseInt(number);
+                    if (numb >= menorContadorEncontrado) {
+                        menorContadorEncontrado = numb; 
+                        indiceDelMenor = g; 
+                    } 
+                }
+                // luego de encontrar quien es el menor lo reemplazo por el que quiero meter nuevo 
+                sugerencias.set(indiceDelMenor, query+",0");
+                ultimo = indiceDelMenor;
+            }
+            
+        }
+        try {
+            controlador.actualizarSugerencias();
+        } catch (IOException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // volvemos a escribir de 0 el archivo.
+        String fileName = "sugerencias.txt";
+        
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (int i = 0; i < sugerencias.size(); i++) {
+                bufferedWriter.write(sugerencias.get(i));
+                bufferedWriter.newLine();
+            }
+           
+            bufferedWriter.close();
+        }catch(IOException ex) {
+            System.out.println("Error writing to file '"+ fileName + "'");
+        }
+        
         
         try{
             /*boolean and = jRadioButton1.isSelected();

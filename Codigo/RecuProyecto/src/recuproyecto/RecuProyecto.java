@@ -77,7 +77,7 @@ public class RecuProyecto {
             }
         }
         List<Integer> borrables = obtenerBorrables(files);
-        
+     
         if(iDViejo != docID-1 || listaDocumentos1.isEmpty() || !borrables.isEmpty()|| bv.termsDocsArray.isEmpty()){
             for(File file: files){
                 try {
@@ -780,6 +780,12 @@ public class RecuProyecto {
         }
         return result;
     }
+     
+     public void actualizarSugerencias() throws IOException{
+       llenarSugerencias();
+     }
+     
+     
     //Método encargado de llenar la lista de sugerencias de la interfaz
     public DefaultListModel<String> obtenerSugerencias(String busqueda){
         int cont = 0;
@@ -806,7 +812,7 @@ public class RecuProyecto {
         
          //File[] files = new File("C:/Users/b21684/Documents/Github/RecuTareas/Codigo/Docs").listFiles();
         //C:\Users\b21684\Documents\GitHub\RecuTareas\Codigo\Docs
-        File[] files = new File("C:/Users/Vitaly/Documents/RecuTareas/Codigo/Docs").listFiles();
+        File[] files = new File("C:/Users/Desktop/Recuperacion/Codigo/Docs").listFiles();
  
         HtmlParse parser = new HtmlParse();
             try{
